@@ -1,0 +1,39 @@
+# Default constructors
+    Imagine you’re joining a new company. On your first day, you receive a welcome kit with a laptop, an ID card, and some basic instructions —
+    without asking for it. This "default" setup ensures you’re ready to work, even if no one explicitly customized anything for you.
+
+    Now, consider writing a Java class that represents a student. You want to create multiple student objects, but you don’t always
+    have specific data like name or age upfront. You need a way to create these objects quickly and assign initial values later — without repeating code.
+
+    This is where default constructors come in. They offer a predefined setup that helps initialize objects automatically,
+    even if no information is provided at the time of creation.
+
+Q1. What Exactly is a Default Constructor? 💡
+Standard Definition:
+    A default constructor is a constructor with no parameters that is automatically created by the Java compiler if no other constructor is explicitly defined in the class.
+
+# Key Takeaways 📝:
+
+    1. A default constructor is a constructor with no parameters
+    2. Java automatically creates it for you if you don’t write any constructor
+    3. It allows you to create objects easily, even without passing any data
+    4. You can write your own default constructor to set initial values
+    5. If you write another constructor (like a parameterized one), Java won’t add the default constructor for you — you’ll need to write it yourself
+    6. It’s useful for simple object creation, and it keeps your code clean and flexible
+
+# Common Interview Questions & Answers 💬
+
+    Q1: What is a default constructor in Java?
+        It’s a constructor that takes no parameters. If you don’t write any constructor, Java adds one automatically.
+
+    Q2: What happens if I write a parameterized constructor?
+        Java stops adding the default constructor for you. You must write it manually if needed.
+
+    Q3: Can I create objects using the default constructor even if I didn’t write one?
+        Yes — but only if you didn’t write any other constructor. Java gives you one for free in that case.
+
+    Q4: Why should I use a default constructor?
+        To create objects quickly when no values are available yet, or when you want to assign standard values to every object.
+
+    Q5: Can I use both default and parameterized constructors in one class?
+        Yes! This is called constructor overloading. It gives you more options for creating objects.

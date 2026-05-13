@@ -1,0 +1,46 @@
+Q1. What Is a Static Method in Java?
+
+    In Java, when you use the word static before a method, that method becomes a class method. You don’t need to create an object to use it.
+    You can call it using the class name. This is very helpful for small methods that don’t use any object-specific data.
+
+    Let’s understand it with a classroom example. Imagine there is a wall clock in the class. Every student can look at the clock,
+    and the clock gives the same time to all of them. You don’t need to give every student their own watch.
+    The wall clock is like a static method — shared by all, useful to all, and doesn’t belong to anyone.
+
+Standard Definition:
+    Static methods are such methods that are associated with a class rather than an object.
+    They are declared using the keyword static. We can call static methods without creating an instance of the class.
+
+Q2. Why Are Static Methods Useful?
+    Static methods are useful because:
+        1. You don’t need to create an object to use them
+        2. They save memory and make your code short and clean
+        3. They are perfect for utility methods — small pieces of logic that do not depend on any object data
+        4. You can reuse them in many places in your program
+
+    In real life, Java already has many static methods that we use every day. For example:
+        1. Math.max(a, b) — finds the bigger number
+        2. Math.sqrt(a) — finds the square root
+        3. Integer.parseInt("123") — changes a string into an integer
+
+    All of these are static methods. You don’t create a Math or Integer object. You just use the method by calling it with the class name. That’s the power of static methods.
+
+Common Interview Questions:
+
+    Q1. Why is the main() method static in Java?
+        The main() method is static because it is the starting point of the program. The Java Virtual Machine (JVM) calls the main() method
+        before creating any objects. Since there is no object created when the program starts, main() must be static
+        so that it can be executed directly using the class name.
+
+    Q2. Can a static method access non-static variables or methods?
+        No. A static method cannot directly access non-static (instance) variables or methods.
+        This is because non-static members belong to objects, and static methods do not have any object to work with.
+        If you want to access non-static members inside a static method, you must first create an object.
+
+    Q3. Can a static method be overridden?
+        No. Static methods cannot be overridden in Java because they belong to the class, not to individual objects.
+        If you declare a static method with the same name in a subclass, it hides the method from the superclass — but this is known as method hiding, not overriding.
+
+    Q4. Can we call a static method using an object?
+        Yes, technically you can call a static method using an object. However, it is not recommended.
+        The preferred way is to use the class name to make it clear that the method belongs to the class, not the object.

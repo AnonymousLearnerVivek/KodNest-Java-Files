@@ -1,0 +1,68 @@
+# Copy constructors
+    Let’s imagine you’re building a library management system, and you’ve created a class called Book.
+    This class stores details about a book, such as its title and number of pages.
+
+    Now, suppose you already have one book object. Later on, you want to create another book object with the exact
+    same details — maybe it’s a second copy of the same book, or you want to test something without changing the original.
+
+    At this point, a common question arises:
+
+    "How can I create a new object that has the same values as an existing one, without manually setting each value again?"
+    One way to do this is to manually copy the values, like this:
+        Book b1 = new Book("Java Fundamentals", 300);
+        Book b2 = new Book();
+        b2.title = b1.title;
+        b2.pages = b1.pages;
+
+    Yes, this works — but only when your class has just a few variables.
+
+    Now if your Book class has 10 or more fields — like author, publisher, edition, price, ISBN, etc. Manually copying each one
+    becomes tiring, easy to mess up, and hard to maintain. What if you forget to copy one of the fields? Or what if the class changes in the future?
+
+    This is exactly where the copy constructor becomes useful. It offers a cleaner, more reliable way to create a new object with the
+    same values as an existing one — in just one line of code.
+
+Q1. What Exactly Is a Copy Constructor? 💡
+Standard Definition:
+    A copy constructor in Java is a special constructor that takes another object of the same class as its parameter and copies its values into the new object.
+
+Q2. Why Is It Important? 🎯
+    The copy constructor is important for several reasons:
+        1. It allows you to create a new object with the same data as an existing object
+        2. It avoids repeating the same assignments manually for every field
+        3. It keeps your code clean, short, and easy to understand
+        4. It makes sure the new object is separate — so changes to it don’t affect the original
+        5. It gives your class a professional design, especially in real-world applications
+
+    In short, copy constructors give you control, simplicity, and safety when working with objects that need to be duplicated.
+
+# Syntax for Copy Constructor 🔍:
+    Here are some basic things to know about copy constructors:
+        1. A copy constructor has this general form:
+                ClassName(ClassName object) {
+                    this.field1 = object.field1;
+                    this.field2 = object.field2;
+                    // ...and so on
+                }
+        2. The constructor takes one argument, which is an object of the same class
+        3. It copies each variable from the existing object to the new object
+        4. Java does not provide a copy constructor by default — you must write it yourself
+        5. It creates a deep copy for simple types (like int, String), but for objects, you may need to write a custom deep copy if needed
+        6. The new object and the original are stored in different memory locations — so they don’t affect each other
+
+# Common Interview Questions:
+
+    Q1: What is a copy constructor?
+        A constructor that takes an object of the same class and copies its data into a new object.
+
+    Q2: Does Java automatically create a copy constructor?
+        No. You need to write your own copy constructor if you want to use it.
+
+    Q3: Why not just assign values manually instead of using a copy constructor?
+        Manual copying takes more time, more code, and is easy to mess up. A copy constructor is clean, short, and consistent.
+
+    Q4: What kind of copy does a copy constructor perform?
+        By default, it performs a shallow copy. For complex objects, you’ll need to write logic for a deep copy.
+
+    Q5: Can I overload a copy constructor?
+        Yes. Like any constructor, you can overload it — but the common pattern is to have one copy constructor taking a single object.

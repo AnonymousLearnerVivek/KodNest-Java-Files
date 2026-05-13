@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/BroCode Java.iml" filepath="$PROJECT_DIR$/.idea/BroCode Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Class Practice/Class Practice.iml" filepath="$PROJECT_DIR$/Class Practice/Class Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyFirstProject/MyFirstProject.iml" filepath="$PROJECT_DIR$/MyFirstProject/MyFirstProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_39Oops in Java/_39Oops in Java.iml" filepath="$PROJECT_DIR$/_39Oops in Java/_39Oops in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_40Constructors in java/_40Constructors in java.iml" filepath="$PROJECT_DIR$/_40Constructors in java/_40Constructors in java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_41Overloaded Contructors in Java/_41Overloaded Contructors in Java.iml" filepath="$PROJECT_DIR$/_41Overloaded Contructors in Java/_41Overloaded Contructors in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_42 Array of Objects in java/_42 Array of Objects in java.iml" filepath="$PROJECT_DIR$/_42 Array of Objects in java/_42 Array of Objects in java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_43Static keyword in Java/_43Static keyword in Java.iml" filepath="$PROJECT_DIR$/_43Static keyword in Java/_43Static keyword in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_44Inheritance in Java/_44Inheritance in Java.iml" filepath="$PROJECT_DIR$/_44Inheritance in Java/_44Inheritance in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_45Super Keyword in Java/_45Super Keyword in Java.iml" filepath="$PROJECT_DIR$/_45Super Keyword in Java/_45Super Keyword in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_46 Method Overidding in Java/_46 Method Overidding in Java.iml" filepath="$PROJECT_DIR$/_46 Method Overidding in Java/_46 Method Overidding in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_47 toString Method in java/_47 toString Method in java.iml" filepath="$PROJECT_DIR$/_47 toString Method in java/_47 toString Method in java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_48 Abstraction in Java/_48 Abstraction in Java.iml" filepath="$PROJECT_DIR$/_48 Abstraction in Java/_48 Abstraction in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_49 Interfaces in java/_49 Interfaces in java.iml" filepath="$PROJECT_DIR$/_49 Interfaces in java/_49 Interfaces in java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_50 Polymorphism in Java/_50 Polymorphism in Java.iml" filepath="$PROJECT_DIR$/_50 Polymorphism in Java/_50 Polymorphism in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_51 Runtime Polymorphism/_51 Runtime Polymorphism.iml" filepath="$PROJECT_DIR$/_51 Runtime Polymorphism/_51 Runtime Polymorphism.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_52 getter and setter methods in Java/_52 getter and setter methods in Java.iml" filepath="$PROJECT_DIR$/_52 getter and setter methods in Java/_52 getter and setter methods in Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_53 Aggregation in Java/_53 Aggregation in Java.iml" filepath="$PROJECT_DIR$/_53 Aggregation in Java/_53 Aggregation in Java.iml" />
+    </modules>
+  </component>
+</project>

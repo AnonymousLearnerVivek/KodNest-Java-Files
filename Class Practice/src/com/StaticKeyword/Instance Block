@@ -1,0 +1,63 @@
+Instance Block OR Non-static Block
+
+    Let’s say you’re creating a class called com.Consturctor.Book. Every time you create a new com.Consturctor.Book object, you want to do some setup — maybe print a message
+    and set a default value like edition = 1. You want this setup to happen every time you create a new book, no matter what data is assigned later.
+
+    Now imagine having to repeat that same setup code again and again in different places. That would make your program longer, harder to manage,
+    and easier to break if you forget something. Wouldn’t it be better if you could just write this setup code once — and have it run every time a new object is created?
+
+    That’s exactly what instance blocks are for.
+
+Q1. What Exactly is an Instance Block?
+    Instance blocks in Java, often called initializer blocks, are blocks of code that are executed every time a new instance of a class is created.
+    They are useful for initializing common parts across different parts of a class or when anonymous classes are involved.
+
+Standard Definition:
+    An instance block in Java is a block of code inside a class that runs automatically every time a new object is created.
+
+# Real-Life Analogy to Understand Better:
+
+    Imagine a book printing machine in a factory. Every time a new book is printed, the machine automatically adds a barcode and the publisher’s logo on the last page.
+    This setup happens for every book, no matter what the book’s title or author is.
+
+    The machine doesn’t care about what content is inside — it just runs this default action every time a book is created.
+
+    In Java, the instance block behaves the same way. It runs automatically for every new object, performing a shared setup like assigning default values
+    or printing setup messages. You don’t have to call it — it just runs, behind the scenes.
+
+# Key Takeaways
+    1. Instance blocks in Java are also called initializer blocks
+    2. They run every time a new object is created
+    3. They run before any other object setup happens
+    4. You can use them to set default values or run object-level setup logic
+    5. You don’t need to call them — Java runs them automatically
+    6. Instance blocks can access instance variables
+    7. They help keep your code cleaner and less repetitive
+
+# Common Interview Questions:
+
+    Q1. What is an instance block in Java?
+        An instance block is a block of code that runs automatically every time a new object is created. It helps set default values or perform setup tasks.
+
+    Q2. How is an instance block different from a static block?
+        A static block runs once when the class is loaded. An instance block runs every time an object is created.
+
+    Q3. Can we have more than one instance block in a class?
+        Yes, you can have multiple instance blocks, and Java will run them in the order they appear in the code.
+
+    Q4. Can instance blocks access instance variables?
+        Yes. Instance blocks run in the context of the object, so they can use instance variables and call instance methods.
+
+    Q5. Where are instance blocks useful?
+        Instance blocks are useful when you want to avoid repeating setup code across multiple places or when using anonymous classes where constructors aren’t available.
+
+    Q6. What is the order of execution when we use static blocks, instance blocks?
+        First, all static blocks (once). Then, each time an object is created: all instance blocks (in order).
+
+Summary:
+    1. Static blocks run once, when the class is loaded.
+    2. Instance blocks run every time a new object is created.
+    3. You can have multiple static and instance blocks in one class.
+    4. Java runs them in the order they appear in the code.
+    5. This gives you better control over setup logic, whether it's for the class or for each object.
+    6. Helps keep your code organized and clean, especially when you need to perform different tasks during setup.

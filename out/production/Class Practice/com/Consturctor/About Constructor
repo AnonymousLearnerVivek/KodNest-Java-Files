@@ -1,0 +1,27 @@
+Q1. What Exactly is a Constructor? 💡
+Standard Definition:
+    A constructor is a special method in Java that is automatically called when an object is created. Its job is to initialize the object’s values.
+
+# Fundamental Concepts of Constructors 🔑
+    Here are some important points to remember:
+        1. The constructor name must be the same as the class name
+        2. It has no return type (not even void)
+        3. It is called automatically when an object is created
+        4. You can have multiple constructors in one class — this is called constructor overloading
+        5. There are two main types:
+            i. Default constructor — no parameters also know as ZERO Parameterized Constructor, Java Complier will create the Default Constructor if you don't create the constructor
+           ii. Parameterized constructor — takes input values
+# Common Interview Questions & Answers 💬
+    Q1. What is a constructor in Java?
+        A constructor is a special method used to initialize objects. It runs automatically when an object is created.
+
+    Q2. What’s the difference between a constructor and a method?
+        1. A constructor has no return type
+        2. A constructor’s name is always the same as the class name
+        3. It runs automatically; you don’t call it like a method
+
+    Q3. What is a default constructor?
+        A constructor with no parameters. It sets default values.
+
+    Q4. What is a parameterized constructor?
+        A constructor that takes values (parameters) and uses them to set data during object creation.

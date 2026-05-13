@@ -1,0 +1,67 @@
+Introduction to interfaces
+    When we start building applications in Java, we often use something called abstract classes.
+    Think of abstract classes as basic plans or blueprints that tell other classes what they should do.
+
+    Let’s say you are building a set of machines — a fan, a washing machine, and a microwave.
+    You create one blueprint (abstract class) that says: “Every machine must have a start() and stop() method.” Now,
+    every machine will follow this blueprint, but also add its own features. That’s how abstract classes help you design your program.
+
+    So far, so good. But now comes the problem.
+
+The Problem with Abstract Classes:
+
+    Now you're building machines like a TV or a washing machine, and you create a plan (abstract class) for them.
+    This plan says: "Every machine should have a turnOn() and turnOff() button."
+    But what if a new smart machine wants to turn on with voice command instead of a button?
+
+Here’s the issue:
+    1. The old plan says: “Use a button to turn on.”
+    2. The smart machine has to either:
+        i) Follow the old button rule, even if it’s outdated.
+       ii) Rewrite the plan every time, which gets confusing.
+    So, abstract classes can sometimes restrict what we can do, making it harder to add new ideas like voice control.
+
+So, What’s the Solution?
+    In Java, there is a tool called an interface to help solve this problem.
+    An interface is like saying, “I don’t care how you do it, just make sure you do it.”
+    It tells you what needs to be done, but doesn’t explain how to do it. The class that
+    follows the interface can choose how it wants to do it. This way, each class can do things
+    in its own way, while still following the same rules. It makes everything simple and flexible,
+    so you can write better and more organized code.
+
+# The Role of Interfaces
+    Interfaces address these limitations by offering pure abstraction and more flexible structure designs.
+    1. Multiple Inheritance through Interfaces:
+        i) Unlike classes, Java allows a class to implement multiple interfaces. This feature helps overcome
+           the single inheritance limitation, enabling a class to adhere to multiple contracts.
+       ii) Example: A Smartphone can be both a Camera and a GPS device. In Java, this would be like a
+           class Smartphone implementing two interfaces, Camera and GPS, thereby gaining the functionality of both.
+
+    2. Pure Abstraction:
+        i) Interfaces provide a form of pure abstraction without any method implementations.
+           This ensures that classes can implement these methods in their own unique ways.
+       ii) Example: Consider a Chargeable interface with a method chargeBattery(). Various devices
+           like Smartphone, Laptop, and ElectricCar can implement this interface in different ways according to their specific battery requirements.
+
+# Limitation of Abstract Classes
+    1. Single Inheritance: In Java, a class can inherit from only one superclass. This is like having
+                           a key that can open only one specific type of lock—it's useful but limiting.
+        i) Analogy: Imagine you are a student who can only attend one type of class—science or arts,
+                    but not both. If you want to learn subjects from both streams, this rule becomes a restriction.
+
+    2. Strong Class Coupling: Abstract classes can define concrete methods, which means they can still dictate some behaviors.
+                              This tight coupling can make the system less flexible.
+        i) Analogy: Think of a fixed menu in a restaurant. You can choose a meal plan, but you can’t change
+                    the dishes. If the restaurant changes a dish, it affects everyone who chooses that plan.
+
+# Key Points to remember:
+    1. Abstract classes are useful, but they can restrict flexibility and creativity because they define how to do things, not just what needs to be done.
+    2. Interfaces provide pure abstraction, telling us what needs to be done, but allowing each class to decide how to do it.
+    3, Interfaces offer more freedom and allow multiple inheritance, which makes the code more flexible and easier to maintain.
+
+# Conclusion:
+    In short, abstract classes are great when you want to share some common features among classes
+    but also want to control how things are done. However, they can limit flexibility because a class can only extend one abstract class.
+
+    On the other hand, interfaces are more flexible because they allow a class to follow multiple sets of rules without being
+    restricted by a single blueprint. Interfaces let classes decide how to do things while still ensuring they follow the same basic rules.

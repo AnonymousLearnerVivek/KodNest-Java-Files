@@ -1,0 +1,47 @@
+Q1) What is a Static Variable?
+    In Java, a static variable is a variable that belongs to the class rather than to instances of the class.
+    This means:
+        1. All objects share the same static variable.
+        2. There is only one copy of the static variable in memory, no matter how many objects you create.
+        3. You can access the static variable using the class name, without even creating an object.
+        4. Any change made to a static variable will be reflected in all instances of that class.
+
+Standard Definition:
+    A static variable is a variable whose value persists throughout the entire program's execution,
+    meaning it's allocated memory once and remains in memory until the program ends, unlike local variables
+    that are created and destroyed with each function call.
+
+Common Interview Questions:
+
+    1. What is a static variable in Java?
+    Answer:
+        A static variable is a class-level variable shared by all objects of the class. It is declared using the static keyword
+        and is initialized only once when the class is loaded. All instances refer to the same variable.
+
+    2. When should you use a static variable?
+    Answer:
+        Use a static variable when the data is common to all instances of a class, such as a college name, interest rate, or a shared counter.
+        It helps in saving memory and maintaining consistency.
+
+    3. Can static variables be changed?
+    Answer:
+        Yes, static variables can be changed. Since there is only one copy shared across all objects,
+        updating the value will affect all existing and future instances of the class.
+
+    4. How are static variables accessed?
+    Answer:
+        They are accessed using the class name, like ClassName.variableName. You can also access them using an object,
+        but it's not recommended because it looks like the variable belongs to the object, which it doesn't.
+
+    5. Where are static variables stored in memory?
+    Answer:
+        Static variables are stored in a special memory area called the method area. They are loaded once when
+        the class is loaded by the JVM and remain until the class is unloaded or the program ends.
+
+    6. What is the default value of a static variable?
+    Answer:
+        Just like regular variables, static variables have default values based on their type. For example:
+            int → 0
+            double → 0.0
+            boolean → false
+            Object reference → null
