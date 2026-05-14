@@ -100,7 +100,7 @@ package com.Abstraction;
     according to the subclass. This approach makes the code easier to extend and maintain, and it encourages better organization and reuse of code.
  */
 abstract class Animal{
-    abstract void eat();
+    abstract void eat(); // These are called Abstract Methods
     void sleep(){        // This is also known as Concrete Method
         System.out.println("Animal is sleeping");
     }
@@ -155,6 +155,47 @@ public class Abstraction {
         a.walk();
     }
 }
+/*
+Q1. What Exactly is an Abstract Class?
+Standard Definition:
+    An abstract class is a class that cannot be instantiated (you cannot create objects directly from it).
+    It is used as a base class for other classes. It allows you to define common features and behaviors
+    that must be shared by all classes that extend it.
+
+Q2. What Exactly are Abstract Methods?
+Standard Definition:
+    An abstract method is a method that is declared in an abstract class but does not have a body or implementation.
+    It’s like a promise that any class extending the abstract class must provide an implementation for that method.
+
+# Key Points to Remember for Abstract Classes:
+
+    1. Abstract classes cannot be instantiated: You cannot create objects directly from an abstract class.
+    2. They have abstract methods: These are methods that do not have a body and must be implemented by subclasses.
+    3. They can have concrete methods: In addition to abstract methods, abstract classes can also have fully implemented methods.
+    4. They are inherited by other classes: Subclasses must provide implementations for the abstract methods, or they must also be declared as abstract.
+
+# Key Points to Remember for Abstract Methods:
+
+    1. Abstract methods don’t have an implementation in the parent class.
+    2. The subclasses must provide their own version of the method.
+    3. Abstract methods help you define common behavior across different parts of your program while allowing each part to fill in the details.
+ */
+
+/*
+# Common Interview Questions:
+
+    Q1: What is an abstract method?
+    Answer: An abstract method is a method declared in an abstract class without any implementation. It must be implemented by subclasses.
+
+    Q2: Why can’t we create an object of an abstract class?
+    Answer: An abstract class is incomplete, so it cannot be instantiated directly. It is meant to be used as a blueprint for subclasses.
+
+    Q3: Can an abstract class have non-abstract methods?
+    Answer: Yes, an abstract class can have both abstract methods (without implementation) and non-abstract methods (with implementation).
+
+    Q4: What happens if a subclass does not implement an abstract method?
+    Answer: If a subclass does not implement an abstract method, it will also have to be declared as abstract, or the program will throw a compile-time error.
+ */
 /*
     Common Interview Questions and Answers:
     Q1: What is an abstract class in Java?
