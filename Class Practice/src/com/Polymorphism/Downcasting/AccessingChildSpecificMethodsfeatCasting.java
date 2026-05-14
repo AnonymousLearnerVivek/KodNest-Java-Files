@@ -128,7 +128,7 @@ public class AccessingChildSpecificMethodsfeatCasting {
 
         if(p instanceof Child1) {
 //            Child1 child1 = (Child1) p;  // we can do this conversion as well
-//            child1.display1();
+//            child1.child1Details();
             ((Child1)(p)).child1Details();
         }
         else if(p instanceof Child2) {
