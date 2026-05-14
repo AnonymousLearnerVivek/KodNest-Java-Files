@@ -86,3 +86,42 @@ Answer: The HAS-A relationship allows us to change the internal objects without 
 Answer: Yes, a class can have multiple HAS-A relationships.
         For example, a House object can have a Window, a Door, and a Roof as its components.
  */
+
+/*
+# Common Interview Questions related to Aggregation:
+
+    Q1: What is aggregation in Java?
+    Answer: Aggregation is a type of HAS-A relationship where one class contains a reference to another class, but the contained object can exist independently of the container object.
+
+    Q2: Can you give a real-life example of aggregation?
+    Answer: Yes. A university has professors. If the university shuts down, professors can still work at other institutions. So, a University HAS-A Professor is an example of aggregation.
+
+    Q3: How is aggregation implemented in Java?
+    Answer: Aggregation is implemented by creating one object separately and then passing its reference into another class. The contained object is not created inside the container class.
+
+    Q4: Why is aggregation useful?
+    Answer: Aggregation makes the code more reusable, flexible, and modular. It allows different parts of a program to share and use common objects without depending on each other completely.
+
+    Q5: Is aggregation a type of inheritance?
+    Answer: No. Aggregation is not inheritance. It is a type of object association — specifically a HAS-A relationship, not an IS-A relationship like inheritance.
+
+ */
+
+/*
+# Common Interview Questions related to Composition:
+
+    Q1: What is composition in Java?
+    Answer: Composition is a HAS-A relationship where the contained object is fully managed by the container and cannot exist on its own.
+
+    Q2: Can you give a real-life example of composition?
+    Answer: Yes. A book has chapters. If the book is deleted, the chapters are deleted too. The chapters cannot exist without the book.
+
+    Q3: How is composition different from aggregation?
+    Answer: In composition, the contained object is created inside the container and destroyed with it. In aggregation, the object is passed in and can live independently.
+
+    Q4: How do you implement composition in Java?
+    Answer: By creating the contained object directly inside the class using the new keyword.
+
+    Q5: Is composition better than aggregation?
+    Answer: It depends on the use case. Use composition when the object must not exist alone, and use aggregation when it can be shared or reused.
+ */
