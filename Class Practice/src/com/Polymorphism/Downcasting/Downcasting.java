@@ -116,4 +116,26 @@ public class Downcasting {
         p.land();
     }
 }
+/*
+    The type of casting used above is called downcasting. Downcasting occurs when you cast a reference of a superclass to a subclass.
+    This is common in object-oriented programming when you need to access methods or properties specific to the subclass that aren't available or defined in the superclass.
 
+    Q) What is Downcasting?
+        Downcasting is a way to regain access to the methods and properties of a subclass from a reference variable that is
+        currently referring to an object as its superclass type. This is necessary because the superclass reference by default
+        only has access to methods and properties that the superclass knows about, which includes methods that the subclass has
+        overridden but does not include methods that are unique to the subclass.
+
+    Q) Why and When to Use Downcasting?
+       1. Accessing Subclass-Specific Features:
+          If you have a reference that is of a superclass type and you know that the actual object is an instance of a subclass,
+          downcasting allows you to access methods and properties specific to that subclass.
+
+       2. Implementing Polymorphic Behavior:
+          In scenarios where methods are overridden in subclasses, and you might want to invoke these methods through superclass
+          references, downcasting can be used after ensuring the object's actual type, to invoke methods that are specifically overridden or newly defined in the subclass.
+
+       3. Leveraging Subclass-Specific Logic:
+          When subclass instances contain additional logic or state not represented in the superclass, downcasting is necessary
+          to make full use of those specific implementations.
+ */
