@@ -21,11 +21,9 @@ public class _4AnonymousInnerClass {
     public static void main(String[] args) {
         // We know that you cannot create the object of abstract class, but you can create the Anonymous inner class type like this
         Program p = new Program() {            // This is known as Anonymous inner class - when you have an object but doesn't have reference
-            // and this method body extends to Program Class
-// We use Anonymous inner class when you want to give the implementation of a particular abstract class but for that one specific implementation, you don't need to create the separate class again
-            @Override
-            public void display1() {
-                System.out.println("Display1 Method");
+          @Override                           // and this method body extends to Program Class
+          public void display1() {                  // We use Anonymous inner class when you want to give the implementation of a particular abstract class
+              System.out.println("Display1 Method"); // but for that one specific implementation, you don't need to create the separate class again
             }
             @Override
             public void display2() {
