@@ -1,7 +1,7 @@
 package com.Interface;
-// Interface is a collection of pure abstract class
+// Interface is a collection of pure abstract class and interface is not a class
 // by default methods inside interface are abstract methods
-// in the UML diagram interface represent with rectangular sign <> which indicate that it is a interface not a class
+// in the UML diagram interface represent with rectangular sign <> which indicate that it is an interface not a class
 
 
 //abstract class Robot {
@@ -41,7 +41,7 @@ public class InterfaceInJava {
         accessRobot(new TeacherRobot());
         accessRobot(new DoctorRobot());
     }
-    // we can create the reference of interface but we cannot create the Object of Interface
+    // we can create the reference of interface, but we cannot create the Object of Interface
     static void accessRobot(Robot r) {
         r.work();
         r.charge();
@@ -56,7 +56,7 @@ public class InterfaceInJava {
 
     What actually Interface is ?
     Standard definition:
-    An Interface in Java programming language is defined as an abstract type used to specify the behaviour of a class.
+    An Interface in Java programming language is defined as an abstract type used to specify the behavior of a class.
     An interface in Java is a blueprint of a behaviour(method). A Java interface contains static constants and abstract methods.
  */
 /*
