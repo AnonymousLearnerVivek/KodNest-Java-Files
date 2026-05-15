@@ -47,7 +47,7 @@
     is pivotal for achieving polymorphism, where the implementation details are hidden behind
     interface references, allowing for flexible code that can work with any new implementation of the interface.
 
-    2. A Class Implements an Interface, but a Extends An Interfacenother Interface
+    2. A Class Implements an Interface, but a Interface can extends other Interface
     Explanation:
     In Java, a class uses the keyword implements to adhere to the specifications of an interface.
     This means the class agrees to perform the specific actions the interface defines.
@@ -55,31 +55,31 @@
     inheriting its method declarations. This allows for a hierarchy of interfaces,
     each building on or specializing the behavior defined by its parent.
 
-        Example:
+            Example:
 
-        interface Movable {
-            void move();
-        }
-
-        interface Flyable extends Movable {
-            void fly();
-        }
-
-        class Airplane implements Flyable {
-            public void move() {
-                System.out.println("Airplane moves forward.");
+            interface Movable {
+                void move();
             }
 
-            public void fly() {
-                System.out.println("Airplane flies.");
+            interface Flyable extends Movable {
+                void fly();
             }
-        }
-    Here, Flyable extends Movable, adding a new capability. Airplane implements Flyable, and thus must define both move and fly.
 
-    Q) Can interfaces extend other interfaces?
-    Ans: Yes, they can extend multiple interfaces.
-    Explanation: In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance
-                 where interfaces inherit methods from multiple sources.
+            class Airplane implements Flyable {
+                public void move() {
+                    System.out.println("Airplane moves forward.");
+                }
+
+                public void fly() {
+                    System.out.println("Airplane flies.");
+                }
+        }
+            Here, Flyable extends Movable, adding a new capability. Airplane implements Flyable, and thus must define both move and fly.
+
+            Q) Can interfaces extend other interfaces?
+            Ans: Yes, they can extend multiple interfaces.
+            Explanation: In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance
+                         where interfaces inherit methods from multiple sources.
 
     3. An Interface Can Be Empty and Is Known as a Marker or Tagged Interface
     Explanation:
