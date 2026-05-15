@@ -81,6 +81,48 @@
             Explanation: In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance
                          where interfaces inherit methods from multiple sources.
 
+    # Yes, they can extend multiple interfaces.
+      In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance where
+      interfaces inherit methods from multiple sources.
+            Example:
+                // First interface
+                interface Animal {
+                    void eat();
+                }
+
+                // Second interface
+                interface Pet {
+                    void play();
+                }
+
+                // Third interface extending multiple interfaces
+                interface Dog extends Animal, Pet {
+                    void bark();
+                }
+
+                // Class implementing the Dog interface
+                class Labrador implements Dog {
+                    public void eat() {
+                        System.out.println("Dog is eating");
+                    }
+                    public void play() {
+                        System.out.println("Dog is playing");
+                    }
+                    public void bark() {
+                        System.out.println("Dog is barking");
+                    }
+                }
+                // Main class
+                public class Main {
+                    public static void main(String[] args) {
+                        Labrador d = new Labrador();
+                        d.eat();
+                        d.play();
+                        d.bark();
+                    }
+                }
+
+
     3. An Interface Can Be Empty and Is Known as a Marker or Tagged Interface
     Explanation:
     An interface with no method declarations is known as a marker or tagged interface. These interfaces do not define
