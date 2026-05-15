@@ -32,17 +32,16 @@
                 private String collegeName = "Rural Engineering College";
 
                 // Inner class (younger sibling)
-                class com.Consturctor.Student {
+                class Student {
                     void introduce() {
-                        // The com.Consturctor.Student class can access the collegeName variable of the College class
+                        // The Student class can access the collegeName variable of the College class
                         System.out.println("I study at " + collegeName);
                     }
                 }
             }
            # Explanation:
-            1. The com.Consturctor.Student class is the "younger sibling" inside the College class.
-            2. The com.Consturctor.Student class can easily access and use the collegeName from the outer College class, just like a sibling who knows all your family secrets.
-
+           1. The Student class is the "younger sibling" inside the College class.
+           2. The Student class can easily access and use the collegeName from the outer College class, just like a sibling who knows all your family secrets.
 
     2. Static Nested Classes: The Independent Cousins 👨‍👩‍👧‍👦
 

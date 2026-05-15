@@ -1,0 +1,56 @@
+# Methods in an Interface
+
+Q1. What’s a Method in an Interface?
+    Think of an interface method like a wish list. 📝 The interface tells you what needs to be done,
+    but it doesn’t tell you how to do it. It’s like your mom telling you to clean your room but not
+    explaining exactly how you should do it. You can choose how to clean your room: Do you want to
+    vacuum first? Or maybe pick up the clothes? It’s up to you!
+
+# There are different types of methods in an interface in Java:
+  1. Abstract Methods
+  2. Default Methods
+  3. Static Methods
+
+1. Abstract Methods
+  Abstract methods are the most common type of methods in an interface. They are simply method
+  declarations (with no body or code inside). This means the method only tells you what needs to be done,
+  but not how to do it. Any class that implements the interface must define how to perform the method.
+
+2. Default Methods
+    Starting from Java 8, interfaces can also have default methods. These are methods that already have a
+    predefined implementation (code) in the interface. If a class implements the interface, it can use the
+    default method without changing it. However, the class can also override the method if it wants to provide its own behavior.
+
+3. Static Methods
+    Interfaces can also have static methods. These methods belong to the interface itself, not to any object
+    of a class that implements the interface. Static methods can be called directly on the interface,
+    without needing to create an object of a class.
+
+# Key Points to Remember:
+
+    1. Abstract methods define what should be done, and the class provides the implementation for them.
+    2. Default methods have a predefined implementation in the interface. Classes can use them or override them.
+    3. Static methods belong to the interface itself and can be called without creating an instance of a class.
+
+# Common Interview Questions and Answer:
+
+    1. What is a method in an interface?
+    Answer: A method in an interface is like a task that needs to be completed, but it doesn't tell the class how to do it.
+            The class that implements the interface will provide its own implementation of the method.
+
+    2. Can an interface have a method with code inside it?
+    Answer: Yes, starting from Java 8, an interface can have default methods with a predefined implementation (code inside).
+            However, the class implementing the interface can choose to either use the default implementation or override it with its own code.
+
+    3. What is the difference between abstract methods and default methods in an interface?
+    Answer:
+        1. Abstract methods have no code inside the interface. The class implementing the interface must provide the implementation.
+        2. Default methods already have code in the interface. The class can use the default implementation or override it.
+
+    4. What are static methods in an interface?
+    Answer: Static methods belong to the interface itself and can be called directly from the interface, without needing an object
+            of the implementing class. They are useful for utility methods that don’t require instance-specific data.
+
+    5. Can an interface method have parameters?
+    Answer: Yes, interface methods can have parameters just like any regular method. When a class implements the interface,
+            it must provide the method's implementation and decide how to handle the parameters.
