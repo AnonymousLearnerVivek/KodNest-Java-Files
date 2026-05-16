@@ -1,0 +1,58 @@
+* Lambda Expression got introduced from Java 8
+Q1. What Exactly is a Lambda Expression? 💡
+Standard Definition:
+    A Lambda Expression is a short and simple way of writing a small block of code that can be treated like data.
+    It allows you to define actions without giving them a name like traditional methods.
+
+# Real-World Applications of Lambda Expressions 🌏:
+    Lambda Expressions are used in many parts of real-life programming:
+    1. Job Portals: When you search for jobs, the system quickly filters the most relevant ones for you. Behind the scenes,
+                    quick filtering using Lambda Expressions makes this possible.
+    2. Netflix: Based on your watching history, Netflix recommends shows that you may like. Lambdas help process this matching quickly.
+    3. Banking: When banks detect fraud or approve transactions, small checks written using Lambda Expressions make the decisions faster.
+    4. Mobile Apps: In many apps, when you click a button or swipe on the screen, Lambda Expressions help perform actions quickly and neatly.
+
+Q2. When to Use Lambda Expressions:
+    Lambda expressions are particularly useful in situations like:
+    1. Sorting: When you want to sort things in a special way.
+    2. Filtering: When you want to pick out certain items from a collection.
+    3. Performing Actions on Each Item: When you want to do something to every item in a list.
+    4. Event Handling: In computer programs with buttons or other interactive elements.
+
+# Key Points to Remember:
+    1. Lambda Expression Definition: A Lambda Expression is a concise way to define a small block of code that can be treated
+                                     like data and perform a specific task without creating a full method.
+    2. Importance:
+        i. Efficiency: Write less code for small actions.
+       ii. Optimization: Cleaner and better-organized code.
+    3. Syntax: (input) -> (task)
+    4. Example: (a, b) -> a + b (adds two numbers).
+    5. Functional Interface: Lambda expressions can only be used where there is a Functional Interface (an interface with one abstract method).
+
+# Real-world Applications:
+    1. Job Portals: Filtering relevant jobs using lambdas.
+    2. Netflix: Recommending shows based on watching history.
+    3. Banking: Fraud detection and transaction approval with lambdas.
+    4. Mobile Apps: Performing actions like button clicks efficiently.
+
+
+# Common Interview Questions and Answers:
+
+    Q1. What is a Lambda Expression in Java?
+    Answer: A Lambda Expression is a shorthand way of writing a function or method in Java that can be passed around and executed.
+            It allows us to write simple and concise code for operations that can be represented by a single method.
+
+    Q2. How do Lambda Expressions improve code efficiency?
+    Answer: Lambda Expressions reduce the amount of boilerplate code you need to write. They allow you to perform small tasks in a
+            single line, improving readability and making the code more efficient.
+
+    Q3. Can you explain the syntax of a Lambda Expression?
+    Answer: The syntax of a Lambda Expression is (input) -> (task), where input represents the parameters passed into the Lambda
+            and task is the operation the Lambda performs.
+
+            Example: (a, b) -> a + b represents a Lambda that adds two numbers.
+
+    Q4. How do Lambda Expressions handle large datasets efficiently?
+    Answer: Lambda Expressions are particularly useful in operations that need to be performed on large datasets, such as filtering,
+            sorting, or transforming data, making code cleaner, more efficient, and faster by eliminating the need for
+            verbose loops and conditional structures.
