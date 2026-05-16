@@ -1,0 +1,58 @@
+Q1. What Are Arrays? 💡
+Standard Definition:
+    An array is a collection of elements, all of the same type, stored in contiguous memory locations.
+    Each element in an array is accessed using an index, and the elements are typically stored
+    in a sequential manner.
+
+# Key points to remember: 📝
+    1. Arrays are collections of elements stored in contiguous memory locations.
+    2. They are indexed by numbers, starting from 0, allowing quick access to any element.
+    3. Arrays are fixed in size and can only store elements of the same type.
+    4. They help organize data efficiently and are widely used for storing collections of similar data.
+
+# Common Interview Questions and Answers:
+
+    Q1. What is an array in Java?
+    Answer: An array in Java is a collection of elements of the same type, stored in contiguous memory locations.
+            Each element can be accessed using an index, starting from 0. Arrays allow for efficient
+            data management and quick access to elements.
+
+    Q2. Why do we use arrays in programming?
+    Answer: Arrays help store multiple values in one place, making it easier to manage related data.
+            They provide fast access to any item using an index, which makes working with large datasets
+            more efficient and organized.
+
+    Q3. How is an array different from a variable?
+    Answer: A variable holds a single value, while an array can hold multiple values of the same type.
+            Instead of creating separate variables for each value, an array lets you store them together
+            and access them using an index.
+
+    Q4. Can you explain the key characteristics of an array?
+    Answer:
+            1. Fixed Size: Once declared, the size of an array is set and cannot be changed. To store more elements, a new array must be created.
+            2. Same Type of Elements: All elements in an array must be of the same data type.
+            3. Easy Access: Each element is accessed via its index, starting from 0, making retrieval quick and straightforward.
+
+# Common Interview Questions and Answers on Arrays:
+
+    Q1. What is an array in Java?
+    Answer: An array in Java is a container that holds a fixed number of values of a single data type.
+            It allows you to store multiple values in a single variable and access them using an index
+
+    Q2. Can you modify an array’s size once it’s created?
+    Answer: No, the size of an array is fixed once it’s created. If you need a different size,
+            you must create a new array and copy the data over if necessary.
+
+    Q3. What happens if you try to access an index outside the bounds of the array?
+    Answer: If you try to access an index outside the valid range of the array (i.e., an index less than 0
+            or greater than or equal to the length of the array), it will throw an ArrayIndexOutOfBoundsException.
+
+    Q4. What is the default value of array elements in Java when declared but not initialized?
+    Answer: When an array is declared but not explicitly initialized, its elements are assigned
+            default values based on the data type:
+            1. Integer arrays: Default value is 0.
+            2. Boolean arrays: Default value is false.
+            3. Object arrays: Default value is null.
+
+    Q5. How do you find the length of an array in Java?
+    Answer: You can use the .length property to find the length of an array.
