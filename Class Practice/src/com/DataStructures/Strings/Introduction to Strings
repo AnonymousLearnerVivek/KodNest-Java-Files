@@ -1,1 +1,104 @@
 String are Objects
+Strings are treated as array of characters
+
+Q1. What is a String in Java?
+    In Java, a String is like a container that holds words, sentences, or even entire paragraphs.
+    It's simply a way to store text so that the computer can easily use and manage it.
+
+Standard Definition:
+    A String in Java is a sequence of characters used to represent text.
+    It is treated as a single data type and is enclosed in double quotes (" ").
+
+Q2. How Strings Work in Java: More Than Just Text 🔧
+    Java doesn’t store text as simple characters. Strings in Java are special objects,
+    meaning they come with extra features and abilities.
+
+    Let’s say you create a String:
+        String mypassion = "I love Java programming!";
+
+    The text “I love Java programming!” is now stored in the mypassion box.
+    Whenever you reference mypassion, Java knows it contains “I love Java programming!”
+
+# Strings Are Immutable (They Can’t Change) 🔒
+    Once you put something inside a String box in Java, you cannot change what’s inside. If you want to change it,
+    Java will create a new box with the updated content, leaving the original untouched.
+
+    Let’s take a look at this example:
+        String kodnest = "Hello";
+        kodnest = kodnest + " World!";
+
+    • Initially, the kodnest box contains “Hello”.
+    • When you add ” World!”, Java creates a new box that holds “Hello World!”, while the original “Hello” remains the same.
+
+This is why we say Strings are immutable—once created, they cannot be changed.
+If you modify a string, Java simply makes a new string with the updated content.
+
+# Memory Saver: String Pool in Java:
+    Java uses a smart method to save memory called the String Pool. The String Pool is like a shared storage area inside the Heap
+    where Java keeps commonly used strings. When you create a string, Java checks if the string already exists in the pool.
+        • If the string is already there, Java reuses it.
+        • If it’s a new string, Java adds it to the pool.
+
+    Here’s an example:
+        String kodnest1 = "Java";
+        String kodnest2 = "Java";  // Reuses the same "Java" string from the pool
+    In this case, both kodnest1 and kodnest2 refer to the same “Java” string in memory,
+    which saves space and makes your program more efficient.
+
+# Two Ways to Create Strings in Java ✌️
+    Java gives you two ways to create strings:
+
+    1. Using Double Quotes (Recommended):
+        This is the most common and easiest way to create a string:
+            String kodnest = "Hello Kodnest!"; // it will create inside the string pool
+
+    2. Using the new Keyword (Less Common):
+        You can also create a string using the new keyword:
+            String kodnest = new String("Hello Kodnest!"); it will create inside the heap section but outside the String pool
+
+    While both methods work, using double quotes is generally more efficient because it reuses strings from the String Pool.
+
+# Key points to remember:
+    1. What is a String?: A sequence of characters used to represent text, treated as a single data type in Java.
+    2. How to Create Strings: You can create strings using double quotes or the new keyword.
+    3. Immutability: Once created, Strings cannot be changed directly. If you modify a string, Java creates a new string.
+    4. String Pool: Java uses the String Pool to reuse existing strings and save memory.
+
+# Common Interview Questions and Answers:
+    Q1. What is a String in Java?
+    Answer: A String in Java is a sequence of characters used to represent text. It is treated as a single data type, enclosed in double quotes (" ").
+            Strings are objects in Java, which means they come with built-in features to help you manipulate and manage text easily.
+
+    Q2. Why are Strings immutable in Java?
+    Answer: Strings are immutable to:
+        1. Ensure security: For example, password values can’t be changed unexpectedly.
+        2. Improve performance: By using the String Pool, Java can save memory by reusing common String values instead of creating new ones.
+        3. Thread safety: Immutability makes Strings safe to use in multi-threaded applications since their values can’t be changed during execution.
+
+    Q3. What is the String Pool in Java?
+    Answer: The String Pool is a special memory area where Java stores commonly used strings.
+            When a string is created, Java checks if that string already exists in the pool:
+                1. If it exists, Java reuses the existing string.
+                2. If it doesn’t exist, Java adds it to the pool.
+                    This helps optimize memory usage.
+
+    Q4. What are the two ways to create a String in Java?
+    Answer:
+            1. Using Double Quotes (Recommended):
+                    String kodnest = "Hello Kodnest!";
+               This method reuses the String from the String Pool, making it memory-efficient.
+
+            2. Using the new Keyword (Less Common):
+                    String kodnest = new String("Hello Kodnest!");
+                This creates a new string object in memory, even if the same string exists in the String Pool
+
+    Q5. What is the primary benefit of Java's String Pool?
+    Answer: It saves memory by storing identical string literals in the same memory location
+            The String Pool stores identical string literals in the same memory location, reducing memory usage.
+
+# Conclusion:
+    Strings are fundamental in Java for handling text. They are easy to use, but because they are immutable,
+    Java optimizes memory usage with the String Pool. For situations where text needs frequent changes,
+    StringBuilder is a more efficient alternative. Mastering strings and understanding their properties,
+    such as immutability and comparison methods, is essential for writing efficient and clean Java code.
+
