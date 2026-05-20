@@ -92,8 +92,12 @@ public class Strings {
         String s = "technology";
         char[] arr = s.toCharArray(); // it will convert string into array of char
         for (char ch : arr) {
-            System.out.println(ch);
+            System.out.print(ch + " ");
         }
+        System.out.println();
+        String abc = new String(arr); // it will convert array of charater to String again
+        System.out.println(abc);
+
         String s3 = "I Love Java Language";
         String[] strs = s3.split(" "); // it will split the string where ever it will find space in the string and convert it array of Strings
         for (String str : strs) {
@@ -101,3 +105,21 @@ public class Strings {
         }
     }
 }
+/*
+Q1. What Exactly is charAt(int index)? 💡
+Simple Definition:
+    charAt(int index) is a method in Java that helps you get a character from a specific position (or index) in a string.
+
+Q2. What is the index-based system in Java for strings?
+Answer: Java uses zero-based indexing for strings. This means the first character in a string is at index 0,
+        the second character is at index 1, and so on. So, in the string "Hello", the index of 'H' is 0, 'e' is 1, and so on.
+
+# Key Points to Remember :
+    1. Strings are Immutable: Changing a string creates a new object, which can slow down your program.
+    2. Use StringBuilder/StringBuffer: For frequent string modifications, use StringBuilder (faster) or StringBuffer (thread-safe).
+    3. Avoid + in Loops: Use StringBuilder for string concatenation in loops to improve performance.
+    4. Use String.format(): It makes your code cleaner and easier to read when formatting strings.
+    5. Compare Strings with equals(): Use String.equals() to compare string content, not ==.
+    6. Avoid Unnecessary Strings: Use substring() to work with parts of a string without creating new objects.
+    7. Use split(): Split strings into parts with the split() method for cleaner code.
+ */
