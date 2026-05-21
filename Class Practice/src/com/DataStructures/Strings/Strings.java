@@ -95,7 +95,7 @@ public class Strings {
             System.out.print(ch + " ");
         }
         System.out.println();
-        String abc = new String(arr); // it will convert array of charater to String again
+        String abc = new String(arr); // it will convert array of character to String again
         System.out.println(abc);
 
         String s3 = "I Love Java Language";
