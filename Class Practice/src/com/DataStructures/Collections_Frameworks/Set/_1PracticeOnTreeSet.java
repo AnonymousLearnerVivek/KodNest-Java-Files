@@ -3,8 +3,8 @@ package com.DataStructures.Collections_Frameworks.Set;
 
 import java.util.Scanner;
 import java.util.TreeSet;
-
-public class PracticeOnTreeSet {
+// Managing Product Categories Using Set Operations with TreeSets
+public class _1PracticeOnTreeSet {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
