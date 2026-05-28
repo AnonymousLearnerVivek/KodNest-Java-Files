@@ -1,0 +1,125 @@
+# Understanding hashCode() and equals():
+    Imagine you’re building a student tracking app for your classroom. You’ve added profiles of students like Ravi (ID: 101).
+    Later, when Ravi logs in again with the same name and ID, your app checks if he's already registered. Surprisingly,
+    your app says: “Student not found.”
+
+    You double-check the data. Everything matches. So why is this happening?
+
+    Just like in real life where we identify people based on names and IDs, Java needs a way to understand whether two objects
+    are “the same.” But by default, Java doesn't compare what's inside the objects — it compares where they live in memory.
+
+    To make sure Java compares objects based on their data, we need to use two methods: equals() and hashCode().
+
+Q1. What Are equals() and hashCode()?
+Standard Definitions
+    1. equals() is a method that checks if two objects have the same information inside them — like the same name and ID.
+    2. hashCode() is a method that gives each object a number that helps Java quickly find and organize it in collections like HashSet or HashMap.
+
+Simple Explanation:
+    Think of storing student records in a digital cupboard.
+        1. equals() is like comparing two student forms to see if they have the same details — same name, same ID.
+        2. hashCode() is like checking which drawer the form should be kept in.
+
+    Even if two forms have the same details, if they’re placed in different drawers, the system won’t realize
+    they belong to the same student. That’s why both equals() and hashCode() must work together —
+    so the system knows what to compare and where to look.
+
+Q2. Why Are These Methods So Important?
+    Making Sure Items Are Not Repeated
+    In Java, tools like HashSet, HashMap, and LinkedHashSet are used to store items. But they need to know two things:
+        1. Where to keep each item — this is decided by hashCode().
+        2. Whether the item is already there — this is checked using equals().
+
+    If either of these methods is missing or not written correctly, Java might treat two identical items as different.
+    This can lead to duplicates or make the program unable to find an item that was already added. That’s why both
+    methods are important for keeping your data clean and accurate.
+
+# Overriding hashCode() and equals() in Custom Objects:
+    When using sets like HashSet or LinkedHashSet to store custom objects (such as instances of a custom class),
+    you need to override both hashCode() and equals() methods to ensure proper functioning.
+    Let’s understand why this is important and how to do it correctly.
+
+# The Problem Without Overriding
+    Imagine you’re building a feature in the Kodnest app to store student profiles. If you don’t override hashCode() and equals(),
+    Java will use the default implementations provided by the Object class. This means that each object’s hashCode() will be
+    based on memory address, and equals() will simply check for reference equality.
+            Set<Student> set = new HashSet<>();
+            set.add(new Student("Ravi", 101));
+            set.add(new Student("Ravi", 101));
+            System.out.println(set.size()); // Output: 2 ❌
+
+    This set should store only unique students. But because we didn’t override equals() and hashCode(),
+    Java treats both students as different — even if their data is the same.
+
+Q3. How to Override hashCode() and equals()?
+    To make sure HashSet or LinkedHashSet can correctly determine the uniqueness of custom objects,
+    you need to override both hashCode() and equals() methods.
+
+        import java.util.Objects;
+
+        public class Student {
+            String name;
+            int id;
+
+            public Student(String name, int id) {
+                this.name = name;
+                this.id = id;
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) return true;
+                if (obj == null || getClass() != obj.getClass()) return false;
+                Student s = (Student) obj;
+                return id == s.id && name.equals(s.name);
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hash(name, id);
+            }
+        }
+    Now when you add the same student twice:
+        Set<Student> set = new HashSet<>();
+        set.add(new Student("Ravi", 101));
+        set.add(new Student("Ravi", 101));
+        System.out.println(set.size()); // Output: 1 ✅
+
+    Now, when you add the same student again, Java checks the data using equals() and looks in the right place using hashCode().
+    Since both the name and ID match, Java understands it's the same student and does not add it again to the set.
+
+# Key Points to Remember:
+    1. Java collections like HashSet use hashCode() to find items quickly.
+    2. They use equals() to check whether two objects are actually the same.
+    3. If two objects are equal, they must return the same hash code.
+    4. When using custom classes in hash-based collections, always override both methods.
+    5. Objects.hash() is a simple way to generate a proper hash code.
+
+# Common Interview Questions and Answers:
+    Q1. What is the purpose of the equals() method in Java?
+    Answer: The equals() method checks whether two objects have the same data. It’s used to compare the values inside the objects, not their memory location.
+
+    Q2. What does the hashCode() method do?
+    Answer: The hashCode() method returns a number (called a hash code) that helps Java store and find objects quickly in collections like HashSet or HashMap.
+
+    Q3. Why should we override both equals() and hashCode()?
+    Answer: If you override only one, collections may not work correctly. For example, two objects might be equal based on their data,
+            but if their hash codes are different, a set or map might store them separately. To avoid issues like duplicates or
+            missing data, both methods must be overridden together.
+
+    Q4. What happens if two equal objects have different hash codes?
+    Answer: Java will treat them as different in hash-based collections, which can lead to duplicates or make it impossible
+            to find an object even though it was added earlier.
+
+
+
+
+
+
+
+
+
+
+
+
+

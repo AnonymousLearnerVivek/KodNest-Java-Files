@@ -1,0 +1,115 @@
+# Understanding the Comparable Interface
+Comparable is an interface and compareTo(Object o) is a method inside Comparable interface
+Q1. The Problem: How Do We Sort Custom Objects? 🤔
+    Let’s say you're building a library app for your college. You store books with their title and year of publication.
+    When users view the book list, you want it to appear in alphabetical order.
+
+    You write the code, store a few books in a list, and try to sort them using Collections.sort().
+    But instead of a sorted list, you get an error.
+
+    That’s because Java doesn’t automatically know how to sort your custom Book objects.
+    It only knows how to sort basic types like numbers and strings. If you want Java to
+    sort your own objects, you have to teach it how to compare them.
+
+    This is where the Comparable interface comes in.
+
+Q2. What Exactly Is the Comparable Interface? 💡
+Standard Definition:
+    The Comparable interface lets a class define how its objects should be compared with each other. It contains just one method:
+
+        int compareTo(Object o)
+
+
+Q3. Why Is It So Important? 🎯
+    Sorting is everywhere — names, dates, scores, prices. Java provides tools like Collections.sort(),
+    but they can only work if the objects know how to compare themselves.
+
+    If you don’t use Comparable, Java won’t know how to sort your list of books, students, or any other custom type.
+    You'll either get an error or an unsorted list.
+
+    By implementing Comparable, your class says, “I know how to compare myself to another object,” and
+    Java can then handle sorting automatically.
+
+Q4. How It Works: A Practical Example
+    Let’s create a Book class and sort a list of books by title.
+
+    1. Without Comparable:
+            class Book {
+                String title;
+                int year;
+
+                Book(String title, int year) {
+                    this.title = title;
+                    this.year = year;
+                }
+            }
+        Now you try:
+            List<Book> books = new ArrayList<>();
+            books.add(new Book("C Programming", 2020));
+            books.add(new Book("Java Basics", 2018));
+            Collections.sort(books); // ❌ Error: Book doesn't implement Comparable
+
+        Java throws an error — it doesn’t know how to compare two Book objects.
+
+    2. With Comparable:
+            class Book implements Comparable<Book> {
+                String title;
+                int year;
+
+                Book(String title, int year) {
+                    this.title = title;
+                    this.year = year;
+                }
+
+                @Override
+                public int compareTo(Book other) {
+                    return this.title.compareTo(other.title);
+                }
+            }
+        Now when you run:
+            Collections.sort(books);
+
+        The books will be sorted by title in A-Z order.
+
+Q5. What Does compareTo() Return?
+    The compareTo() method returns:
+        1. A negative number if the current object comes before the other
+        2. Zero if both are equal
+        3. A positive number if the current object comes after the other
+
+    This result tells Java how to arrange the items.
+
+# Key Takeaways 📝:
+    1. The Comparable interface is used to define how objects should be sorted.
+    2. It contains one method: compareTo(), which compares the current object with another.
+    3. If you want your class to be sortable using Collections.sort(), you must implement Comparable.
+    4. You can only define one natural order using Comparable (like by name or by score).
+    5. For multiple sorting rules, use the Comparator interface.
+
+# Common Questions Asked in Interviews and How to Answer:
+
+    Q1. What is the Comparable interface and why is it used?
+    Answer: 1. The Comparable interface is used to define a natural ordering for objects of a class. It allows you to compare objects,
+               which is particularly useful when sorting collections like List or Set. By implementing Comparable, you specify how two
+               instances of the class should be compared, which simplifies sorting.
+            2. You might be asked to explain the purpose of the Comparable interface and how it is used to define natural ordering.
+
+    Q2. How is compareTo() different from equals()?
+    Answer: 1. compareTo() is used for sorting objects and returns a value that indicates whether the object is less than,
+               equal to, or greater than another. equals() is used to check if two objects are logically the same.
+               While compareTo() defines the order, equals() defines equality.
+            2. Be prepared to explain the differences and how compareTo() is used for sorting while equals() is used for checking equality.
+
+    Q3. Can you implement multiple sorting orders using Comparable?
+    Answer: 1. No, Comparable can only define one natural order. If you need multiple sorting criteria,
+               you should use the Comparator interface, which allows you to define multiple sorting
+               strategies without changing the original class implementation.
+            2. This question often leads into discussing why Comparable is best for a single natural order
+               and how the Comparator interface can be used for multiple sorting criteria.
+
+    Q4. What happens if compareTo() is inconsistent with equals()?
+    Answer: 1. If compareTo() is inconsistent with equals(), it may lead to unexpected behavior, particularly in
+               sorted collections like TreeSet or TreeMap, which rely on compareTo(). Objects considered equal
+               by equals() might be treated differently by compareTo(), leading to duplicates or incorrect ordering.
+            2. You may be asked to explain the consequences of inconsistency and why maintaining consistency is important,
+               especially when using sets or maps.
