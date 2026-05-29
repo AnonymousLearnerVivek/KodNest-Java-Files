@@ -1,0 +1,125 @@
+# Comparator Interface
+    Hey buddy you're running a coding platform like Kodnest. You have a list of students who regularly practice coding problems.
+    Each student has a name, a marks score, and the number of problems solved.
+
+    Now picture this:
+        1. One day, you need to show students ranked by marks.
+        2. Another day, the team wants them alphabetically by name.
+        3. Later, you’re asked to sort them by practice activity.
+
+    It's the same student list, but the way you display it keeps changing.
+    The question is: How do you sort the same data in different ways without rewriting your class every time?
+    That’s exactly the problem the Comparator interface is built to solve.
+
+Q1. What Exactly Is the Comparator Interface?
+Standard Definition:
+    1. The Comparator interface in Java is used to define custom ordering for objects.
+    2. Unlike Comparable, which defines a single natural order within the class, Comparator allows you to define multiple sorting strategies externally.
+
+    It contains one method:
+        int compare(T obj1, T obj2);
+
+Q2. How Does Comparator Work?
+    The Comparator interface is part of the java.util package, and it includes the compare() method:
+        public int compare(T obj1, T obj2);
+
+    The compare() method takes two objects and returns:
+        1. A negative integer if obj1 should come before obj2
+        2. Zero if they are considered equal
+        3. A positive integer if obj1 should come after obj2
+
+# Implementing the Comparator Interface:
+    Let’s take a simple example to understand how Comparator works in a real-world scenario.
+
+# Let’s say you have a class:
+
+        public class Student {
+            String name;
+            int marks;
+
+            public Student(String name, int marks) {
+                this.name = name;
+                this.marks = marks;
+            }
+
+            public String toString() {
+                return name + " - " + marks;
+            }
+        }
+# Now create a list:
+
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Rahul", 85));
+        students.add(new Student("Priya", 75));
+        students.add(new Student("Ankit", 95));
+
+# Let’s Start Sorting with Comparator:
+    1. Sort by Marks:
+            students.sort(new Comparator<Student>() {
+                public int compare(Student s1, Student s2) {
+                    return Integer.compare(s1.marks, s2.marks);
+                }
+            });
+            System.out.println("Sorted by Marks: " + students)
+
+    2. Sort by Name:
+           students.sort(new Comparator<Student>() {
+               public int compare(Student s1, Student s2) {
+                   return s1.name.compareTo(s2.name);
+               }
+           });
+           System.out.println("Sorted by Name: " + students);
+
+# Anonymous Classes and Lambdas for Comparator:
+    Using anonymous classes is a common way to implement Comparator, but Java 8 introduced
+    lambda expressions, which make writing comparators more concise.
+
+    Here’s the same example using lambda expressions:
+            public static void main(String[] args) {
+                List<Student> students = new ArrayList<>();
+                students.add(new Student("Rahul", 85));
+                students.add(new Student("Priya", 75));
+                students.add(new Student("Ankit", 95));
+
+                // Sort by marks using lambda
+                students.sort((s1, s2) -> Integer.compare(s1.marks, s2.marks));
+                System.out.println("Sorted by marks: " + students);
+
+                // Sort by name using lambda
+                students.sort((s1, s2) -> s1.name.compareTo(s2.name));
+                System.out.println("Sorted by name: " + students);
+            }
+
+    Explanation:
+        1. The use of lambdas makes the code cleaner and easier to read.
+        2. You don’t need to write a whole new class or override methods—
+           just specify the logic directly in the sort() method.
+
+Q3. When to Use Comparator?
+    1. Multiple Sorting Sequences: When you need to sort objects in multiple different ways, Comparator is the best choice.
+                                   For example, if you need to sort by both price and name, using Comparator gives you the flexibility you need.
+
+    2. Flexibility Without Altering Classes: When you can’t or don’t want to modify the original class to implement Comparable,
+                                             using Comparator lets you define the sorting logic externally.
+
+# Summary of Key Points 📝:
+    1. Comparator is an interface used for custom sorting of objects, useful when multiple sorting strategies are needed.
+    2. It has one method, compare(), which takes two objects and returns an integer based on their order.
+    3. Anonymous classes and lambda expressions make implementing Comparator easier and more concise.
+    4. Comparable should be used for single natural ordering, whereas Comparator offers flexibility for multiple sorting sequences.
+
+# Common Questions Asked in Interviews and How to Answer:
+
+    Q1. What is the Comparator interface and why is it used?
+    Answer: The Comparator interface is used to define custom ordering for objects. Unlike Comparable, which defines a natural order,
+            Comparator allows you to create multiple sorting strategies. It’s especially useful when you need different ways to
+            compare objects without altering the original class.
+
+    Q2. What is the difference between Comparable and Comparator?
+    Answer: Comparable is used to define a single natural order within the class by implementing compareTo().
+            Comparator is used to define multiple sorting orders externally, using compare().
+            Use Comparable when there is a natural, consistent way to sort the objects, and Comparator when you need more flexibility.
+
+    Q3. How can you use lambda expressions with Comparator?
+    Answer: Java 8 introduced lambda expressions, which make using Comparator much more concise. Instead of creating an anonymous inner class,
+            you can pass a lambda expression to the sort() method to define the comparison logic directly.

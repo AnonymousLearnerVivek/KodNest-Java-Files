@@ -22,8 +22,22 @@ class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student student) {
-        return this.id - student.id;
+        return this.id - student.id;  // Comparing based on id and this will sort into ascending order
+//        return student.id - this.id; // This will sort into descending order
     }
+//    @Override
+//    public int compareTo(Student student) {
+//        return this.marks - student.marks;  // Comparing based on marks
+//    }
+
+//    @Override
+//    public int compareTo(Student student) {
+//        return this.name.compareTo(student.name);  // Comparing based on name
+//        /*
+//            here we use compareTo() method because we are comparing strings and String Class already
+//            implemented compareTo() method so this will call compareTo() method of the String Class.
+//        */
+//    }
 }
 public class UnderstandingComparableInterface {
     public static void main(String[] args) {
@@ -50,8 +64,8 @@ public class UnderstandingComparableInterface {
         // Now how to sort Custom class/Objects
         // like how it should it be sorted like based on id or name or marks ?
         List<Student> l = new LinkedList<>();
-        l.add(new Student(10, "A", 10));
-        l.add(new Student(5, "B", 20));
+        l.add(new Student(10, "E", 10));
+        l.add(new Student(5, "D", 20));
         l.add(new Student(3, "C", 30));
 
         System.out.println(l);
