@@ -1,0 +1,87 @@
+Concurrent Modifications are not possible in Collection classes
+Q1. What is Concurrent Collections?
+    You’re working on the backend of an app like Swiggy, and it’s peak dinner time. Orders are flying in.
+    One person is adding biryani to their cart, another is placing an order for pizza, someone else is
+    checking delivery updates, and another user is chatting with support — all happening at the same time.
+    Behind the scenes, all of these features depend on shared data like carts, order queues, and chat systems.
+    If the app doesn’t handle this properly, things can easily go wrong — items may disappear from carts,
+    updates might get delayed, or even worse, the whole system might crash.
+
+    That’s exactly why Java gives us concurrent collections. They’re built to let different parts of your app
+    use the same data at the same time — safely, smoothly, and without stepping on each other’s toes.
+Q1. What Are Concurrent Collections?
+Standard definition:
+    A concurrent collection is a special type of data structure in Java that’s built for multi-tasking.
+    It lets different parts of your program safely use the same data at the same time —
+    whether it's adding, removing, or updating.
+
+    In simple words: it’s like a shared notebook that many people can use — and it stays clean, neat,
+    and up-to-date, no matter how busy things get.
+
+Q2. Why Do We Need Them?
+    Without concurrent collections, managing shared data is like shouting across a noisy kitchen —
+    orders get lost, overwritten, or mixed up.
+
+    With concurrent collections:
+        1. Everyone (threads) can work at the same time
+        2. The data stays clean and correct
+        3. Your app keeps running smoothly even under pressure
+
+# Common Types of Concurrent Collections:
+    Java has some concurrent collections that help manage shared data safely:
+
+    1. ConcurrentHashMap:
+        Think of this like a big kitchen whiteboard where multiple chefs can write or read notes at the same time — without any overlap.
+        It allows safe reading and writing from many threads at once.
+
+        Use it for:
+            1. Storing active orders
+            2. Tracking user sessions
+            3. Real-time status updates
+
+    2. CopyOnWriteArrayList:
+        This is like a recipe book that makes a copy every time you update it. So one person can read the recipe
+        while another updates it — safely.
+        It’s best when there are many reads and very few writes.
+
+       Use it for:
+          1. Menus that rarely change
+          2. Notification templates
+          3. FAQs or help pages
+
+    3. ConcurrentLinkedQueue:
+        Imagine a perfectly organized queue in front of a billing counter. People can join or leave the line without pushing or cutting.
+        This queue lets multiple threads add and remove items smoothly.
+
+        Use it for:
+          1. Message queues
+          2. Chat systems
+          3. Background tasks
+
+# Key Points to Remember:
+    1. Concurrent collections let different parts of your program use the same data at the same time — without breaking things.
+    2. They're perfect for apps that are doing many things at once — like placing orders, updating carts, and chatting with support.
+    3. These collections are built to keep shared data safe, clean, and correct in multi-threaded environments.
+    4. ConcurrentHashMap is great for fast, shared lookups like active orders or session data.
+    5. CopyOnWriteArrayList is useful when your data is read often but changed rarely, like menus or notifications.
+    6. ConcurrentLinkedQueue works well when tasks need to move in and out smoothly, like a queue of messages or delivery updates.
+    7. Without concurrent collections, shared data can easily get messed up — like too many chefs writing on the same board at once.
+
+# Common Interview Questions & Answers:
+
+    Q1: What are concurrent collections in Java?
+    They are special data structures that allow multiple threads to read and write data safely at the same time.
+
+    Q2: Why are concurrent collections important?
+    Because in multi-threaded apps, many tasks happen at once. Concurrent collections help avoid problems like
+    missing data or crashes by keeping everything organized.
+
+    Q3: What is ConcurrentHashMap used for?
+    It’s used when you want fast, thread-safe access to data — like storing active user sessions or live order info.
+
+    Q4: When should you use CopyOnWriteArrayList?
+    When your data is read more often than it’s written — for example, help pages or a list of FAQs.
+
+    Q5: How does ConcurrentLinkedQueue help?
+    It allows items to be added and removed smoothly — making it great for chat queues, task processing, or notifications.
+
