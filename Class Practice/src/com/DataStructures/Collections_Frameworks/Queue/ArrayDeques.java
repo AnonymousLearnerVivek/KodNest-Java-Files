@@ -59,7 +59,7 @@ public class ArrayDeques {
         System.out.println(arr);
         arr.removeLast();
 //        arr.pollFirst(); // we can also use this functions also
-//        arr.pollLast();
+        arr.pollLast();
         System.out.println(arr);
         arr.removeFirst();
         System.out.println(arr);
