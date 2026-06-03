@@ -1,0 +1,238 @@
+The moment when exception occurs, One Exception Object get created
+# Introduction to Exception Handling:
+Q1. The Problem: Why Do We Need Exception Handling? 🤔
+    Imagine a simple app where a customer orders a pizza. If they mistype the pizza code, if the payment service is down,
+    or if the code accidentally divides by zero, the program will crash and show a confusing error.
+    Exception handling is a way to “catch” these surprises—showing a clear message (like “Invalid pizza code” or “Payment failed”)
+    instead of letting the whole app break. By adding these safety nets, the program can handle mistakes gracefully and keep working for the user.
+
+Q2. What Exactly Is Exception Handling? 💡
+Standard Definition:
+    Exception handling is a programming mechanism that lets you detect, manage, and respond to errors (exceptions)
+    that occur during the execution of a program. Instead of letting the program crash when something unexpected happens,
+    you “catch” the error, handle it gracefully, and decide how to continue.
+
+Q2. What is Exception?
+    An exception is a runtime event or condition—such as an error or unexpected situation—that occurs during the execution
+    of a program and disrupts its normal flow, allowing the program to divert control to a designated handler rather than terminating abruptly.
+
+# Key Points to Remember:
+    1. Exception: A runtime event (like invalid input or a failed resource access) that disrupts normal execution.
+    2. Purpose: Prevents the app from crashing by “catching” errors and handling them gracefully.
+    3. Benefits:
+        1. Stability: Keeps other parts of the program running.
+        2. User Experience: Displays clear messages instead of a confusing crash.
+        3. Debugging: Logs detailed error context for easier fixes.
+        4. Resource Management: Ensures files or connections are closed even when errors occur.
+    4. Common Scenarios:
+        1. Payment service downtime (show “Payment service unavailable”).
+        2. File-write failures (notify user and undo partial changes).
+        3. Database operations (roll back on failure).
+        4. API calls (serve cached data if the network fails).
+        5. Input parsing (prompt for valid number instead of crashing).
+
+# Common Interview Questions & Brief Answers:
+
+    Q1. What is exception handling?
+    Answer: A mechanism to detect and respond to runtime errors so the program can recover or shut down cleanly instead of crashing.
+
+    Q2. Why handle exceptions instead of letting the program crash?
+    Answer: To maintain application stability, show users clear feedback, and ensure resources are released properly.
+
+    Q3. What happens if an exception is not caught?
+    Answer: It propagates up the call stack; if no handler is found, the program terminates and usually prints an error trace.
+
+# Notes:
+    1. Exception Handling allows a program to handle errors gracefully without abruptly terminating. It ensures that
+       the normal execution flow continues even when unexpected situations occur during runtime.
+
+    2. In Java, an exception is an event that occurs during the execution of a program, disrupting its normal flow.
+       Unlike compile-time errors, exceptions happen at runtime and must be handled to prevent abnormal termination of the program.
+
+    3. The FileNotFoundException is a specific type of IOException that occurs when an attempt to open a file denoted by a
+       specified pathname has failed. This can happen if the file does not exist, the file path is incorrect, or
+       the program does not have permission to access the file. Handling this exception allows developers to gracefully
+       inform users about the issue and potentially prompt them to check the file path or create the file if it doesn't exist.
+
+
+# Why and When Do Exceptions Occur:
+    Let’s know the Common Scenarios Leading to Exceptions
+
+    1. Null Pointer Exceptions
+        This is a very common one. A NullPointerException (NPE) occurs when you try to use an object that hasn't been initialized
+        yet—kind of like trying to use a car that doesn’t have an engine!
+        For example:
+            String name = null;
+            System.out.println(name.length()); // Throws NullPointerException
+
+    2. Array Index Out of Bounds
+        Arrays in Java have fixed lengths, just like the number of seats in a train. If you try to access an index outside that range,
+        Java will throw an ArrayIndexOutOfBoundsException. It’s like trying to sit in a seat that isn't there.
+        For example:
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[3]); // Throws ArrayIndexOutOfBoundsException
+
+    3. Arithmetic Exceptions
+        Math is great, but not every operation is allowed—even in Java. If you try to divide by zero, for example, you'll get an ArithmeticException.
+        For example:
+            int result = 10 / 0; // Throws ArithmeticException: / by zero
+
+    4. Number Format Exceptions
+        Have you ever tried converting a word into a number? Java will throw a NumberFormatException if you try to turn non-numeric text into a number.
+        For example:
+            String value = "abc";
+            int number = Integer.parseInt(value); // Throws NumberFormatException
+
+# Key Points to Remember:
+    1. Null Pointer Issues: Occur when you use something that hasn’t been given a value yet. Always check if an object is set before
+                            calling its methods (for example, don’t call .length() on a text that might be empty).
+    2. Array Index Errors: Happen when you try to access a spot in an array that doesn’t exist (for example, asking for the fourth item
+                           in a 3-element array). Remember that array positions start at 0 and go up to length – 1.
+    3. Division by Zero: You can’t divide a number by zero. Before dividing, make sure the value you’re dividing by is not zero.
+    4. Invalid Number Conversions: If you try to turn text like “abc” into a number, it fails. Always check that a string contains
+                                   only digits before calling something like Integer.parseInt().
+
+# Common Interview Questions & Sample Answers:
+
+    Q1: What is a Null Pointer Exception and how can you avoid it?
+     A: This happens when you call a method or access data on an object that was never given a value. To avoid it,
+        always check if the object is not null before using it, or make sure it’s properly initialized first.
+
+    Q2: Why do Array Index Out of Bounds errors happen?
+     A: Because you tried to use an index that is below 0 or at/above the array’s size. In Java, arrays start at 0,
+        so an array of size 3 has valid indexes 0, 1, 2. Always check that your index is between 0 and array.length – 1 before accessing.
+
+    Q3: How can you prevent dividing by zero?
+     A: Before you do a / b, check that b is not zero. If it is zero, skip the division or show a message like “Cannot divide by zero.”
+
+    Q4: What causes a Number Format Exception and how do you handle it?
+     A: It happens when you try to convert text that isn’t all digits into a number (for example, turning “123abc” into an integer).
+        To handle it, check that the string contains only digits (or use a safe parse method inside a try-catch) and
+        show a friendly message if it’s invalid.
+
+# Exception Handling - Behind the Scene:
+
+Q1. Step-by-Step: What Java Does When an Error Happens
+    Step 1: A Problem Happens
+        When something goes wrong in your program—like dividing by zero—Java notices the problem.
+
+        ➡️ It creates a small object in memory to describe the problem. This object includes
+            1. What the problem is (example: divide by zero)
+            2. Where it happened (which line in the code)
+
+    Step 2: Java Looks for Help
+        After the problem is found, Java tries to find a solution. It looks at your code to see
+        if you’ve written any special lines to handle the problem.
+
+        # These special lines look like this:
+                try {
+                    int result = 10 / 0;
+                } catch (ArithmeticException e) {
+                    System.out.println("You can't divide by zero!");
+                }
+
+        ➡️ If Java finds a catch block that matches the error, it runs that block.
+           This helps your program continue running instead of crashing.
+
+    Step 3: No Help Found? Java Keeps Looking
+        If Java doesn’t find a matching catch block in the current method, it goes back to the method that called it.
+        It keeps looking upward, checking each method for help.
+
+        This is like asking your teacher for help. If the teacher doesn't know, you ask the principal.
+        You keep going until someone helps—or not.
+
+    Step 4: Still No Help? Java Stops the Program
+        If Java looks everywhere and still doesn’t find any catch block to handle the problem,
+        it prints an error message on the screen and stops the program.
+
+        # That message shows:
+            1. What went wrong
+            2. In which file
+            3. On which line
+
+        This message helps programmers fix the error.
+
+# Key Points to Remember:
+    1. Exception means an error during program execution.
+    2. When an error happens, Java creates an exception object.
+    3. Java searches for a try-catch block to handle the error.
+    4. If found, the program continues running smoothly.
+    5. If not, Java shows an error message and stops the program.
+    6. You should always handle exceptions to make your code safe and user-friendly.
+
+# Common Interview Questions & Answers:
+
+    Q1: What is an exception in Java?
+    👉 An exception is an error that happens while the program is running. It stops the normal flow of the program.
+
+    Q2: What happens when an exception is not handled?
+    👉 If no try-catch block is found, Java prints an error message and stops the program. This is called default exception handling.
+
+    Q3: What is the use of a try-catch block?
+    👉 A try-catch block is used to catch and handle exceptions. It stops the program from crashing and lets you show a useful message instead.
+
+    Q4: What is the purpose of exception handling?
+    👉 The main purpose is to handle unexpected errors in a way that does not crash the program and gives a better user experience.
+
+    Q5: Can you explain what happens behind the scenes when an exception is thrown?
+    👉 When an error happens, Java creates an exception object. Then, it checks the code to find a catch block to handle it.
+       If none is found, Java stops the program.
+
+# Note:
+    1. Propagation: i. When an exception occurs, Java generates an exception object that contains information about the type of error
+                       and its location in the code. This process of searching for a matching catch block to handle the exception is known as Propagation.
+
+                   ii. Propagation refers to the process by which an exception moves up the call stack until it finds a matching catch block.
+                       This allows the program to handle the exception appropriately, rather than allowing it to crash without any management.
+
+    2. Stack trace: i. If no catch block is found to handle an exception during the propagation process, the exception reaches the JVM,
+                       and the default exception handler kicks in. At this point, the program's "stack trace" is printed, which shows
+                       the sequence of method calls that led to the exception.
+
+                   ii. The stack trace is a valuable tool for debugging because it provides a detailed record of the method calls that were
+                       in progress at the time the exception occurred. It helps developers identify where the error originated and the path
+                       taken through the code, making it easier to trace and resolve issues.
+
+    3. Finally Block: i. In Java, the "finally" block is used to execute code that should run regardless of whether an exception occurred,
+                         making it ideal for resource cleanup, such as closing file streams.
+
+                     ii. The finally block ensures that important cleanup actions are performed, whether an exception was thrown or not.
+                         It is executed after the try and catch blocks, providing a way to free resources or perform necessary finalization
+                         regardless of the outcome of the try block.
+
+
+# Java's Built-In Exception Handling Mechanism:
+
+Q1. What Does Java’s Built-In Mechanism Do?
+    Here’s what Java does when no catch block is written:
+        1. Prints an error message (called a stack trace) on the screen
+        2. Shows what kind of error happened (e.g., ArithmeticException)
+        3. Tells you where it happened (file name and line number)
+        4. Then it stops the program
+
+# Key Points to Remember:
+    1. Exceptions are errors that happen while your Java program is running.
+    2. Java has a built-in mechanism to handle exceptions even if you don’t write any code for it.
+    3. When an error occurs (like dividing by zero), Java:
+        1. Creates an exception object
+        2. Looks for a try-catch block to handle it
+        3. If none is found, Java uses its default handler:
+            1. Shows the type of error
+            2. Stops the program
+    4. If you want your program to keep running and show friendly messages, you should write your own try-catch blocks.
+    5. Handling exceptions properly makes your program more robust, user-friendly, and professional.
+
+# Common Interview Questions & Answers:
+
+    Q1: What is Java’s built-in exception handling mechanism?
+    A: It is Java’s default way of handling errors. If no try-catch block is found, Java automatically creates an exception object,
+       prints an error message (stack trace), and stops the program.
+
+    Q2: What happens when you divide a number by zero in Java without a try-catch block?
+    A: Java throws an ArithmeticException, prints an error message, and stops the program.
+
+    Q4: Why should you write your own try-catch blocks?
+    A: So you can handle errors in a clean way, show friendly messages to users, and keep your program running smoothly instead of crashing.
+
+    Q5: Will Java always crash if there’s an exception?
+    A: Not if you handle it using a try-catch block. If you don’t handle it, then yes — Java will use the built-in handler and stop the program.
