@@ -283,3 +283,244 @@ Q1. What Does Java’s Built-In Mechanism Do?
 
     Q4: When is it appropriate to use a multi-catch block?
      A: When two or more exception types require exactly the same handling logic. You can combine them using catch (TypeA \| TypeB e) to avoid repeating code.
+
+# Throwable, Exception and RuntimeException:
+
+| Feature              | Exception                                                                            | RuntimeException                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| Type                 | Checked Exception                                                                    | Unchecked Exception                                                                                      |
+| Handling Requirement | Must be explicitly caught (`try-catch`) or declared using `throws`                   | Does not need to be explicitly caught or declared                                                        |
+| Purpose              | Used for recoverable conditions that an application may handle                       | Used for programming errors and logical mistakes                                                         |
+| Compiler Check       | Compiler enforces handling                                                           | Compiler does not enforce handling                                                                       |
+| Occurrence           | Often caused by external factors (file not found, database issues, network problems) | Usually caused by bugs in the code                                                                       |
+
+| Examples             | `IOException`, `SQLException`, `FileNotFoundException`, `ClassNotFoundException`     | `NullPointerException`, `ArithmeticException`,
+                                                                                                                `ArrayIndexOutOfBoundsException`, `NumberFormatException` |
+Q1. When to Use Each Exception Type?
+    1. Checked Exceptions (Exception)
+        Use these for problems you expect and can recover from, such as:
+            1. Reading files (file might not exist)
+            2. Connecting to a network (service might be down)
+        Java forces you to handle them so you don’t forget.
+
+    2. Unchecked Exceptions (RuntimeException)
+        Use these for programming mistakes that you should fix in code, for example:
+            1. Accessing a null reference
+            2. Dividing by zero
+        You’re free to catch them, but they usually indicate bugs you want to correct rather than recover from at runtime.
+
+# Best Practices 📝:
+    1. Catch Specific Exceptions First: Always catch specific exceptions before general ones.
+    2. Provide Helpful Messages: Make sure your error messages are clear and helpful.
+    3. Avoid Catching Throwable or Error: Do not catch Throwable or Error classes, as they represent serious problems that should not be handled by your program.
+    4. Use Finally Block for Cleanup: Use the finally block to release resources, like closing files or network connections.
+
+# Key Points to Remember:
+    1. Checked vs. Unchecked: Checked exceptions must be handled; unchecked exceptions are optional.
+    2. Use Checked for things outside your program’s control (I/O, network).
+    3. Use Unchecked for logic errors you can fix (null access, bad math).
+    4. Clear Messages: Always print a useful message in your catch block.
+    5. Keep Code Flowing: Handle exceptions so your program can continue running smoothly.
+
+# Common Interview Questions & Answers:
+
+    Q1: What’s the difference between checked and unchecked exceptions?
+    👉 Checked exceptions (subclasses of Exception except RuntimeException) must be caught or declared. Unchecked exceptions (RuntimeException and subclasses) do not.
+
+    Q2: When would you choose an unchecked exception over a checked one?
+    👉 For programming errors that should be fixed in code, like null references or invalid array indexes, where recovery at runtime isn’t the goal.
+
+    Q3: Why does Java force you to handle checked exceptions?
+    👉 To ensure you don’t forget to deal with recoverable conditions such as file access or network connectivity.
+
+    Q4: Can you convert a checked exception into an unchecked one?
+    👉 Yes. You can wrap a checked exception in a RuntimeException if you want to bypass the compiler’s check, but use this sparingly.
+
+    Q5: Should you catch Throwable directly?
+    👉 No. Catching Throwable also catches serious errors (Error) that you generally should not handle (e.g., OutOfMemoryError).
+
+    Q6: Which of the following is true about exceptions and runtime errors in Java?
+    👉  Exceptions are recoverable; runtime errors are not.
+            Exceptions can be caught and handled using try-catch blocks, whereas runtime errors (like OutOfMemoryError)
+            indicate serious problems that cannot be recovered from easily.
+
+    Q7: Which statement correctly distinguishes exceptions and runtime errors in Java?
+    👉  Checked exceptions are identified at compile-time, but runtime errors occur during execution.
+        Explanation: Checked exceptions are verified at compile-time, while runtime errors are only detected during program execution.
+
+
+# Note:
+    1. Exception Hierarchy in Java
+        1. In Java, all exceptions are subclasses of the Exception class, which itself is a subclass of the Throwable class.
+        2. In Java, the Exception class represents all checked exceptions and is a subclass of the Throwable class. The Throwable class
+           is the root of the exception hierarchy, and it also includes the Error class, which represents serious issues that applications
+           should not attempt to handle
+
+    2. Runtime errors represent serious issues beyond application control, while exceptions are conditions the application can handle.
+
+    3. Runtime errors, represented by the Error class, indicate serious issues such as out-of-memory errors or system failures that are
+       usually beyond the application’s control. Exceptions, on the other hand, are events that can be anticipated and handled gracefully
+       within the application using exception handling mechanisms like try-catch blocks.
+
+
+# Common Interview Questions & Answers:
+
+    Q1. What is local exception handling in Java?
+    Answer: Local exception handling means handling errors in the same place they happen, using try-catch blocks. This prevents the error from affecting the whole program.
+
+    Q2. Why should we catch specific exceptions instead of using Exception?
+    Answer: Catching specific exceptions makes it easier to understand and fix the exact problem. Catching Exception hides the real cause and can make debugging harder.
+
+    Q3. What happens if we leave the catch block empty?
+    Answer: The program hides the error, and no one knows what went wrong. It becomes harder to fix issues later because nothing is shown or recorded.
+
+    Q4. What’s the benefit of showing user-friendly error messages?
+    Answer: They help users understand what went wrong in simple language without confusing technical terms. It improves the user experience.
+
+    Q5. Which of the following is considered a best practice when handling exceptions locally within a method?
+    Answer: 1. Log the exception details and rethrow it if the method cannot handle it properly.
+            2. A best practice in local exception management is to log the exception details for debugging purposes
+               and rethrow it if the method is not equipped to handle the exception effectively. This approach
+               ensures that the exception is not ignored and can be managed at a higher level if needed.
+               Swallowing exceptions silently or catching all exceptions using a generic block is discouraged,
+               as it can make debugging difficult and mask underlying issues.
+
+
+# Rethrowing Exceptions: Using throw and throws:
+    Have you ever faced a tricky question in a group study session? You try to answer but realize it’s too hard. So, what do you do?
+    You pass the question to someone else who knows better — maybe a senior or the teacher. That’s exactly what rethrowing an exception
+    means in Java! Sometimes a method in your program runs into a problem, but instead of solving it right there, it says: “Hey, I can’t fix this.
+    I’m passing it to someone else who can.”
+    In Java, we do this using two special keywords: throw and throws.
+
+    Let’s learn what they are, how to use them, and why they matter — all in the simplest way possible.
+
+    Q1. What Does “Rethrowing” Mean?
+        Rethrowing means that a method knows something went wrong but chooses not to handle the problem itself.
+        Instead, it passes the error (exception) to the method that called it.
+
+    Q2. What Is throw?
+        1. In Java, the throw keyword is used when you want to create and send an error manually.
+        2. It’s like saying: “This is bad. I’ve detected a problem, and I’m stopping now. Let someone else deal with it!”
+
+        Code Example: Using throw
+            throw new ArithmeticException("Cannot divide by zero");
+
+        Let’s break it down:
+            1. throw — the keyword that starts the process of throwing an exception.
+            2. new ArithmeticException(...) — this creates a new exception object with a custom error message.
+            3. As soon as this line runs, the method stops, and the error is sent to be handled somewhere else.
+
+    Q3. What Is throws?
+        The throws keyword is used in the method declaration to let others know that the method might throw an exception.
+
+# Key Points to Remember:
+
+    1. Rethrowing means a method chooses not to handle the error and instead passes it to another method that can.
+    2. Use throw to manually create and send an exception when a serious problem is found.
+    3. Use throws in the method declaration to warn others that an exception might be thrown.
+    4. If you use throw inside a method, you must either:
+        1. Catch the exception using a try-catch block, or
+        2. Use throws to pass the responsibility to the caller.
+    5. A method can only throw one exception at a time, and it must be an object of a class that extends Throwable.
+    6. When you use throws, the caller must be ready to handle the exception using try-catch.
+    7. Rethrowing helps organize your code, making sure problems are handled in the right place.
+
+# Common Interview Questions & Answers:
+
+    Q1. What is the difference between throw and throws in Java?
+    Answer: 1. throw is used inside a method to actually throw an exception.
+            2. throws is used in the method declaration to indicate that a method might throw an exception.
+
+    Q2. Can a method use both throw and throws?
+    Answer: Yes! A method can declare that it might throw an exception using throws and actually throw one using throw inside the method body.
+
+    Q3. Why should we use throws?
+    Answer: When you don’t want to handle the exception inside the method but want the caller to take responsibility, you use throws to warn them.
+
+    Q4. What happens if you throw an exception and don’t handle or declare it?
+    Answer: The program will not compile (for checked exceptions) or crash at runtime (for unchecked exceptions) if no one catches it.
+
+    Q5. Can we throw multiple exceptions using one throw statement?
+    Answer: No. You can only throw one exception at a time. But you can declare multiple exceptions using throws in the method declaration.
+
+    Q6. Which of the following correctly explains the purpose of throw and throws in Java?
+    Answer: 1. throw creates and propagates an exception; throws declares potential exceptions.
+            2. throw generates an exception, while throws warns the caller that a method might throw an exception.
+
+# Ducking Exceptions:
+
+Q1. What actually is Ducking Exceptions?
+Standard Definition:
+    Ducking an exception means allowing an exception to pass up the call stack instead of handling it in the current method.
+    In Java, this is done by using the throws keyword in the method declaration to indicate that the method might throw an
+    exception, and the caller should be responsible for handling it.
+
+    Java Code Example:
+            public class MainApp {
+                public static void main(String[] args) {
+                    try {
+                        DataHandler handler = new DataHandler();
+                        handler.accessArrayElement();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Caught in main: " + e.getMessage());
+                    }
+                }
+            }
+
+            class DataHandler {
+                public void accessArrayElement() throws ArrayIndexOutOfBoundsException {
+                    int[] numbers = {1, 2, 3};
+                    int index = 5; // Invalid index
+                    System.out.println(numbers[index]);
+                }
+            }
+
+# Key Points to Remember:
+    1. Ducking means not handling the exception inside a method but letting it pass to the caller.
+    2. We do this in Java using the throws keyword in the method declaration.
+    3. Ducking keeps methods simple and clean, especially when the method doesn't know how to fix the error.
+    4. The caller method (like main()) is responsible for catching and handling the exception using try-catch.
+    5. Don’t duck critical issues — serious problems should be handled immediately.
+    6. Ducking helps maintain separation of responsibilities between parts of a program (e.g., logic vs. UI).
+
+# Common Interview Questions & Answers:
+    Q1. What is ducking an exception in Java?
+    Answer: Ducking means a method does not handle an error itself but uses the throws keyword to pass the exception to the method that called it.
+
+    Q2. How is ducking different from catching an exception?
+    Answer: 1. Catching means handling the error using try-catch inside the method.
+            2. Ducking means not handling it locally but declaring it using throws so that the caller handles it.
+
+    Q3. Why is ducking useful?
+    Answer: It keeps the code clean and allows higher-level methods that understand the full context to handle the problem better.
+
+    Q4. What happens if no one handles the ducked exception?
+    Answer: If the exception is never caught, the program will crash and show an error message at runtime.
+
+
+# Throw vs Throws in Java: What's the Difference?
+
+    1. Different Purpose
+        i. throw is used to send an exception when something goes wrong during program execution.
+       ii. throws is used to declare that a method might throw an exception — and whoever calls this method must be ready to catch it.
+
+    2. Different Locations in Code
+        i. throw is written inside a method, usually right where something risky is happening — like dividing by zero.
+       ii. throws is written at the start of the method, in the method signature — before the method body begins.
+
+    3. Who Handles the Problem?
+        i. With throw, the method says, “Here’s the error — I’m sending it out right now.”
+       ii. With throws, the method says, “I won’t handle the error here. Whoever calls me must be ready to deal with it.”
+
+    4. What Comes After Them?
+        i. throw is followed by an actual object — like new ArithmeticException("Something went wrong").
+       ii. throws is followed by the name of one or more exception classes — like throws IOException, SQLException.
+
+    5. How Many Exceptions?
+        i. With throw, you can only throw one exception at a time.
+       ii. With throws, you can declare multiple possible exceptions separated by commas.
+
+    6. When Does It Happen?
+        i. throw comes into action while the program is running — during the actual execution.
+        ii. throws works at compile time — it’s like setting up a warning before the code even runs.
