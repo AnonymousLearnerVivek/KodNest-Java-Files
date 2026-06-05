@@ -1,0 +1,106 @@
+# Understanding Threads and Their Usage:
+
+    But wait — before we get into threads, there’s another important term you should know — the process.
+
+    Q1. What’s a Process?
+        Imagine your phone is running 3 apps — Swiggy, WhatsApp, and YouTube — all at once.
+
+        Each app is a process. A process is simply an independent program running on your system.
+        Each one has its own memory, its own workspace, and works separately from others.
+        Just like how three food stalls at a fair each have their own counter, cooks, and customers.
+
+    Q2. What is a Thread?
+    Standard Definition:
+        A thread is the smallest unit of execution in a program. It’s like a mini worker that
+        runs a specific part of your code independently.
+
+    # Process vs. Thread – Quick Glance
+
+    | Aspect                 | Process                                         | Thread                                               |
+    | ---------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+    |   What is it?          | An entire running program                       | A part of a program (a mini-task)                    |
+    |   Example              | Swiggy, Netflix, Paytm                          | In Netflix: video player, subtitles, loader          |
+    |   Memory**             | Has its own memory space                        | Shares memory with other threads of the same process |
+    |   Speed & Efficiency   | Slower and heavier                              | Faster and lightweight                               |
+    |   Communication        | Harder (because processes have separate memory) | Easier (because threads share the same memory space) |
+
+    # Simple Example:
+        Think of Netflix as a Process:
+            🎬 Video playing = Thread 1
+            💬 Subtitle loading = Thread 2
+            ⏳ Buffering content = Thread 3
+        All these threads work together inside the same Netflix process and share the same memory.
+
+    # Key Points to Remember – Process vs. Thread:
+        1. Processes are like full apps: Each process runs independently, like Swiggy, Paytm, or Netflix.
+        2. Threads are mini-tasks inside an app: In Netflix, one thread plays the video, another loads subtitles, and another buffers the next episode.
+        3. Processes use more memory: Each process has its own memory and resources — heavier and slower.
+        4. Threads are memory-friendly: Threads inside the same program share memory, making them lightweight and fast.
+        5. Communication is easier with threads: Since threads share memory, they can work together more smoothly than processes.
+        6. Use threads for speed and smooth UI: Threads help apps stay responsive and do background work without freezing.
+
+    # Common Interview Questions and Answers:
+        Q1: What is the difference between a process and a thread?
+        Answer: A process is an independent program with its own memory and resources. A thread is a small part of a
+                program that runs independently but shares memory with other threads in the same program.
+
+        Q2: Which is faster — process or thread? Why?
+        Answer: A thread is faster because it doesn’t need extra memory. Threads share the memory of their parent process,
+                so they’re lightweight and quicker to switch between.
+
+        Q3: Can multiple threads exist in one process?
+        Answer: Yes! One process can have many threads running different tasks at the same time — like video playback,
+                sound, and network loading in a streaming app.
+
+        Q4: Why is communication easier between threads than between processes?
+        Answer: Threads share the same memory space, so they can access and update shared data directly.
+                Processes don’t share memory, so they need special techniques (like IPC) to communicate.
+
+# Single-Threaded vs Multi-Threaded:
+
+    We’ve already learned what threads are — like little workers inside your Java program that help get things done faster.
+    Now let’s move ahead and see how these workers are used in different ways. In some programs, there is just one worker
+    doing all the work, step by step. That’s called a single-threaded program. In other cases, the program uses many workers
+    at the same time — each doing a different task. That’s called a multi-threaded program.
+
+    Q1. How Single-Threaded Programs Work in Java
+        In a single-threaded Java program, everything starts with one main worker — called the main thread.
+        This worker does all the jobs, one after the other, just like ticking off items from a to-do list.
+        It doesn't ask for help. So if one task takes time, the rest have to wait.
+
+    Q2. How Multi-Threaded Programs Work in Java
+        In a multi-threaded Java program, everything doesn’t depend on just one worker (the main thread).
+        Instead, the main thread gets help by creating other threads — like teammates who each take on a different task.
+
+        These threads work at the same time, side by side. They don’t block or wait for each other. And the best part?
+        They all share the same space (memory), so they can easily work together without wasting resources.
+
+    # Key Points to Remember:
+        1. Single-threaded programs do one thing at a time. Simple, predictable, and easy to debug.
+        2. Multi-threaded programs can do many things at once — like playing music, loading files, and updating screens together.
+        3. Use single-threading for lightweight apps or when you need a step-by-step flow.
+        4. Use multi-threading for complex, responsive apps like games, chat apps, video players, etc.
+
+    # Common Interview Questions and Answers:
+
+        Q1. What is the difference between single-threaded and multi-threaded programs?
+         A: 1. Single-threaded programs run one task at a time using only the main thread.
+            2. Multi-threaded programs use multiple threads to run different tasks at the
+               same time within the same application.
+
+        Q2. When would you prefer using a single-threaded program?
+         A: When the application is small, doesn’t need to multitask, or must run in a specific order —
+            like calculators, simple notepads, or step-by-step data processing.
+
+        Q3. Why is multi-threading useful in real-world applications?
+         A: It makes programs faster and more responsive. For example, a music app plays songs, shows lyrics,
+            and loads the next track at the same time without freezing — thanks to multithreading.
+
+        Q4. Does multithreading always make programs faster?
+         A: Not always. While it helps with performance, it can be tricky to manage. If threads aren’t handled carefully,
+            it might lead to issues like race conditions or memory conflicts.
+
+        Q5. Can Java programs use both single and multi-threading?
+         A: Yes. Every Java program starts as single-threaded with the main thread. You can then create additional threads
+            to make it multi-threaded when needed.
+

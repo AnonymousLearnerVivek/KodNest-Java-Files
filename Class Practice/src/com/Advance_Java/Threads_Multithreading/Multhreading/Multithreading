@@ -1,0 +1,126 @@
+# Multithreading;
+
+# From Multitasking to Multithreading
+
+    Multitasking usually refers to how a computer handles different programs at the same time —
+    for example, your music app is playing a song, your browser is loading a webpage, and your
+    video call is running — all side by side. These are separate programs, each doing its own job.
+
+    But what if you want to perform multiple tasks within the same program?
+
+    That’s where multithreading comes in.
+
+Q1. What is Multithreading?
+Standard Definition:
+    Multithreading is a feature in Java that allows a program to run two or more parts of code (called threads) at the same time.
+
+# Real-Life Analogy:
+    Imagine you’re playing a game on your phone. As the game runs, your score keeps updating live on the screen.
+    At the same time, background music continues to play. You don’t have to wait for the score to update before
+    the music starts, or pause the game to hear the sound. Everything is happening together, all within the same app.
+
+    This is exactly how multithreading works — it allows different tasks inside one program to run at the same time,
+    giving you a smooth and enjoyable experience.
+
+# Key Points to Remember:
+    1. Multitasking vs Multithreading: 1. Multitasking is doing multiple tasks across different programs.
+                                       2. Multithreading is doing multiple tasks inside the same program.
+    2. Multithreading: It allows different threads to run at the same time, helping apps work faster and more smoothly.
+    3. Benefits:
+        1. Saves time
+        2. Keeps apps responsive
+        3. Handles background tasks without freezing
+        4. Makes full use of CPU power
+    4. Real-life analogy: Like playing a game where music plays, score updates, and gameplay runs — all at once, in one app.
+
+# Common Interview Questions & Answers:
+
+    Q1: What is multithreading in Java?
+     A: Multithreading allows a Java program to run multiple parts of code (called threads) at the same time.
+        This helps the program work faster and stay responsive.
+
+    Q2: What is the difference between multitasking and multithreading?
+     A: Multitasking means running different programs at the same time (like a browser and a music player).
+        Multithreading means running multiple tasks inside the same program at once.
+
+    Q3: Why is multithreading useful?
+     A: It helps save time, keeps the app smooth, handles background work, and makes better use of the computer’s CPU.
+
+    Q4: Can you give a real-life example of multithreading?
+     A: Yes! When playing a mobile game — the game runs, music plays, and the score updates at the same time —
+        just like threads running in one app.
+
+    Q5: At what level does multithreading operate compared to multitasking?
+     A: 1. Multithreading operates at the application level, and multitasking at the OS level.
+        2. Multitasking manages entire processes, while multithreading manages multiple threads within the same process.
+
+    Q6: Why is multithreading more resource-efficient compared to multitasking?
+     A: 1. Threads use less memory because they share resources within the same process.
+        2. Multithreading is efficient because threads share the same memory and resources, unlike independent processes in multitasking.
+
+# Multitasking vs. Multithreading in Java:
+
+Q1. Differences Between Multitasking and Multithreading – Let's Understand Clearly
+
+    We’ve already seen what multitasking and multithreading mean. But now let’s take a closer look at
+    how they are actually different, even though they both involve “doing many things at once.”
+
+    1. Definition:
+        1. Multitasking is when you run multiple programs at the same time. Imagine this: you're using Swiggy to order food,
+           Paytm to check your wallet balance, and Netflix to watch a movie — all on the same phone.
+           These are completely separate apps, each doing its own job. That’s multitasking.
+
+        2. Now, multithreading is different. It happens inside one program. For example,
+           when you're watching a movie on Netflix — it plays the video, shows subtitles,
+           and loads the next episode in the background — all at once. All these are
+           smaller tasks inside just one app. That’s multithreading.
+
+    2. Level of Execution:
+        1. Multitasking works at the operating system level. That means your phone or computer controls how much time
+           each app gets to run. It switches between apps so fast that it feels like everything is happening together.
+
+        2. Multithreading, on the other hand, works inside the program itself. The Java program decides how to split its work
+           into smaller tasks and run them together — like downloading something while updating the screen at the same time.
+
+    3. Resource Usage:
+        1. In multitasking, each app gets its own memory and uses a separate part of the CPU. It’s like having three different
+           Swiggy delivery people — each with their own bike, doing their own delivery. It works, but it takes up more space and energy.
+
+        2. In multithreading, all the threads share the same memory. It’s like having three chefs in the same kitchen. They all work on
+           different parts of the same dish — but they share the same stove, utensils, and ingredients. It saves space and time.
+
+    4. Speed and Efficiency:
+        1. Multitasking is usually a bit slower, because managing many separate apps takes more effort and memory.
+
+        2. Multithreading is often faster, because everything is happening within one app, and the threads are light
+           and easy to manage. That’s why it’s used a lot in real-time applications — like chat apps, games, or
+           streaming platforms — where speed really matters.
+
+    # Key Points to Remember:
+        1. Multitasking = Multiple programs at once
+        2. Multithreading = Multiple tasks inside one program
+        3. Java focuses mainly on multithreading to improve speed and responsiveness
+        4. Threads are lighter and faster than full processes (used in multitasking)
+        5. Understanding the difference helps in both real-world coding and interviews
+
+    # Common Interview Questions & Answers:
+
+        Q1: What’s the difference between multitasking and multithreading?
+         A: 1. Multitasking means running multiple apps or programs at the same time, like Swiggy and Netflix together.
+            2. Multithreading means running different tasks inside the same app, like playing video and showing subtitles
+               in Netflix at the same time.
+
+        Q2: Which is more memory efficient — multitasking or multithreading?
+         A: Multithreading is more efficient because threads share the same memory. In multitasking, each app uses its own memory.
+
+        Q3: Does Java support multitasking or multithreading?
+         A: Java mainly supports multithreading. The operating system handles multitasking at the system level.
+
+        Q4: Can threads in multithreading talk to each other?
+         A: Yes, threads in the same program can easily communicate and share data because they run in the same memory space.
+
+        Q5: Why is multithreading preferred in apps like games or music players?
+         A: Because it keeps the app smooth. One thread can play music, another updates the UI, and another loads the next song — all together.
+
+
+

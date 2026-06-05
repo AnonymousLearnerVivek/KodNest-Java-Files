@@ -1,0 +1,51 @@
+Q1. What is Multitasking?
+Standard Definition:
+    Multitasking is the ability of a system or person to perform more than one task
+    at the same time or by quickly switching between tasks.
+
+Q2. Why Multitasking is Important in Java?
+    Java is used to build apps that people interact with every day:
+        1. Chat apps
+        2. Video games
+        3. Music players
+        4. Online shopping sites
+    And in all these apps, things are happening together, not one by one.
+
+    For example:
+        1. While a video is playing, it should load the next one in the background.
+        2. While you scroll through an online store, it should keep checking for offers or notifications.
+
+    If Java didn’t support multitasking, these apps would freeze, lag, or feel slow. That’s why multitasking is super important in Java.
+
+# Key Points to Remember:
+    1. Multitasking means doing many things at the same time or switching quickly between them.
+    2. It’s common in daily life — like cooking and chatting at once.
+    3. Java supports multitasking, which helps in creating fast and smooth apps.
+    4. Examples include sorting arrays, calculating sums, searching elements — done in parallel.
+    5. You can run multiple Java programs together to simulate basic multitasking, even before learning threads.
+    6. In Java, multitasking can be achieved by creating and starting Thread objects, which execute tasks in parallel.
+
+
+# Common Interview Questions & Answers:
+
+    Q1: What is multitasking in Java?
+     A: Multitasking in Java means performing multiple operations at the same time. This helps in improving
+        performance and user experience by making apps faster and more responsive.
+
+    Q2: Can Java perform multiple tasks at once?
+     A: Yes. Java supports multitasking through threads, but even without using threads,
+        you can run multiple programs at once to simulate multitasking.
+
+    Q3: What are real-life examples of multitasking in computers?
+     A: Playing music while typing, downloading files while browsing, or attending a
+        Zoom call while taking notes — all are examples of multitasking.
+
+    Q4: Why is multitasking important in modern apps?
+     A: Because users expect smooth and fast apps. Multitasking helps avoid freezing or
+        delays by letting the app handle many tasks at once.
+    Q5: What is one primary benefit of running tasks in parallel, such as sorting and summing arrays simultaneously?
+     A: 1. It reduces the overall processing time of the application.
+        2. Parallel execution of independent tasks minimizes the total time needed to complete all operations, enhancing performance.
+
+
+
