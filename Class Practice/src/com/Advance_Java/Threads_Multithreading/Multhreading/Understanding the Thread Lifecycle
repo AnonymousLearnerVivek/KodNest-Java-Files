@@ -1,0 +1,123 @@
+# Understanding the Thread Lifecycle:
+
+    Imagine you're organizing a big family wedding. There are so many things to take care of—cooking food,
+    decorating the hall, welcoming guests, arranging music, and capturing photos. You can’t do all of it alone,
+    right? So, you assign different tasks to different people. One person takes care of the food, another handles
+    the decorations, someone else welcomes the guests, and so on. Everyone works together, and the event runs smoothly.
+    This is exactly how threads work in Java. Each thread handles a different task, helping the program run faster
+    and more efficiently. But what if someone starts too early, takes a break without telling others, or waits forever
+    for a tool someone else is using? Things could get difficult! That’s why it’s important to understand what each
+    thread is doing at any point in time. This is called the thread lifecycle—and it’s the key to writing programs
+    that are well-organized, smooth, and bug-free.
+
+Q1. What is a Thread?
+    A thread is like a small worker inside your program. It helps your program do multiple tasks at the same time,
+    just like cooks in a big kitchen. This process of using many threads is called multithreading.
+
+    But — just like humans — threads also follow a routine or lifecycle:
+    They are born, they work, they may wait, and finally, they finish.
+
+# The Lifecycle of a Thread:
+    Java threads go through different stages during their life, just like workers at a wedding or
+    chefs in a kitchen. Each stage tells us what the thread is doing at that moment.
+
+    Here are the main stages:
+        1. New – The thread is created but hasn't started yet.
+        2. Runnable – The thread is ready to run and waiting for its turn.
+        3. Running – The thread is now doing its assigned task.
+        4. Blocked – The thread is trying to access something that's being used by another thread.
+        5. Waiting – The thread is waiting for another thread to give it a signal.
+        6. Timed Waiting – The thread is waiting, but only for a fixed amount of time.
+        7. Terminated – The thread has finished its work and is now done.
+
+    1. New – Just Hired
+        You’ve created a thread, but it hasn’t started working yet.
+                Thread thread = new Thread(new MyRunnable());
+
+    2. Runnable – Ready to Work
+        You start the thread. It’s ready and waiting for its turn to run.
+                thread.start();
+
+    3. Running – Now Cooking
+        The thread has been picked by the CPU and is now doing its task.
+                public void run() {
+                    // actual task goes here
+                }
+
+    4. Blocked – Waiting for a Tool
+        1. The thread wants to use a shared resource, but someone else is already using it.
+        2. Imagine two cooks need the same frying pan. One cook is already using it,
+           so the other has to wait until it's free.
+        3. In Java, this kind of waiting happens when threads try to enter a section of code
+           that’s locked for use by another thread.
+
+                synchronized (sharedResource) {
+                    // thread waits if another thread has the lock
+                }
+        4. Don’t worry if the word synchronized feels new or confusing — we’ll learn it in detail in
+           one of the upcoming lessons. For now, just remember: it’s Java’s way of making sure
+           two threads don’t fight over the same tool
+
+    5.Waiting – Waiting for a Signal
+        1. Sometimes, a thread just has to pause and wait until another thread tells it, “Okay, now you can continue.”
+        2. Imagine a cook who has kept something on the stove and now has to wait for it to finish cooking
+           before doing the next step. The cook can’t move forward until it’s done.
+
+        In Java, we can make a thread wait like this:
+                synchronized (lock) {
+                    lock.wait(); // the thread is waiting here
+                }
+        3. Don’t worry about the new words like synchronized or wait(). Just remember:
+        4. One part of your program is waiting, and another part will give it a signal to continue later.
+
+    6.Waiting – Taking a Short Break
+        Sometimes, a thread needs to wait — but only for a limited time. After that, it will automatically continue.
+        In Java, we can make a thread take a short break like this:
+
+                Thread.sleep(15000); // Wait for 15 seconds
+                Or like this:
+
+                lock.wait(5000); // Wait for 5 seconds, then continue
+
+    7. Terminated – Task Completed
+        When a thread finishes its work, it reaches the end of its journey. It can’t start again.
+        In Java, once the task inside the thread is completed, the thread ends like this:
+                public void run() {
+                    // after this work is done, the thread is finished
+                }
+        Once a thread reaches this stage, it's completely done. You can’t restart it — you’d need to create a new one if needed.
+
+# Key Points to Remember:
+    1. A thread is like a small worker in your program that helps perform tasks at the same time.
+    2. Java threads go through 7 stages: New, Runnable, Running, Blocked, Waiting, Timed Waiting, and Terminated.
+    3. Use start() to begin a thread, sleep() to pause for a short time, and wait() when one thread needs to
+       pause until another says “go”.
+    4. Once a thread finishes its task, it cannot be reused. You need to create a new one.
+    5. Knowing the lifecycle helps prevent mistakes, improve performance, and makes debugging easier.
+
+# Common Interview Questions & Answers:
+
+    Q1: What is a thread in Java?
+     A: A thread is a small part of a program that can run separately. It helps the program do multiple tasks at once.
+
+    Q2: Can you name the stages in a thread lifecycle?
+     A: Yes. The main stages are:
+        New, Runnable, Running, Blocked, Waiting, Timed Waiting, and Terminated.
+
+    Q3: What happens when you call start() on a thread?
+     A: The thread moves from New to Runnable state, telling Java it's ready to run.
+
+    Q4: What is the difference between Waiting and Timed Waiting?
+     A: 1. Waiting: The thread waits until another thread gives a signal.
+        2. Timed Waiting: The thread waits only for a set time, like 5 or 10 seconds.
+
+    Q5: Can we restart a thread after it is finished?
+     A: No. Once a thread reaches the Terminated state, it can’t be started again.
+        You must create a new thread.
+
+    Q6: What causes a thread to enter the Blocked state?
+     A: 1. The thread is waiting to acquire a lock on a resource.
+        2. A thread enters the Blocked state when it tries to enter a synchronized block or
+           method but the lock is held by another thread.
+
+

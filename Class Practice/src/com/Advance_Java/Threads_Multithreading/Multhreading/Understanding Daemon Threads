@@ -1,0 +1,118 @@
+# Daemon Threads:
+    Imagine you're studying for your final exams. You're focused, writing notes, and solving problems.
+    Meanwhile, your younger brother is in the same room. He’s not studying — instead, he helps you by
+    bringing water, arranging your books, or sharpening your pencils. He isn’t doing the main task,
+    but he’s supporting you silently. Now, once you finish studying and go to sleep, your brother stops too.
+    He doesn’t continue working — because his job was to help you, and your work is over.
+
+    In the world of Java programming, this helpful younger brother is what we call a Daemon Thread.
+
+Q1. What Exactly Is a Daemon Thread?
+Standard definition:
+    A Daemon Thread in Java is a low-priority background thread that provides services or support to user threads.
+    It runs continuously in the background but does not prevent the Java Virtual Machine (JVM) from exiting
+    once all user (non-daemon) threads have finished execution.
+
+    A Daemon Thread in Java is a special type of thread that works in the background to support other threads in the program.
+    It is not there to do important tasks on its own, but rather to assist the main threads. Once all the important
+    (non-daemon) threads finish their work, the JVM (Java Virtual Machine) will automatically stop all daemon threads
+    — even if they haven’t finished yet.
+
+    So, daemon threads are like silent assistants.They work in the background, and disappear once the main program ends.
+
+# Real-Life Examples of Daemon Threads:
+    Let’s see some real-world situations where daemon threads are used:
+        1. Garbage Collector – It runs in the background, cleaning up unused memory.
+        2. Auto-Save Feature – While you're typing in a document, auto-save runs quietly, saving your progress.
+        3. Background Sync – Some apps sync your data in the background.
+
+    All these are great examples of tasks that help the main program — but don’t need to keep running
+    if the main task is over.
+
+# Key Characteristics of Daemon Threads:
+    Let’s break down how daemon threads behave:
+        1. They run in the background and assist the main program.
+        2. If the main thread finishes, daemon threads also stop — even if their job is incomplete.
+        3. They are not recommended for tasks like saving files or making updates, because they can vanish anytime.
+        4. A thread must be set as a daemon before starting it. You can’t change it afterward.
+        5. If there are only daemon threads left, the JVM shuts down the program.
+
+# Java Example: Creating a Daemon Thread
+    Let’s see a real code example to understand how a daemon thread behaves in Java.
+            class HelperThread extends Thread {
+                public void run() {
+                    while (true) {
+                        System.out.println("Helping the main thread...");
+                        try {
+                            Thread.sleep(1000); // Waits for 1 second before printing again
+                        } catch (InterruptedException e) {
+                            System.out.println("Helper was interrupted.");
+                        }
+                    }
+                }
+            }
+
+            public class DaemonExample {
+                public static void main(String[] args) {
+                    HelperThread helper = new HelperThread();
+
+                    helper.setDaemon(true);  // We mark this thread as a daemon thread
+                    helper.start();          // Start the helper thread
+
+                    System.out.println("Main thread is doing some work...");
+                    try {
+                        Thread.sleep(3000); // Simulate main work for 3 seconds
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("Main thread is done.");
+                }
+            }
+Q1. What’s Happening Here?
+    1. We created a helper thread that keeps printing “Helping the main thread...” every second.
+    2. But we set it as a daemon thread using setDaemon(true).
+    3. The main thread works for 3 seconds and then finishes.
+    4. As soon as the main thread ends, the program exits — even though the helper thread could keep running.
+
+Q2. What Happens If We Don’t Set It as Daemon?
+    If you don’t set the helper thread as a daemon, the program won’t stop after 3 seconds.
+    The helper thread will keep running forever, printing its message again and again —
+    because now it’s a regular user thread.
+
+    So always remember:
+    Daemon threads stop when main threads stop. User threads keep the program alive.
+
+# Key Points to Remember:
+    1. A Daemon Thread runs in the background to assist other threads.
+    2. The JVM does not wait for daemon threads to finish if all user threads are done.
+    3. They are perfect for background services like auto-save, garbage collection, or log writers.
+    4. You must call setDaemon(true) before starting the thread.
+    5. If a program contains only daemon threads, it terminates automatically.
+    6. Do not use daemon threads for important tasks like saving files or updating databases.
+
+# Common Interview Questions & Answers:
+
+    Q1. What is a Daemon Thread in Java?
+     A. A daemon thread is a background thread that supports user threads. It runs silently in the
+        background and automatically terminates when all user threads finish execution.
+
+    Q2. What happens if you don’t set a thread as a daemon before starting it?
+     A. Java will treat it as a regular user thread. If it continues running, the program won't terminate
+        until the thread ends. Also, calling setDaemon(true) after starting a thread throws an IllegalThreadStateException.
+
+    Q3. Can a daemon thread prevent JVM from shutting down?
+     A. No. Daemon threads cannot prevent the JVM from exiting. Once all user threads are finished,
+        the JVM shuts down regardless of whether daemon threads are still running.
+
+    Q4. Give a real-world use case for a daemon thread.
+     A. A classic example is the Garbage Collector in Java — it runs in the background cleaning unused objects.
+        If the program ends, the garbage collector stops too.
+
+    Q5. Why are daemon threads given lower priority than user threads?
+     A. 1. To avoid interfering with essential program tasks.
+        2. Daemon threads have lower priority to ensure that they do not
+           affect the critical tasks performed by user threads.
+
+
+

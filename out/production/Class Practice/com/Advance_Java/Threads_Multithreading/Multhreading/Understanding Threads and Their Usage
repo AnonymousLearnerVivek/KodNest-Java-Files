@@ -104,3 +104,209 @@
          A: Yes. Every Java program starts as single-threaded with the main thread. You can then create additional threads
             to make it multi-threaded when needed.
 
+
+# Main Thread in Java:
+
+        By now, we’ve talked a lot about threads — those tiny helpers that let your program do multiple things at once.
+        But here’s something important: before any of those helpers show up, there’s always one main person doing all
+        the work. That’s called the Main Thread.
+
+        Whether your program is simple or complex, it always begins its journey with the main thread. Think of it like
+        the team leader — the one who starts everything, coordinates what happens first, and decides when the helpers
+        (other threads) are called in.
+
+        Let’s now understand what this main thread really is, why it’s so important, how Java handles it, and
+        where it shows up in real-world programs.
+
+    Q1. What is the Main Thread in Java?
+    Standard Definition:
+        1. The main thread is the first thread that starts when a Java program begins. It runs the main() method
+           and acts as the primary path of execution for the program.
+        2. In Java, every program starts with the main thread, and if you don’t create more threads,
+           the entire program runs only on this one thread.
+
+    Q2. Role of the Main Thread in Java:
+        The main thread acts as the entry point for Java programs and plays a critical role in coordinating all tasks.
+        Its responsibilities include:
+        1. Program Entry Point: The main() method is where your Java program starts. The main thread is responsible
+                                for executing the code inside this method.
+        2. Managing Application Flow: The main thread ensures the proper completion of the program. If it terminates, the JVM shuts down
+                                      the application, ensuring any remaining tasks are completed within the main thread’s scope.
+        3. Sequential Task Execution: The main thread ensures tasks are executed in sequence—just like processing orders in Swiggy's system,
+                                      where the manager ensures all steps are completed correctly from start to finish.
+
+    Q3. Why is the Main Thread Important?
+        1. It starts your Java program.
+        2. It controls the flow of the program unless you create more threads.
+        3. It’s the thread where exceptions, errors, and program output first appear.
+        4. It decides the order in which things start — like a train engine pulling the rest of the coaches.
+
+    # Key Points to Remember:
+        1. Every Java program begins with the main thread, which runs the main() method.
+        2. It starts the program and controls how everything flows unless you create other threads.
+        3. Without other threads, it handles each task one after the other — no multitasking.
+        4. Java gives it a normal priority (NORM_PRIORITY). You can change it using setPriority().
+        5. Exceptions and print statements usually show up in the main thread, making it a key part for debugging.
+        6. Unless you’ve started other threads, the program will shut down when the main thread finishes.
+
+    # Common Interview Questions & Answers:
+
+        Q1. What is the main thread in Java?
+        Answer: The main thread is the first thread that runs when a Java program starts. It executes the main() method
+                and controls the overall flow unless other threads are created.
+
+        Q2. Why is the main thread important in Java?
+        Answer: Because it's the entry point of any Java application. Without the main thread, the program won’t begin.
+                It manages the initial setup and can coordinate other threads if needed.
+
+        Q3. What is the default priority of the main thread?
+        Answer: The main thread’s default priority is NORM_PRIORITY, which equals 5 on a scale from 1 (lowest) to 10 (highest).
+
+        Q4. What happens if the main thread finishes before other threads?
+        Answer: If other threads are still running, the JVM waits for them (if they’re non-daemon). But if no other threads are alive, the program ends.
+
+        Q5. Which of the following is not a recommended way to prevent race conditions?
+        Answer: 1. Using thread pools.
+                2. While thread pools improve performance, they do not directly address race conditions. Synchronization,
+                   atomic variables, and immutability help prevent race conditions by controlling access to shared data.
+
+# Controlling Thread Execution:
+
+    Imagine you’re managing a kitchen with multiple chefs (threads), each working on a different dish.
+    Sometimes, you may need one chef to wait until another finishes, or you might want all of them to take a short break together.
+    That’s exactly what controlling thread execution is about — managing when threads run, pause, or stop.
+
+    Let’s break it down one by one.
+
+    Q1. Why Do We Need to Control Threads?
+        In real life, not all tasks can run together. Some need to wait, some need rest, and some must finish before others start.
+        Java gives us tools to control the timing and coordination of threads so things don’t go out of sync.
+
+    # Core Thread Control Method in Java:
+        sleep() – Making a Thread Pause for a While
+
+        Q1. What Is sleep()?
+            1. The sleep() method is used when you want your thread to pause for a while — like telling someone,
+               “Hold on, take a quick break before continuing.”
+
+            2. It’s useful when you want to delay something in your program — like showing a message
+               after 2 seconds or simulating a loading effect.
+
+        Syntax:
+                Thread.sleep(milliseconds);
+            1. Note: 1000 milliseconds = 1 second.
+            2. Also, since sleep() can throw an InterruptedException, you need to use it inside a try-catch block.
+
+    # Key Points to Remember:
+        1. Thread.sleep(milliseconds) is used to pause a thread temporarily.
+        2. 1 second = 1000 milliseconds.
+        3. It helps in creating delays, simulating waiting time, or synchronizing tasks.
+        4. Must be used inside a try-catch block because it throws InterruptedException.
+        5. Does not release locks — it only pauses the thread.
+        6. Useful in games, loading effects, animations, polling, or simulated delays.
+
+    # Common Interview Questions & Answers:
+
+        Q1: What is the purpose of Thread.sleep() in Java?
+         A: Thread.sleep() is used to pause the execution of the current thread for a specified number of milliseconds.
+            It’s commonly used for creating delays or simulating wait time between tasks.
+
+        Q2: What happens if we don’t handle InterruptedException with sleep()?
+         A: Since sleep() can throw InterruptedException, Java forces us to catch or declare it.
+            Not handling it causes a compile-time error.
+
+        Q3: Does Thread.sleep() release any lock or monitor?
+         A: No, sleep() does not release any locks held by the thread. It just pauses the thread temporarily.
+
+        Q4: Can sleep() be used to stop a thread permanently?
+         A: No, sleep() only pauses the thread temporarily. Once the time is over, the thread resumes.
+
+        Q5: In what scenarios would you use sleep() in real-world applications?
+         A: To simulate delays (e.g., order preparation, loading screens), space out tasks (like retries),
+            or control UI refresh rate in games or animations.
+
+        Q6: How does increasing the priority of a thread affect its execution?
+         A: 1. It gives the thread a higher chance of getting CPU time
+            2. A higher priority does not guarantee execution but increases the
+               likelihood that the thread will get CPU attention sooner.
+
+# Thread Class vs Runnable Interface:
+
+    Q1. How do you actually create those threads in Java?
+        Java gives you two simple ways to create a thread:
+            1. Extend the Thread class
+            2. Implement the Runnable interface
+
+        Now you might wonder, “Both seem to work — so which one should I pick?”
+
+    # Real-Life Analogy: Delivery Agents and Tasks:
+        Imagine you're running a delivery service. You have lots of orders to deliver (tasks), and
+        several delivery agents (threads) ready to help.
+
+        Now, there are two ways you can assign tasks:
+            1. Using the Thread class is like building a delivery agent and permanently giving them a specific job.
+               You create a new agent who knows only one task — like delivering food to a particular house.
+
+            2. Using the Runnable interface is like preparing a reusable job sheet (like a delivery route), and giving it
+               to any available agent. The job is separate from the agent, so you can hand it over to anyone who's free.
+
+        1. Thread Class – All-in-One Approach:
+            Think of this like creating a worker who has the task built into them. You’re saying,
+            “Hey, this worker is not just a person — they already know exactly what to do.”
+
+            In Java terms:
+                1. You create a class that extends the Thread class.
+                2. Inside it, you write the work logic in the run() method.
+                3. Then you create an object and call start() to begin the thread.
+
+            Use this when your class doesn’t need to extend anything else and
+            you want a quick way to define and run a thread.
+
+        2. Runnable Interface – Flexible and Clean Approach
+            This one’s like writing the task on a note and handing it to any worker you like. The task is separate from the person doing it — so you get more freedom and reusability.
+
+            In Java terms:
+                1. You implement the Runnable interface.
+                2. Inside your class, you define the run() method — that’s the task.
+                3. Then you pass the task to a Thread object and call start().
+
+            Use this when your class already extends another class, or
+            when you want to keep thread logic and task logic separate.
+
+    # Key Points to Remember:
+        1. Two ways to create threads in Java: Thread class (extends) and Runnable interface (implements)
+        2. Thread class:
+            1. Inherits from Thread class directly
+            2. Cannot extend any other class (due to Java’s single inheritance rule)
+            3. Task and thread logic are tightly coupled
+            4. Less flexible and less reusable
+            5. Ideal for small programs or quick demos
+        2. Runnable interface:
+            1. Allows your class to extend another class
+            2. Keeps task logic (run()) separate from thread management
+            3. Supports sharing a single task across multiple threads
+            4. Preferred in real-world and large-scale applications
+            5. Cleaner and easier to maintain
+
+    # Common Interview Questions & Answers:
+
+        Q1: What’s the difference between Thread and Runnable?
+         A: 1. Thread is a class — you extend it and override run().
+            2. Runnable is an interface — you implement it and pass it to a Thread object.
+
+        Q2: Why prefer Runnable in real-world projects?
+         A: Because it gives more flexibility. You can extend another class and still run tasks in a thread.
+            It also keeps your code cleaner.
+
+        Q3: What happens if we call run() instead of start()?
+         A: The task runs like a normal method in the main thread. No new thread is created.
+
+        Q4: Can we start a thread twice?
+         A: No. Java throws IllegalThreadStateException if you try to start a thread more than once.
+
+        Q5: Can multiple threads share the same Runnable object?
+         A: Yes. This is useful when multiple threads need to perform the same task or share data.
+
+
+
+

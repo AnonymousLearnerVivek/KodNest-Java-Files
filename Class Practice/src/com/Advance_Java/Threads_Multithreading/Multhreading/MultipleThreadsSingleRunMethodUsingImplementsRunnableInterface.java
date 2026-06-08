@@ -2,21 +2,15 @@ package com.Advance_Java.Threads_Multithreading.Multhreading;
 
 import java.util.Scanner;
 
-/*
-Q1. What is Process?
-    It's a program which is present on the RAM which is ready for the execution or which is executing already.
-
-Q2. What is Thread?
-    Thread is a independent instructions getting executed independently within a process.
-
-if you want to achieve multithreading - you need to keep the independent method inside run() method which is present in Thread Class
-we can achieve multithreading in 2 ways -> 1. By extends class (Thread Class)
-                                        -> 2. By implements interface (Runnable interface)
- */
-
-class Demo1 extends Thread {
+class Demo200 implements Runnable {
     @Override
     public void run() {
+        String name = Thread.currentThread().getName();
+        if(name.equals("ADD")) adding();
+        else if (name.equals("CHAR")) printCharacters();
+        else printNumbers();
+    }
+    public void adding() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Addition started");
         System.out.println("Enter first number");
@@ -27,15 +21,12 @@ class Demo1 extends Thread {
         System.out.println("Addition finished");
     }
 
-}
-class Demo2  extends Thread {
-    @Override
-    public void run() {
+    public void printCharacters() {
         System.out.println("Printing characters started");
         for(int i = 65; i < 70 ; i++) {
             System.out.println((char)(i));
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -44,15 +35,12 @@ class Demo2  extends Thread {
         System.out.println("Printing characters finished");
     }
 
-}
-class Demo3 extends Thread {
-    @Override
-    public void run() {
+    public void printNumbers() {
         System.out.println("Printing numbers started");
         for(int i = 1; i <= 10 ; i++) {
             System.out.println(i);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -60,29 +48,20 @@ class Demo3 extends Thread {
         }
         System.out.println("Printing numbers finished");
     }
-
 }
-public class UnderstandingMultithreading {
+public class MultipleThreadsSingleRunMethodUsingImplementsRunnableInterface {
     public static void main(String[] args) {
-        Demo1 d1 = new Demo1();
-        Demo2 d2 = new Demo2();
-        Demo3 d3 = new Demo3();
-//        d1.run();  // it will not work like to call run() method you need call start() method
-//        d2.run();
-//        d3.run();
-        d1.start();
-        d2.start();
-        d3.start();
+        Demo200 d  = new Demo200();
+
+        Thread t1 = new Thread(d);
+        Thread t2 = new Thread(d);
+        Thread t3 = new Thread(d);
+
+        t1.setName("ADD");
+        t2.setName("CHAR");
+        t3.setName("NUM");
+        t1.start();
+        t2.start();
+        t3.start();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
