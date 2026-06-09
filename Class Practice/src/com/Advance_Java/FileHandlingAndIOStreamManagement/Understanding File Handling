@@ -1,0 +1,75 @@
+# Understanding File Handling:
+    Imagine you’ve just moved to Bangalore after completing your engineering degree. You're now busy with job applications,
+    online coding tests, and interviews. To keep track of everything, you first try using a notebook or spreadsheet.
+    But soon, it becomes messy and hard to manage.
+
+    So, you decide to build a small Java program to manage your job application details. But here’s the challenge:
+
+    👉 How will your program remember the data after you close it?
+        This is where File Handling comes in. Just like you write important things in a diary to revisit them later,
+        file handling helps your Java program save and retrieve information permanently—even after the program stops running.
+
+Q1. What Is File Handling?
+Standard Definition:
+    File handling is the way a program interacts with files on your computer.
+    It involves creating, reading, writing, updating, and deleting files.
+
+Q2. Why File Handling Matters?
+ A. Variables in a program store data only temporarily. Once the program stops, that data is gone.
+    But with file handling, data is stored in files and saved permanently.
+
+# Byte-Based vs. Character-Based File Handling:
+    When your program works with files, it needs to decide how to handle the data.
+    There are two main ways:
+        1. Byte-Based Streams – for raw data
+        2. Character-Based Streams – for text data
+
+    1. Byte-Based File Handling:
+        Byte-based file handling means working with raw bytes — the 0s and 1s that make up all digital files.
+
+        It doesn't try to understand what's inside the file. It just moves or copies the data exactly as it is.
+        This makes it perfect for working with files that are not plain text, like:
+        1. PDF documents
+        2. Images (JPG, PNG)
+        3. Audio or 🎥 video files
+        4. Executable or software files
+
+    2. Character-Based File Handling:
+        Character-based file handling is used when your file contains text — like words, sentences, or
+        readable data. It works with characters instead of raw bytes and knows how to read and write
+        based on text encoding (like UTF-8).
+
+        It’s perfect for files you can open in a text editor like Notepad.
+
+
+# Key Points to Remember:
+    1. File Handling allows a program to store, read, write, and update data permanently.
+    2. Data stored in variables is lost when the program ends; files keep it safe.
+    3. There are two main types of file handling in Java:
+        1. Byte-Based Streams → for binary data (images, PDFs, audio)
+        2. Character-Based Streams → for text data (logs, notes, CSV)
+    4. Use classes like:
+        1. FileInputStream, FileOutputStream (for byte-based)
+        2. FileReader, FileWriter (for character-based)
+    5. Always use loops to read/write and close the file when done.
+    6. Use try-catch blocks to handle errors.
+    7. Prefer try-with-resources to automatically close files.
+
+# Common Interview Questions and Answers:
+
+    Q1. What is file handling in Java?
+     A: File handling is the process of reading from and writing to files in Java,
+        allowing programs to store data permanently.
+
+    Q2. What’s the difference between byte-based and character-based streams?
+     A: 1. Byte-based handles raw binary data (e.g., images, PDFs).
+        2. Character-based handles text data (e.g., .txt, .csv) and respects encoding.
+
+    Q3. Which classes are used for file handling in Java?
+     A: 1. FileReader, FileWriter for character streams
+        2. FileInputStream, FileOutputStream for byte streams
+
+    Q4. Why do we use try-with-resources?
+     A: It automatically closes the file after reading/writing,
+        which prevents memory leaks and makes code cleaner.
+
