@@ -1,0 +1,69 @@
+# Introduction to Serialization and Deserialization:
+    Imagine you’re going on a trip. At home, your clothes are spread out on shelves or hanging in your cupboard,
+    but you can’t carry the entire cupboard with you. So, you fold the clothes you need and pack them into a suitcase.
+    When you reach your destination, you open the suitcase and take the clothes out to use them again. This is exactly
+    how serialization and deserialization work in Java.
+
+Q1. What Are We going to Learn?
+    We’re going to learn two important things:
+        1. Serialization – how to save a Java object into a file or send it to another computer.
+        2. Deserialization – how to get that saved object back and use it in your program.
+
+Q2. What is Serialization?
+Standard Definition:
+    Serialization in Java is the process of converting an object into a stream of bytes so that it can be saved into a file or sent over a network.
+
+    # Purpose of Serialization in Java
+        Serialization is used for:
+            1. Storing Object States: Saving objects to files or databases as binary data so they can be reloaded or retrieved later.
+            2. Data Transmission: Transferring objects across networks, where the object is converted into a byte stream to be sent over a network,
+                                  making it possible to share objects between different systems.
+            3. Session Persistence: Maintaining data consistency between sessions, for example, in web applications
+                                    where user sessions can be saved and restored.
+
+    Q3. How Serialization Works?
+        To serialize an object in Java:
+            1. The class must implement the Serializable interface.
+            2. An ObjectOutputStream can be used to write the object to a file or an output stream.
+            3. The serialized object can later be deserialized to recreate the original state.
+
+Q3. What is Deserialization?
+Standard Definition:
+    Deserialization in Java is the process of converting a stream of bytes back into a Java object.
+    This is used to restore the original object that was previously saved using serialization.
+
+    Q4. What Is the Purpose of Deserialization?
+        Deserialization is helpful when you want to:
+            1. Load saved data like user info or game progress
+            2. Reuse stored objects without creating them again
+            3. Read objects that were sent from another system or saved earlier
+
+    Q5. How Deserialization Works
+        To deserialize an object:
+            1. The class must implement Serializable.
+            2. An ObjectInputStream can be used to read the byte stream and convert it back to the original object.
+
+# Key Points to Remember:
+    1. Serialization means converting a Java object into a simple format (like a byte stream) so it can be saved or sent.
+    2. Deserialization means converting that saved format back into the original object.
+    3. To serialize or deserialize an object, the class must implement the Serializable interface.
+    4. xUse ObjectOutputStream to serialize (save) and ObjectInputStream to deserialize (load).
+    5. Serialization is helpful in saving data, sending it over networks, and keeping user sessions.
+    6. Deserialization helps bring back saved data or read objects shared between systems.
+
+# Common Interview Questions and Answers:
+
+    Q1: What is serialization in Java?
+     A: Serialization is the process of converting a Java object into a byte stream so it can be saved to a file or sent over a network.
+
+    Q2: What is deserialization?
+     A: Deserialization is the reverse process — it converts a byte stream back into the original Java object.
+
+    Q3: Which interface must a class implement to be serialized?
+     A: The class must implement the Serializable interface.
+
+    Q4: What classes are used to serialize and deserialize objects in Java?
+     A: ObjectOutputStream is used to serialize (write), and ObjectInputStream is used to deserialize (read).
+
+    Q5: What happens if you try to serialize a class that doesn’t implement Serializable?
+     A: You will get a NotSerializableException at runtime.
