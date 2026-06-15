@@ -1,8 +1,11 @@
 package com.Advance_Java.SerializationAndDeserialization;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Employee implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 2L;
     int id;
     String name;
     int age;
