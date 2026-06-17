@@ -1,0 +1,24 @@
+# Singleton Design Pattern with Serialization:
+    Imagine you're running a movie ticket counter. You have only one control desk where bookings are managed.
+    Everyone — customers, staff, and online systems — must use this one desk to book seats. Why? Because
+    if multiple desks are used, two people might book the same seat at the same time. Total chaos! 😩
+
+    That’s why you decided to follow a rule: only one control desk exists — no matter what.
+
+    This is exactly what the Singleton Design Pattern does in Java. It makes sure only one object of a class
+    is created and used across your entire program. Sounds perfect, right?
+
+    But now, imagine you save this control desk’s data to a file (using something called serialization) and
+    later load it back (deserialization). Here's the twist — instead of bringing back your original desk,
+    Java creates a brand-new one! 😲 Oops! That breaks our rule of “only one.”
+
+Q1. What is the Singleton Pattern?
+    The Singleton pattern ensures that a class has only one object (instance)
+    and gives you a way to access it globally from anywhere in your program.
+
+    When a Singleton is serialized and then deserialized, Java actually creates a new object,
+    breaking the Singleton pattern. Now, instead of one control panel, you have two — and that ruins everything.
+
+    # Why It Matters:
+        If your Singleton class is used in core logic (like settings, configuration, logging), you can’t afford
+        to have two different versions of it. So if you ever save and load a Singleton, you must protect it from duplication.
