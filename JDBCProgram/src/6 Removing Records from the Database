@@ -1,0 +1,60 @@
+# Removing Records from the Database:
+    In the same way, removing records from a database helps keep your data clean, organized, and relevant.
+    This process is called deleting records, and in Java, we do it safely and efficiently using JDBC PreparedStatement.
+
+Q1. What Does “Deleting Records” Mean?
+    In simple terms, deleting records means asking the database to remove information that is no longer needed.
+    It’s like saying to the database: “This data is outdated or irrelevant—please erase it from the table.”
+    For example, you might want to delete a user whose username is alice_wonder from the users table.
+    This operation helps keep your application’s database clean, organized, and focused only on the data that really matters.
+
+# Steps to Remove Records from the Database:
+    Step 1: Connect to the Database
+        Code Example:
+        Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+
+    Step 2: Write the Delete Query
+        Code Example:
+            String sql = "DELETE FROM users WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+    Step 3: Set the Value
+            preparedStatement.setString(1, "alice_wonder");
+
+        1 → Refers to the first ? placeholder in the query.
+        "alice_wonder" → This is the username we’re asking the database to remove.
+
+    Step 4: Run the Delete Command
+            Code Example:
+                    int rowsDeleted = preparedStatement.executeUpdate();
+
+                    if (rowsDeleted > 0) {
+                        System.out.println("The user was deleted successfully!");
+                    } else {
+                        System.out.println("No user found with that username.");
+                    }
+            what’s happening:
+                1. If rowsDeleted > 0, it means the user was found and successfully deleted. 🎉
+                2. If not, it means there was no matching user in the table.
+
+    Step 5: Close the Resources
+                preparedStatement.close();
+                connection.close();
+
+# Key Takeaways:
+    1. Deleting Records: Removes unwanted data from your database to keep it organized.
+    2. PreparedStatement Advantage: Protects against SQL injection and keeps code clean.
+    3. executeUpdate(): Used for DELETE, INSERT, and UPDATE operations.
+    4. Close Connections: Always free up resources after database operations.
+
+#Common Interview Questions & Answers:
+
+    1. Why should we use PreparedStatement instead of Statement?
+    A. PreparedStatement prevents SQL injection and allows parameterized queries, making operations safer and more efficient.
+
+    2. What is the difference between executeUpdate() and executeQuery()?
+    B. executeUpdate() is used for DELETE, INSERT, and UPDATE queries, while executeQuery() is for SELECT queries.
+
+    3. What happens if you forget to close the connection?
+    A. Not closing the connection may lead to memory leaks and too many open connections, potentially crashing the database server.

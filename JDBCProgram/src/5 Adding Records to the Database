@@ -1,0 +1,81 @@
+# Adding Records to the Database:
+    how we can add new records to the database. Adding data is a common task in most Java applications—whether
+    it’s registering new users, saving orders, or storing any kind of information. To make this process secure
+    and efficient, we use PreparedStatement in JDBC.
+
+    In Java, this process is called inserting data, and we do it using JDBC along with an SQL INSERT query.
+    It’s like saying to the notebook:
+    ✍️ “Hey, here’s some fresh information. Please add this to your pages.”
+
+    Q1. Why PreparedStatement?
+        PreparedStatement is like an upgraded version of Statement. It allows us to write SQL queries with placeholders (?)
+        and then fill them in later with actual values.
+
+# Steps to Add Records Using JDBC:
+    Step 1: Connect to the Database
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+
+    Step 2: Prepare the SQL Insert Query
+            With PreparedStatement, we don’t directly insert the values into the query. Instead, we use ? as placeholders for the actual data.
+            Later, we’ll fill these placeholders with real values.
+            Code Example:
+                    String sql = "INSERT INTO users (username, email, age) VALUES (?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            Q1. what’s happening:
+                The ? symbols act as empty slots in the query—like blank spaces you’ll fill later.
+
+    Step 3: Set the Values
+            Now that we have our SQL query with placeholders (?), it’s time to fill in those blanks with real values.
+            Code Example:
+                    preparedStatement.setString(1, "alice_wonder");
+                    preparedStatement.setString(2, "alice@example.com");
+                    preparedStatement.setInt(3, 25);
+
+            Q1. what happens in each line:
+                1. setString(1, "alice_wonder") → Replaces the first placeholder with the username "alice_wonder".
+                2. setString(2, "alice@example.com") → Fills the second placeholder with the email "alice@example.com".
+                3. setInt(3, 25) → Sets the third placeholder to the age 25.
+
+    Step 4: Execute the Insert Command
+            We use the executeUpdate() method to do this. It runs the SQL query and tells us how many rows were affected.
+            Code Example:
+                    int rowsInserted = preparedStatement.executeUpdate();
+
+                    if (rowsInserted > 0) {
+                        System.out.println("A new user was added successfully!");
+                    }
+
+            Q1. what’s happening:
+                1. executeUpdate() sends your filled-in query to the database and executes it.
+                2. It returns the number of rows that were added.
+                3. If rowsInserted is greater than 0, it means the data was saved successfully.
+
+    Step 5: Close Resources
+            preparedStatement.close();
+            connection.close();
+
+# Key Points to Remember:
+    1. PreparedStatement vs. Statement: PreparedStatement is safer and prevents SQL injection because it uses placeholders (?) and
+                                        handles user inputs properly.
+    2. Placeholders (?): These act as blanks in your SQL query where actual values are set later.
+    3. executeUpdate(): Use this method for INSERT, UPDATE, or DELETE queries. It returns the number of rows affected.
+    4. Always Close Resources: Closing the PreparedStatement and Connection after use is critical to avoid memory leaks and keep the database efficient.
+    5. Dynamic Data Insertion: You can reuse the same PreparedStatement to insert multiple records by changing the values
+                               each time before calling executeUpdate().
+
+# Common Interview Questions & Answers:
+
+    Q1. What is the difference between Statement and PreparedStatement?
+    Answer: 1. Statement executes static SQL queries and is more prone to SQL injection attacks.
+            2. PreparedStatement allows dynamic queries with placeholders (?) and prevents SQL injection by safely handling user inputs.
+
+    Q2. What does executeUpdate() return?
+    Answer: executeUpdate() returns an integer indicating the number of rows affected by the query. For example,
+            when inserting a single record, it usually returns 1.
+
+    Q3. Why should you close PreparedStatement and Connection?
+    Answer: Closing these resources prevents memory leaks, avoids exhausting database connections, and ensures your application runs efficiently.
+
+    Q4. Can PreparedStatement be reused for multiple inserts?
+    Answer: Yes. You can set new values using setString(), setInt(), etc., and call executeUpdate() again without creating a new PreparedStatement.
+

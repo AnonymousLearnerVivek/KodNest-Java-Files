@@ -1,0 +1,77 @@
+# Reading Data Using JDBC Statement:
+    Now that your Java app is connected, the next big question is: 🤔 “How do I ask the database for information and actually read it in my program?”
+
+    This is where JDBC Statements and ResultSet step in. Think of them as tools to ask questions and process answers from your database.
+
+Q1. What Does “Reading Data” Mean?
+    Reading data means sending a SELECT query to the database and getting back results that you can use in your Java program.
+
+    This is done using:
+        1. Statement → To send the query.
+        2. ResultSet → To hold the database’s reply
+
+# Steps to Read Data Using JDBC:
+    Step 1: Connect to the Database
+            Code:
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+
+    Step 2: Create a Statement
+            Code:
+                Statement statement = connection.createStatement();
+
+            This creates a Statement object—a tool that helps you send SQL queries to the database
+
+    Step 3: Send the Query and Get the Answer
+            It’s time to ask the database your question. You use executeQuery() to send your request and
+            store the answer in something called a ResultSet.
+            Code:
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM students");
+
+    Step 4: Read and Process the Data
+            The database sends back a ResultSet, which is like a stack of books. Now you’ll open each book one by one and read the details inside.
+            Code:
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String name = resultSet.getString("name");
+                        System.out.println("ID: " + id + ", Name: " + name);
+                    }
+            Q1.What’s Happening:
+                1. resultSet.next() → Moves to the next row of data.
+                2. getInt("id") → Reads the value from the “id” column.
+                3. getString("name") → Reads the value from the “name” column.
+
+    Step 5: Close the Resources
+            Code:
+                resultSet.close();
+                statement.close();
+                connection.close();
+
+# Key Points to Remember:
+    1. Reading data in Java means sending a SELECT query to the database and processing the reply.
+    2. Use a Statement to send queries and a ResultSet to store the results.
+    3. Always call resultSet.next() to move through the rows in the ResultSet.
+    4. Use methods like getInt(), getString(), etc., to fetch values from specific columns.
+    5. Don’t forget to close the ResultSet, Statement, and Connection after use to free up resources.
+    6. Leaving connections open can lead to memory leaks and slow performance.
+
+# Common Interview Questions & Answers:
+
+    Q1. What is the purpose of ResultSet in JDBC?
+    Answer: ResultSet is a table-like structure that holds the data returned by a SELECT query. It allows us to move
+            through the rows and read values column by column.
+
+    Q2. How do you read data from a ResultSet?
+    Answer: By calling resultSet.next() to move to the next row and using methods like getString() or getInt() to fetch values
+            from specific columns.
+
+    Q3. Why should you close the ResultSet, Statement, and Connection?
+    Answer: Closing them releases database and system resources, preventing memory leaks and ensuring other programs
+            can connect to the database.
+
+    Q4. Difference Between Statement and PreparedStatement
+        1. PreparedStatement is faster and can prevent SQL injection, while Statement cannot.
+        2. PreparedStatement allows for parameterized queries, which makes it more secure and efficient,
+           especially when dealing with user input, by preventing SQL injection attacks.
+
+
+
