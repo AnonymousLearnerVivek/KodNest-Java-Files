@@ -1,0 +1,85 @@
+# Managing Transactions and Handling Transactions:
+
+    Imagine this: You and your friends are super hungry and decide to order food from Swiggy. You add butter naan, dal makhani,
+    and gulab jamun to the cart. Now picture this: The payment succeeds, but only dal makhani gets added to the order. Or worse,
+    the payment fails, but the restaurant still starts cooking your meal.
+
+    Frustrating, right? That’s why apps like Swiggy are smart. They make sure that either everything happens perfectly—all items are added,
+    payment succeeds, and the order is placed—or nothing happens at all.
+
+    This “all-or-nothing” approach is exactly what transactions are in the programming world. Let’s take a small journey to understand
+    what transactions are and how to handle them in JDBC.
+
+Q1. What Exactly Is a Transaction?
+Standard Definition:
+    A transaction is a sequence of one or more operations performed as a single logical unit of work. A transaction ensures that either
+    all operations are completed successfully, or none of them take effect, maintaining the consistency and integrity of the database.
+
+# The Four Pillars: ACID Properties:
+    Just like a strong building needs a solid foundation, transactions rely on ACID properties.
+    Let’s break these down:
+    1. Atomicity: All or nothing. Just like you want your full meal or no meal at all,
+                  a transaction must be fully completed or not done at all.
+
+    2. Consistency: The database always stays correct. If you add or remove dishes,
+                    your Swiggy cart should always show the right total.
+
+    3. Isolation: One transaction shouldn’t interfere with another. Imagine you and a friend are both using the app
+                  to add dishes to the same order—you don’t want their choices to mess up what you’re adding!
+
+    4. Durability: Once it’s done, it’s done! After you confirm your Swiggy order, it’s locked in—even
+                   if the internet cuts out, the order still shows up.
+
+Q2. Why Transactions Matter?
+    Think of your bank account:
+        1. Money is deducted from your account.
+        2. Added to the receiver’s account.
+
+    Q. What if only the first step succeeds? Your money is gone, but the other person doesn’t get it.
+       Scary, right? Transactions prevent such disasters.
+
+# Handling Transactions in JDBC – Let’s Code Together
+    Okay, imagine this: you’re in your kitchen 🧑‍🍳, and we’re about to prepare a delicious “transaction recipe” using Java JDBC.
+    Each step we take is like adding an ingredient carefully to make sure the final dish turns out perfect. Ready? Let’s dive in!
+
+  Step 1: Pause Auto-Save
+          By default, JDBC saves every change you make instantly, like a waiter running to the kitchen every time you say “add fries.”
+          But for transactions, we need control. We want to decide when the kitchen should start cooking.
+
+            So, let’s tell JDBC to pause auto-save:
+
+                connection.setAutoCommit(false);
+
+  Step 2: Add Ingredients (SQL Operations)
+          Now it’s time to add all the ingredients. In our code, this means performing all the SQL operations
+          we want as part of the transaction.
+
+                  Statement statement = connection.createStatement();
+                  statement.executeUpdate("UPDATE accounts SET balance = balance - 500 WHERE account_id = 1");
+                  statement.executeUpdate("UPDATE accounts SET balance = balance + 500 WHERE account_id = 2");
+
+          Q1. what we’re doing:
+                 1. Deducting money from one account.
+                 2. Adding money to another account.
+
+  Step 3: Cook and Serve (Commit the Transaction)
+          If everything goes smoothly and all the ingredients are added correctly, it’s time to cook and serve the meal!
+          In JDBC, this means committing the transaction:
+
+                connection.commit();
+
+          This is like pressing the “Place Order” button on Swiggy. Your food is on its way, and all changes are saved in the database.
+
+  Step 4: What If Something Goes Wrong? (Rollback)
+          But wait—what if the restaurant runs out of butter naan? You don’t want only dal makhani and gulab jamun delivered.
+          You’d cancel the whole order, right?
+          In JDBC, if even one SQL operation fails, we can undo all changes with rollback:
+
+              connection.rollback();
+
+          This is like clearing your Swiggy cart if payment fails or an item is unavailable. Your database goes back to its original clean state.
+
+  Step 5: Resume Auto-Save
+          Once we’re done, we tell JDBC to go back to its usual behavior. From now on, every SQL statement will save automatically again.
+
+                connection.setAutoCommit(true);

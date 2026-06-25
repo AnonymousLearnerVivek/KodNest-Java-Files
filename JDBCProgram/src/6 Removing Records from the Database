@@ -11,8 +11,7 @@ Q1. What Does “Deleting Records” Mean?
 # Steps to Remove Records from the Database:
     Step 1: Connect to the Database
         Code Example:
-        Connection connection = DriverManager.getConnection(
-            "jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "password");
 
     Step 2: Write the Delete Query
         Code Example:

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.sql.*;
 
-public class Program6 {
+public class _6UsingExecuteMethodProgram {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Connection conn = null;

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.sql.*;
 
-public class Program7 {
+public class _7ManagingBankTransactionProgram {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Connection conn = null;

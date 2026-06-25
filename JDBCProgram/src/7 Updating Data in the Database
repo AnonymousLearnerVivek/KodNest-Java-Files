@@ -1,3 +1,70 @@
 # Updating Data in the Database:
 
+Q1. What Does “Updating Data” Mean?
+In simple words: Updating data is like saying to your database:
+                 “Hey, I found some old information here. Please replace it with these new, correct details.”
+
+        For example: "Hey database, update the salary of the employee whose ID is 101 to ₹75,000."
+
+    This process is super important because it helps keep your app’s data fresh, accurate, and organized—just like editing
+    a contact’s phone number in your phonebook when they get a new number.
+
 # Steps to Update Records from the Database:
+
+    Step 1: Connect to the Database
+            Code Example:
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+
+    Step 2: Prepare the SQL Update Query
+            Code Example:
+                    String sql = "UPDATE employees SET salary = ? WHERE employee_id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            Q1. what’s happening:
+                1. SET salary = ? → This is where we’ll provide the new salary later.
+                2. WHERE employee_id = ? → This tells the database which employee’s record we want to update.
+
+    Step 3: Set the Values
+            Code Example:
+                    preparedStatement.setDouble(1, 75000.00);
+                    preparedStatement.setInt(2, 101);
+            Q1. what’s happening:
+                1. setDouble(1, 75000.00) → Fills in the first placeholder with the new salary.
+                2. setInt(2, 101)
+
+    Step 4: Execute the Update Command
+            Code Example:
+                    int rowsUpdated = preparedStatement.executeUpdate();
+                    if (rowsUpdated > 0) {
+                        System.out.println("The employee’s salary was updated successfully!");
+                    } else {
+                        System.out.println("No employee found with that ID.");
+                    }
+
+    Step 5: Close Resources
+            Code Example:
+                    preparedStatement.close();
+                    connection.close();
+
+# Key Points to Remember:
+    1. Updating Data means modifying existing information in the database without deleting and recreating it.
+    2. PreparedStatement is preferred over Statement because:
+        1. It prevents SQL injection.
+        2. You can reuse the same query with different values.
+        3. It keeps your code cleaner and safer.
+    3. executeUpdate() is used to run UPDATE, INSERT, or DELETE queries.
+    4. Always close resources (PreparedStatement and Connection) after use to prevent memory leaks
+    5. Use placeholders (?) in your SQL query to dynamically pass values securely.
+
+# Common Interview Questions & Answers:
+
+    Q1: Why should we use PreparedStatement for updating data instead of Statement?
+     A. PreparedStatement is safer because it protects against SQL injection, allows parameterized queries,
+        and is optimized for repeated execution.
+
+    Q2: What happens if you forget to close the database connection?
+     A. If you don’t close connections, it can lead to memory leaks and too many open connections,
+        which may crash your application or database server.
+
+    Q3: How would you update multiple records in one go?
+     A. You can use a loop to execute the same PreparedStatement with different parameter values or
+        use batch processing for efficiency.
