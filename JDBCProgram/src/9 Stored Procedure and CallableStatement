@@ -1,0 +1,33 @@
+# What is Stored Procedure and CallableStatement?
+
+    Imagine this: You are a chef at a busy restaurant 🍜. Every day, customers order a “special combo meal” that includes a starter,
+    main course, and dessert. Instead of cooking each dish from scratch every time, wouldn’t it be smart to create a ready-made recipe
+    in your kitchen? This way, whenever someone orders the combo, you just call the recipe, and the kitchen serves it instantly!
+
+    In databases, we have something very similar called a Stored Procedure, and in Java, we use CallableStatement to call these recipes.
+
+Q1. What is a Stored Procedure?
+Standard Definition:
+    A Stored Procedure is a precompiled group of SQL statements stored in the database that can be executed as a single unit.
+
+Simple Explanation:
+    Think of it as a ready-made recipe in the database. Instead of writing the same SQL code again and again,
+    you just call this recipe whenever needed.
+
+# Introduction to CallableStatement:
+    Remember how we talked about stored procedures? They’re like a ready-made playlist of your favorite songs saved in your database.
+
+    Now, what if you’re sitting on the sofa 🛋️ and want to play that playlist? You wouldn’t get up and hit play on each song manually,
+    right? Instead, you’d grab your remote control and press a single button to start the music.
+    In Java, that remote control is called CallableStatement.
+
+    It lets your Java program call stored procedures in the database with ease—just like pressing play on your playlist.
+
+Q1. What is CallableStatement?
+Standard Definition:
+    A CallableStatement is part of the JDBC API that allows Java applications to call stored procedures stored in a database.
+
+Simple Explanation:
+    CallableStatement in Java is like giving instructions to the database to run a ready-made set of SQL commands (stored procedure).
+    Instead of writing the same SQL queries again and again in your Java code, you just “call” the stored procedure by its name.
+    It’s like asking your music app to play a saved playlist—you press play, and it takes care of everything.
