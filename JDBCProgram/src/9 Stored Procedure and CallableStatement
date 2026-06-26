@@ -31,3 +31,44 @@ Simple Explanation:
     CallableStatement in Java is like giving instructions to the database to run a ready-made set of SQL commands (stored procedure).
     Instead of writing the same SQL queries again and again in your Java code, you just “call” the stored procedure by its name.
     It’s like asking your music app to play a saved playlist—you press play, and it takes care of everything.
+
+# Creating and Executing a Stored Procedure with CallableStatement:
+    Step 1: Create a CallableStatement Object
+
+            CallableStatement callableStatement = connection.prepareCall("{call stored_procedure_name(?)}");
+
+    Step 2: Set the Parameters
+
+            callableStatement.setString(1, "Apples");
+
+    Step 3: Execute the CallableStatement
+
+            callableStatement.execute();
+
+# Key Points to Remember:
+    1. Stored Procedure: Precompiled SQL logic saved in the database; acts like a ready-made recipe 🍜.
+    2. CallableStatement: Java’s tool to call stored procedures; works like a remote control 📱.
+    3. Benefits: Faster performance, reusable code, better security, and easy maintenance.
+    4. Syntax:
+            CallableStatement cs = connection.prepareCall("{call procedure_name(?)}");
+    5. Set parameters using setString(), setInt(), etc., and run with execute().
+
+# Common Interview Questions & Answers:
+
+    Q1: What is a Stored Procedure?
+    Answer: A stored procedure is a precompiled set of SQL statements saved in the database that can be executed as a single unit.
+            It improves performance and allows reusability.
+
+    Q2: What is CallableStatement in Java?
+    Answer: CallableStatement is part of the JDBC API that lets Java applications call stored procedures stored in the database.
+
+    Q3: Why are stored procedures faster?
+    Answer: They are precompiled and stored in the database, so the database doesn’t need to recompile SQL logic every time.
+
+    Q4: What is the difference between Statement, PreparedStatement, and CallableStatement?
+    Answer: 1. Statement: Executes simple SQL queries.
+            2. PreparedStatement: Executes parameterized queries safely.
+            3. CallableStatement: Used to call stored procedures in the database.
+
+    Q5: Can stored procedures return values?
+    Answer: Yes. They can return result sets and use OUT or INOUT parameters to send data back.
