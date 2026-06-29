@@ -1,4 +1,4 @@
-package com.kodnest.projectmanagement;
+package com.kodnest.projectManagement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

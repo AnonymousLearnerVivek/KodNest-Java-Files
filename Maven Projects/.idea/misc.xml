@@ -5,6 +5,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/HIbernateProgram/pom.xml" />
+        <option value="$PROJECT_DIR$/BatchExecution/pom.xml" />
+        <option value="$PROJECT_DIR$/Project1/pom.xml" />
       </list>
     </option>
   </component>

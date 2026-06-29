@@ -1,4 +1,4 @@
-package com.kodnest.projectmanagement;
+package com.kodnest.projectManagement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
