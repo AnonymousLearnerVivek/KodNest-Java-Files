@@ -1,4 +1,4 @@
-package com.kodnest.batch;
+package com.kodnest.hibernate;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
