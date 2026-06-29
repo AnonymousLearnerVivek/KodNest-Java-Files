@@ -1,0 +1,74 @@
+# What is Stored Procedure and CallableStatement?
+
+    Imagine this: You are a chef at a busy restaurant 🍜. Every day, customers order a “special combo meal” that includes a starter,
+    main course, and dessert. Instead of cooking each dish from scratch every time, wouldn’t it be smart to create a ready-made recipe
+    in your kitchen? This way, whenever someone orders the combo, you just call the recipe, and the kitchen serves it instantly!
+
+    In databases, we have something very similar called a Stored Procedure, and in Java, we use CallableStatement to call these recipes.
+
+Q1. What is a Stored Procedure?
+Standard Definition:
+    A Stored Procedure is a precompiled group of SQL statements stored in the database that can be executed as a single unit.
+
+Simple Explanation:
+    Think of it as a ready-made recipe in the database. Instead of writing the same SQL code again and again,
+    you just call this recipe whenever needed.
+
+# Introduction to CallableStatement:
+    Remember how we talked about stored procedures? They’re like a ready-made playlist of your favorite songs saved in your database.
+
+    Now, what if you’re sitting on the sofa 🛋️ and want to play that playlist? You wouldn’t get up and hit play on each song manually,
+    right? Instead, you’d grab your remote control and press a single button to start the music.
+    In Java, that remote control is called CallableStatement.
+
+    It lets your Java program call stored procedures in the database with ease—just like pressing play on your playlist.
+
+Q1. What is CallableStatement?
+Standard Definition:
+    A CallableStatement is part of the JDBC API that allows Java applications to call stored procedures stored in a database.
+
+Simple Explanation:
+    CallableStatement in Java is like giving instructions to the database to run a ready-made set of SQL commands (stored procedure).
+    Instead of writing the same SQL queries again and again in your Java code, you just “call” the stored procedure by its name.
+    It’s like asking your music app to play a saved playlist—you press play, and it takes care of everything.
+
+# Creating and Executing a Stored Procedure with CallableStatement:
+    Step 1: Create a CallableStatement Object
+
+            CallableStatement callableStatement = connection.prepareCall("{call stored_procedure_name(?)}");
+
+    Step 2: Set the Parameters
+
+            callableStatement.setString(1, "Apples");
+
+    Step 3: Execute the CallableStatement
+
+            callableStatement.execute();
+
+# Key Points to Remember:
+    1. Stored Procedure: Precompiled SQL logic saved in the database; acts like a ready-made recipe 🍜.
+    2. CallableStatement: Java’s tool to call stored procedures; works like a remote control 📱.
+    3. Benefits: Faster performance, reusable code, better security, and easy maintenance.
+    4. Syntax:
+            CallableStatement cs = connection.prepareCall("{call procedure_name(?)}");
+    5. Set parameters using setString(), setInt(), etc., and run with execute().
+
+# Common Interview Questions & Answers:
+
+    Q1: What is a Stored Procedure?
+    Answer: A stored procedure is a precompiled set of SQL statements saved in the database that can be executed as a single unit.
+            It improves performance and allows reusability.
+
+    Q2: What is CallableStatement in Java?
+    Answer: CallableStatement is part of the JDBC API that lets Java applications call stored procedures stored in the database.
+
+    Q3: Why are stored procedures faster?
+    Answer: They are precompiled and stored in the database, so the database doesn’t need to recompile SQL logic every time.
+
+    Q4: What is the difference between Statement, PreparedStatement, and CallableStatement?
+    Answer: 1. Statement: Executes simple SQL queries.
+            2. PreparedStatement: Executes parameterized queries safely.
+            3. CallableStatement: Used to call stored procedures in the database.
+
+    Q5: Can stored procedures return values?
+    Answer: Yes. They can return result sets and use OUT or INOUT parameters to send data back.
