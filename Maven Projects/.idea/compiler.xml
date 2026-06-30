@@ -9,6 +9,7 @@
         <module name="BatchExecution" />
         <module name="Project2" />
         <module name="Project1" />
+        <module name="ReadOperationUsingHibernate" />
         <module name="HIbernateProgram" />
       </profile>
     </annotationProcessing>
