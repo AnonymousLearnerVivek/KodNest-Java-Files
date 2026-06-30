@@ -54,3 +54,26 @@ Q1. What is Hibernate Architecture?
     Q3: Why is Transaction important in Hibernate?
      A: It ensures that all database operations complete successfully. If an error occurs, the transaction
         can roll back to prevent partial updates.
+
+    Q4: What is the purpose of the SessionFactory in Hibernate?
+     A: 1. To serve as a factory for Session objects and manage overall database connection setup.
+        2. The SessionFactory is created once and serves as a centralized point for managing database
+           connection settings and creating Session objects.
+    Q5: What does the following code snippet demonstrate in Hibernate?
+                Transaction transaction = session.beginTransaction();
+                transaction.commit();
+     A: 1. Starting and committing a transaction.
+        2. The beginTransaction() method starts a transaction, and commit() finalizes all changes made during the transaction.
+
+    Q6: Why is it important to begin a transaction before performing database operations in Hibernate?
+     A: 1. To ensure all operations succeed together or roll back if any operation fails
+        2. Transactions in Hibernate guarantee that a group of operations is executed as a single atomic unit,
+           ensuring data consistency in case of failures.
+           
+
+
+
+
+
+
+
