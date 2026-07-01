@@ -1,0 +1,57 @@
+# Saving Data Using Hibernate and session.persist() :
+
+    This is where Hibernate simplifies your life. It lets you save Java objects directly into a database table without writing any SQL code.
+    In this guide, we will focus on session.persist(), a method provided by Hibernate that allows you to store data efficiently.
+
+Q1. Why Use Hibernate for Saving Data?
+    Saving data with Hibernate offers many advantages:
+        1. You do not need to write SQL queries for basic operations like insertions.
+        2. Hibernate handles object-to-table mapping automatically.
+        3. Data consistency is maintained through transactions.
+        4. The process works across multiple databases without changing your Java code.
+        5. With session.persist(), you can save data cleanly and safely in just a few lines of code.
+
+# Real-Life Analogy:
+    Think of Hibernate as a librarian, and your Java application as a person bringing in new books to register.
+    Instead of manually writing down the details in a logbook, you simply hand over the book details to the librarian,
+    and they handle placing the book in the right section, updating the catalog, and assigning a unique ID.
+
+    In the same way, Hibernate takes your Java object and handles storing it in the database efficiently.
+
+
+# Key Takeaways:
+    1. session.persist() saves a new object in the database and makes it persistent.
+    2. It requires an active transaction to commit changes.
+    3. Unlike session.save(), it does not return the generated identifier.
+    4. Always close your Hibernate session and SessionFactory after use.
+
+# Common Interview Questions and Answers:
+
+    Q1: What is session.persist() in Hibernate?
+    Answer: 1. session.persist() is a Hibernate method used to save a new object into the database.
+               It takes a Java object and makes it persistent by associating it with the current session.
+               The actual insert happens when the transaction is committed.
+            2. Unlike session.save(), the persist() method does not return the identifier of the saved entity. It is also
+               compliant with the Java Persistence API (JPA), making it a good choice for JPA-based projects.
+
+    Q2: How is session.persist() different from session.save()?
+    Answer: 1. session.persist() does not return the primary key value after saving the object, while session.save() does return it.
+            2. persist() is part of the JPA standard, but save() is specific to Hibernate.
+            3. persist() only works for new objects and throws an error if used for detached objects,
+               whereas save() can work with both transient and detached objects.
+            4. Use persist() if you want JPA compliance and do not need the ID immediately after saving.
+
+    Q3: Can you call session.persist() without a transaction?
+    Answer: No. session.persist() requires an active transaction to work properly. Without a transaction,
+            Hibernate will not insert the object into the database, and the changes will not be saved.
+            Always use session.beginTransaction() before calling persist() and commit the transaction afterward.
+
+    Q4: What happens if you call persist() on an existing object?
+    Answer: If you use persist() on an object that already exists in the database (with the same primary key),
+            Hibernate will throw an error. The persist() method is meant only for saving new records.
+            To update existing records, you should use session.update() or session.merge().
+
+    Q5: Why is it important to close the Session and SessionFactory after saving data?
+    Answer: The Session and SessionFactory objects consume memory and database connections. If you don’t close them, they may cause
+            resource leaks and slow down your application. Closing them ensures the application runs smoothly and efficiently.
+                
