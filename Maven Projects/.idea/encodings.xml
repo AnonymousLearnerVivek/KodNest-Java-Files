@@ -3,13 +3,17 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/BatchExecution/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BatchExecution/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/HIbernateProgram/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/HIbernateProgram/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DeleteOperationUsingHibernate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DeleteOperationUsingHibernate/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/InsertOperationUsingHIbernateProgram/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/InsertOperationUsingHIbernateProgram/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Project1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Project1/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Project2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Project2/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ReadOperationUsingHibernate/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ReadOperationUsingHibernate/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UpdateOperationUsingHibernate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UpdateOperationUsingHibernate/src/main/resources" charset="UTF-8" />
   </component>
 </project>

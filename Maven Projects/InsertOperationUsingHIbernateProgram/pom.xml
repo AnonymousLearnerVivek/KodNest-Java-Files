@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.kodnest.hibernate</groupId>
-  <artifactId>HIbernateProgram</artifactId>
+  <artifactId>InsertOperationUsingHIbernateProgram</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>HIbernateProgram</name>
