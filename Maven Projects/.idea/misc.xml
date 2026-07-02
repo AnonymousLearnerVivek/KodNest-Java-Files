@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/DeleteOperationUsingHibernate/pom.xml" />
         <option value="$PROJECT_DIR$/UpdateOperationUsingHibernate/pom.xml" />
         <option value="$PROJECT_DIR$/EMS/pom.xml" />
+        <option value="$PROJECT_DIR$/OneToOne/pom.xml" />
       </list>
     </option>
   </component>
