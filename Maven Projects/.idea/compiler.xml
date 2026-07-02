@@ -8,12 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BatchExecution" />
         <module name="Project2" />
+        <module name="EMS" />
         <module name="Project1" />
-        <module name="InsertOperationUsingHIbernateProgram" />
         <module name="ReadOperationUsingHibernate" />
         <module name="DeleteOperationUsingHibernate" />
         <module name="UpdateOperationUsingHibernate" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="InsertOperationUsingHIbernateProgram" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
