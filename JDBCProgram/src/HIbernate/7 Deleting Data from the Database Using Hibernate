@@ -1,0 +1,50 @@
+# Deleting Data from the Database Using Hibernate:
+
+    Imagine you are managing a list of students in a school database. One day, a student leaves the school, and you need to remove
+    their details from the system. Instead of writing complicated SQL queries like DELETE FROM student WHERE id = ?,
+    Hibernate makes this process much simpler.
+
+    Hibernate allows you to delete records directly from your Java application by working with objects instead of database tables.
+    In this guide, we will explore how to delete a student’s data step by step using Hibernate’s session.remove() method.
+
+Q1. Why Learn Deleting Data in Hibernate?
+    Deleting data is a routine operation in most applications:
+        1. In a school database, you may need to remove records of students who have graduated.
+        2. In an e-commerce app, you might delete discontinued products.
+        3. In a library system, old book entries may be removed.
+    Hibernate allows you to delete records using Java objects instead of manually writing SQL queries.
+    This makes your code cleaner, more secure, and easier to maintain.
+
+    Example Code:
+        // Step 4: Fetch the Student and Delete
+                int studentId = 1; // ID of the student you want to delete
+                Student student = session.get(Student.class, studentId);
+
+                if (student != null) {
+                    session.remove(student); // Delete the student
+                    System.out.println("Student with ID " + studentId + " has been deleted.");
+                } else {
+                    System.out.println("No student found with ID: " + studentId);
+                }
+
+
+# Key Points to Remember:
+    1. Always fetch the object using session.get() before deleting it.
+    2. Use session.remove() to delete records.
+    3. Wrap delete operations inside a transaction to ensure changes are committed properly.
+    4. If the record does not exist, session.get() returns null.
+    5. Always close your session and session factory to free resources.
+
+# Common Interview Questions and Answers:
+
+    Q1: What does session.remove() do in Hibernate?
+    It deletes the given Java object from the database. Hibernate translates it into a SQL DELETE statement.
+
+    Q2: Why fetch the record before deleting?
+    Hibernate works with Java objects, so you must load the object first to delete it.
+
+    Q3: What happens if you try to delete a non-existent record?
+    Nothing happens. session.get() returns null, and Hibernate skips the delete.
+
+    Q4: Is a transaction necessary for delete operations?
+    Yes. Transactions ensure data integrity—either the delete happens fully or not at all.

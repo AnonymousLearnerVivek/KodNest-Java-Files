@@ -1,0 +1,39 @@
+# Updating Data in the Database Using Hibernate:
+
+    This is exactly how updating data works in Hibernate. You do not need to delete the record and create a new one.
+    Hibernate provides a simple way to fetch an existing record, make changes, and save them back to the database
+    without writing complex SQL queries.
+
+    Example Code:
+         // Fetch and Update Data
+                int studentId = 1; // Update details for student with ID 1
+                Student student = session.get(Student.class, studentId);
+
+                if (student != null) {
+                    student.setMarks(91.5); // Update marks
+                    student.setPhone("9876543210"); // Update phone number
+                    session.update(student); // Save the changes
+                    System.out.println("Student details updated successfully.");
+                } else {
+                    System.out.println("No student found with ID: " + studentId);
+                }
+
+
+# Key Points to Remember:
+    1. Always fetch the record first using session.get() before making updates.
+    2. Hibernate only updates the fields that you change in the Java object.
+    3. Transactions ensure that your updates are saved safely and consistently.
+    4. Call session.update() after modifying the object.
+    5. Always close the session and factory to release resources.
+
+# Common Interview Questions and Answers:
+
+    Q1: How do you update data in Hibernate?
+    Answer: Fetch the object using session.get(), modify its fields, and call session.update() to save changes.
+
+    Q2: What happens if the record does not exist?
+    Answer: If you use session.get() and the record is not found, it will return null. No update will occur.
+
+    Q3: What is the difference between session.update() and session.saveOrUpdate()?
+    Answer: 1. session.update() is used for objects that already exist in the database.
+            2. session.saveOrUpdate() checks if the object exists. If it does, it updates it; otherwise, it saves it as a new record.

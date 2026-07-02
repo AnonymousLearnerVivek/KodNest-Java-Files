@@ -78,6 +78,42 @@ Standard Definition:
        2. ORM is the process of mapping Java objects to relational database tables, enabling seamless
           interaction between Java applications and databases.
 
+# Key Points to Remember:
+    1. Hibernate allows you to work with Java objects directly instead of writing SQL queries manually.
+    2. The SessionFactory object is created only once and reused throughout the application.
+    3. The Session object represents a single unit of work with the database.
+    4. Transactions are very important in Hibernate. Always begin a transaction when modifying data (insert, update, delete).
+    5. The session.persist() method is used to save new objects to the database.
+    6. The session.get() method retrieves data by primary key and returns null if the record is not found.
+    7. The session.update() method updates an existing record in the database.
+    8. The session.remove() method deletes an existing record from the database.
+    9. Always close the Session and SessionFactory after use to free resources and avoid memory leaks.
+   10. Hibernate uses the ORM (Object-Relational Mapping) technique to map Java classes to database tables.
+
+# Common Interview Questions and Answers:
+    Q1: What is Hibernate and why do we use it?
+    Answer: Hibernate is a Java framework that helps us connect Java programs to databases.
+            It removes the need to write complex SQL queries by allowing us to work directly
+            with Java objects. Hibernate automatically maps Java classes to database tables
+            and simplifies operations like inserting, updating, and deleting data.
+
+    Q2: What is the difference between session.persist() and session.update()?
+    Answer: 1. session.persist(): Used to save a new record in the database.
+            2. session.update(): Used to modify an existing record in the database.
+                                 If the record doesn’t exist, it may throw an exception.
+
+    Q3: What happens if you use session.get() with an ID that doesn’t exist?
+    Answer: If there is no record with the given ID, session.get() will return null. This helps us check whether
+            the record exists before performing any operation.
+
+    Q4: Why should we use transactions in Hibernate?
+    Answer: Transactions make sure that the database operations are performed safely. If something goes wrong in the middle of
+            the process, we can roll back the transaction to avoid partial updates or inconsistent data.
+
+    Q5: What happens if you forget to close the Session or SessionFactory?
+    Answer: If you don’t close them, your application may run out of database connections and memory.
+            This can lead to performance issues or crashes. It’s always recommended to close them properly.
+
 
 
 

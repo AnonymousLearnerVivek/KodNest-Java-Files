@@ -1,0 +1,71 @@
+# Retrieving Data Using session.get() in Hibernate:
+    Once you’ve saved records into your database using Hibernate, the next big step is learning
+    how to retrieve that data for use in your application. For example, in a student management system,
+    you may want to fetch details of a student using their unique ID.
+
+    In Hibernate, the session.get() method is one of the simplest ways to retrieve a record by its primary key.
+    Instead of manually writing SQL queries like SELECT * FROM student WHERE id = ?, Hibernate lets you work
+    directly with Java objects, making your code cleaner and easier to maintain.
+
+Q1. Why Use session.get()?
+    The session.get() method is used to fetch a database record by its primary key and convert it into a Java object.
+    Here’s why it’s useful:
+        1. It eliminates the need to write SQL queries.
+        2. It automatically maps database columns to fields in your Java class.
+        3. If the record exists, it returns a fully initialized Java object; otherwise, it returns null.
+        4. It helps you handle missing data gracefully.
+
+    Example Code:
+         // Fetch Student Data Using session.get()
+                int studentId = 1; // Fetch student with ID 1
+                Student student = session.get(Student.class, studentId);
+
+                // Print the Student Data
+                if (student != null) {
+                    System.out.println("Student Details:");
+                    System.out.println("ID: " + student.getId());
+                    System.out.println("Name: " + student.getName());
+                    System.out.println("Marks: " + student.getMarks());
+                    System.out.println("Gender: " + student.getGender());
+                    System.out.println("Email: " + student.getEmail());
+                    System.out.println("Phone: " + student.getPhone());
+                } else {
+                    System.out.println("No student found with ID: " + studentId);
+                }
+
+# Key Points to Remember:
+    1. The session.get() method retrieves a record from the database using its primary key.
+    2. If the record exists, it returns the fully initialized Java object; otherwise, it returns null.
+    3. It executes the SQL query immediately when called.
+    4. Best suited when you need data right away and are okay with hitting the database directly.
+    5. Unlike session.load(), it does not throw an exception if no record is found.
+    6. Always close the Session and SessionFactory to avoid memory leaks.
+
+# Common Interview Questions and Answers:
+
+    Q1: What does session.get() do in Hibernate?
+    Answer: The session.get() method retrieves a record from the database using its primary key. If the record exists,
+            it returns a Java object representing that record. If no record is found, it returns null.
+
+    Q2: What happens if you use session.get() with an ID that does not exist?
+    Answer: If the given primary key does not exist in the database, Hibernate returns null instead of throwing an exception.
+
+    Q3: How is session.get() different from session.load()?
+    Answer: 1. session.get() fetches the data immediately and returns null if the record doesn’t exist.
+            2. session.load() returns a proxy object and throws an ObjectNotFoundException
+               if the record is missing when you access the object.
+
+    Q4: Can you use session.get() without starting a transaction?
+    Answer: Yes, for read-only operations, you can use session.get() without an explicit transaction.
+            However, using transactions is recommended for consistency.
+
+    Q5: Why should we close the Session and SessionFactory?
+    Answer: Closing these ensures that database connections and other resources are released,
+            preventing memory leaks and keeping the application efficient.
+
+    Q6: In the readEmployee() method, why is it critical to close the session after retrieving the employee data?
+    Answer: 1. Lazy-loaded properties of the entity will no longer be accessible after the session is closed.
+            2. When a session is closed, lazy-loaded properties (e.g., associations or collections not initialized during the fetch)
+               become inaccessible. While closing a session is important for resource management, understanding its impact on
+               lazy loading is critical for designing effective Hibernate applications.
+
