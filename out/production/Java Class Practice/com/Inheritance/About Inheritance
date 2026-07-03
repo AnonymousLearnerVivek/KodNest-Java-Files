@@ -1,0 +1,174 @@
+# Introduction to Inheritance
+
+Q1. What Exactly is Inheritance? 💡
+    Inheritance is a way to write code once and reuse it wherever needed. Instead of repeating the same code in different classes,
+    we put that common code into one general class. Then, other classes can inherit from that general class and use its features
+    without rewriting them. Inheritance is often termed as Is-A relationship and can be achieved in java with the help of extends keyword.
+
+    You can think of it as “copying” the behavior from one class to another — but in a clean, built-in way.
+
+# Standard Definition:
+    Inheritance is a fundamental concept in object-oriented programming where one class (called the subclass or child class) acquires
+    the properties and behaviors (fields and methods) of another class (called the superclass or parent class).
+
+# Here’s a quick overview of the main types:
+
+    1. Single Inheritance
+        One class inherits from another. This is the most basic and commonly used type.
+
+    2. Multilevel Inheritance
+        A class inherits from a class, which itself inherits from another class — like a chain.
+
+    3. Hierarchical Inheritance
+        Multiple classes inherit from the same parent class.
+
+    4. Hybrid Inheritance
+        A combination of two or more types of inheritance
+
+    5. Multiple Inheritance (through interfaces)
+        Java doesn’t support multiple inheritance with classes directly (to avoid confusion), but it does allow it using interfaces.
+
+# Key Points to Remember 📝
+
+    1. Inheritance means one class can use code from another class.
+    2. It helps reduce repeated code and makes maintenance easier.
+    3. The extends keyword is used to inherit from a class.
+    4. The class giving the code is called the parent or superclass or Base Class.
+    5. The class receiving the code is called the child or subclass or Derived Class.
+
+# Common Interview Questions:
+
+    Q1: What is inheritance in Java?
+    Answer:
+        Inheritance is a feature in Java where one class (child) can use the properties and methods of another class (parent).
+        It helps in code reuse and creating a logical structure.
+
+    Q2: How do you achieve inheritance in Java?
+    Answer:
+        We use the extends keyword in Java to make one class inherit from another.
+            Example: class com.Inheritance.Cricketer extends com.Inheritance.Player { }
+
+    Q3: What are the main benefits of using inheritance?
+    Answer:
+        1. Reduces code duplication
+        2. Improves code maintainability
+        3. Organizes related classes in a logical structure
+        4. Makes the code cleaner and easier to update
+
+    Q4: What is a superclass and what is a subclass?
+    Answer:
+        1. A superclass (or parent class) is the class whose properties are inherited.
+        2. A subclass (or child class) is the class that inherits those properties.
+
+    Q5: Can a subclass inherit everything from the parent class?
+    Answer:
+        A subclass inherits all non-private variables and methods from the parent class. It cannot access private members directly.
+
+# Single inheritance:
+Q1. What Exactly is Single Inheritance? 💡
+Standard Definition:
+    Single Inheritance is a type of inheritance in which a class (subclass or child class) inherits the properties and behaviors
+    (fields and methods) of one parent class (superclass).It allows code reusability by enabling the subclass to use and
+    extend the functionality of the superclass.
+
+# Key Points to Remember
+    1. Single Inheritance = One class inherits from one other class.
+    2. The extends keyword is used to create inheritance.
+    3. The child class gets all non-private variables and methods from the parent.
+    4. It keeps your code DRY (Don’t Repeat Yourself).
+    5. It makes your program easier to update and maintain.
+
+# Summary:
+    In single inheritance, a child class gets all the features of one parent class. This helps you avoid writing the same code in multiple places.
+    It makes your programs more organized, more efficient, and easier to scale.
+
+    If multiple classes share common features, move those features to a parent class — and use single inheritance to reuse them.
+
+# Common Interview Questions:
+
+    Q1: What is single inheritance in Java?
+    Answer:
+        Single inheritance is a feature in Java where one class (called the child class or subclass) inherits the properties and behaviors
+        (fields and methods) of another class (called the parent class or superclass). This allows the child class to reuse the code
+        defined in the parent class. We use the extends keyword to achieve this in Java.
+
+    Q2: Why is single inheritance useful?
+    Answer:
+        Single inheritance helps you avoid writing the same code in multiple classes. If several classes share common features,
+        those features can be written once in a parent class and reused in child classes. This reduces duplication,
+        improves maintainability, and makes your program cleaner and easier to understand.
+
+    Q3: Can the child class access all members of the parent class?
+    Answer:
+         The child class can access all non-private members (variables and methods) of the parent class.
+            1. Public and protected members are accessible directly.
+            2. Private members are not accessible from the child class, but they can be accessed indirectly through public getter and setter methods (if available).
+
+
+# Multi-level inheritance
+
+Q1. Why Do We Need Multilevel Inheritance? 🤔
+
+    Let’s say you're building an application for vehicles. You start with a basic class called com.Inheritance.Vehicle.
+    It contains general properties like the number of wheels and the ability to start an engine.
+
+    Later, you create a class called com.Inheritance.Car, which adds more features like the type of car or the ability to open a trunk. So, naturally, com.Inheritance.Car inherits from com.Inheritance.Vehicle.
+
+    Now imagine you’re working on electric cars. These cars not only have the basic features of a vehicle and the additional features
+    of a car, but they also need something more — like battery capacity and charging features.
+
+    Should you copy everything again from com.Inheritance.Car and com.Inheritance.Vehicle into ElectricCar? That would be time-consuming and messy.
+
+    Instead, we let ElectricCar inherit from com.Inheritance.Car, and since com.Inheritance.Car is already inheriting from com.Inheritance.Vehicle, the electric car automatically gets everything from both.
+
+    This is where multilevel inheritance becomes useful.
+
+Q2. What Exactly is Multilevel Inheritance? 💡
+Simple Explanation:
+    Multilevel inheritance is when a class inherits from a class, which itself inherits from another class. It forms a chain of inheritance.
+    So you have:
+        com.Inheritance.Vehicle → com.Inheritance.Car → ElectricCar
+
+    Here:
+    1. com.Inheritance.Car inherits from com.Inheritance.Vehicle
+    2. ElectricCar inherits from com.Inheritance.Car
+
+    Which means:
+    ElectricCar has access to all features of both com.Inheritance.Car and com.Inheritance.Vehicle.
+
+Standard Definition:
+    Multilevel inheritance is a type of inheritance where a class derives from a child class, which in turn derives
+    from another parent class. This allows properties and methods to be passed through multiple levels.
+
+# Key Points to Remember 📝
+    1. Multilevel inheritance connects classes in a chain: com.Inheritance.Parent → com.Inheritance.Child → Grandchild.
+    2. You use the extends keyword at every level.
+    3. The last class in the chain can access all non-private members from every class above it.
+    4. This helps keep your code modular, reusable, and easier to maintain.
+
+# Summary:
+    Multilevel inheritance allows a class to inherit from a class that is itself inheriting from another class.
+    This chain of inheritance helps you avoid code repetition and keeps your classes well-organized.
+
+    In our example, ElectricCar didn’t have to rewrite anything from com.Inheritance.Car or com.Inheritance.Vehicle. It just used what was already defined and added its own features on top.
+
+    This is especially helpful in real-world projects where many objects share common properties — and you want to build more specific objects step by step.
+
+# Common Interview Questions:
+
+    Q1: What is multilevel inheritance?
+        Multilevel inheritance is when a class inherits from a class that itself inherits from another class — forming a chain of inheritance.
+
+    Q2: How is it different from single inheritance?
+        Single inheritance involves just two classes (parent and child), while multilevel inheritance involves more than two — like grandparent → parent → child.
+
+    Q3: Can the last class in the chain access everything from the top?
+        Yes! The child at the bottom can access all non-private methods and variables from all the classes above.
+
+    Q4: Does Java support multilevel inheritance?
+        Yes, Java supports multilevel inheritance using classes.
+
+    Q5: What are the benefits of multilevel inheritance?
+        1. Code reuse across multiple levels
+        2. Easy to maintain and update
+        3. Better structure and hierarchy in your program

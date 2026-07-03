@@ -52,7 +52,7 @@ public class HashMapClass {
         while (ite1.hasNext()) {
             System.out.print(ite1.next() + " ");
         }
-
+        System.out.println();
         System.out.println(hm.containsKey(5)); // it will return true if this map contains a mapping for the specified key
 
         Set keys = hm.keySet(); // it will returns a Set view of the keys contained in this map.
@@ -70,7 +70,7 @@ public class HashMapClass {
             System.out.print(ite3.next() + " ");
         }
         System.out.println();
-        hm.remove(3); // it will remove the value and its return type is value's return type
+        System.out.println(hm.remove(3)); // it will remove the value and its return type is value's return type
         System.out.println(hm);
 
         System.out.println(hm.remove(4, "Virat")); //  it wll remove the value and its return type is Boolean

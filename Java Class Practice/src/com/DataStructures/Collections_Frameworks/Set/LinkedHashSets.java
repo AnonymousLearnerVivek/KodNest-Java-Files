@@ -75,14 +75,17 @@ public class LinkedHashSets {
 
 Q2. Why Do We Need LinkedHashSet?
     1. Ensures Uniqueness: Like all Set implementations, LinkedHashSet stores only unique elements—duplicate entries are automatically ignored.
-    2. Preserves Order: Unlike HashSet, LinkedHashSet maintains the order in which elements were added, making the data more predictable and user-friendly.
+    2. Preserves Order: Unlike HashSet, LinkedHashSet maintains the order in which elements were added, making the data more predictable
+                        and user-friendly.
     3. More Efficient Than TreeSet (When Sorting Isn’t Needed): While TreeSet also maintains order, it sorts elements, which can introduce
-                                                                unnecessary processing. LinkedHashSet avoids this by preserving insertion order without sorting.
-    4. Ideal for Activity Tracking and History Logs: For example, in a student application like Kodnest, if you’re tracking which features a user interacts with,
-        LinkedHashSet allows you to:
+                                                                unnecessary processing. LinkedHashSet avoids this by preserving insertion order
+                                                                without sorting.
+    4. Ideal for Activity Tracking and History Logs: For example, in a student application like Kodnest, if you’re tracking which features
+       a user interacts with, LinkedHashSet allows you to:
             1. Avoid repeated entries
             2. Maintain the exact sequence of actions
-    5. Balanced Performance: It combines the speed of HashSet with the order-maintaining behavior of a list, offering a practical middle ground for many use cases.
+    5. Balanced Performance: It combines the speed of HashSet with the order-maintaining behavior of a list, offering a
+                              practical middle ground for many use cases.
 
 # Summary of Key Points 📝:
     1. LinkedHashSet ensures uniqueness like a HashSet but also keeps track of the order in which elements were added.

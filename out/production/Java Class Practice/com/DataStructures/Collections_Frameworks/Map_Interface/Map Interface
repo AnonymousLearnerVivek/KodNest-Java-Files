@@ -1,0 +1,92 @@
+# Map Interface:
+    Imagine you’re building a small library management system. Every book in the library has a unique ID
+    (like “BK101”) and a title (like “The Art of Java”).
+    Now your app needs to:
+        1. Find the book title when given a book ID
+        2. Update a book’s title if it changes
+        3. Remove a book that’s no longer available
+
+    You might think of storing two lists — one for book IDs and one for titles — but keeping them in sync gets messy.
+
+    What you really want is a system where you give the book ID and instantly get the title.
+
+Q1. How Java Map Works?
+    In Java, a Map stores key-value pairs. Here, Book ID is the key and Book Title is the value.
+    When you search by Book ID (key), you can quickly find the corresponding Book Title (value).
+
+Q2. What Is the Map Interface?
+Standard Definition:
+    The Map interface in Java stores data as key-value pairs. Each key is unique and maps to one value,
+    while values can be duplicated.
+
+Q3. Why Use a Map?
+    1. To store related data together: A Map is useful when you want to connect one thing to another,
+                                       like a student's roll number to their name.
+    2. No repeated keys: Each label (key) must be different, so you won’t accidentally store
+                         two values under the same name.
+    3. Quick access: You can find the value you're looking for just by using its key —
+                     no need to search through everything.
+
+# Key Features of a Map:
+    1. Each key is different: You can’t use the same key more than once. If you do,
+                              the old value gets replaced with the new one.
+    2. Values can repeat: Different keys can point to the same value — that’s okay.
+    3. Easy to find values: You can quickly get the value you need by using the key,
+                            without going through everything.
+
+# Types of Map in Java:
+    In Java, the Map interface comes in different forms, each with its own behavior.
+    Let’s look at the three most commonly used types and where you’d use them.
+
+    1. HashMap – Fast and Unordered
+        1. Order: Does not maintain any specific order
+        2. Performance: Very fast for adding, removing, and searching
+        3. Use it when: You just need to store and access data quickly, and the order doesn't matter
+        4. Example: Keeping track of room numbers and the students staying in them.
+
+    2. LinkedHashMap – Keeps Things in the Order You Added
+        1. Order: Maintains the order in which you insert items
+        2. Performance: Slightly slower than HashMap but still efficient
+        3. Use it when: You want to keep things organized in the same order they were added
+        4. Example: Showing the order in which students checked into a library.
+
+    3. TreeMap – Automatically Sorted
+        1. Order: Keeps keys sorted (by default in natural order or custom order)
+        2. Performance: A bit slower than HashMap, but useful when sorting matters
+        3. Use it when: You need your data sorted by key — like alphabetically or by ID
+        4. Example: Displaying student names in alphabetical order on a results page.
+
+# ⚡ When Should You Use Each Type of Map?
+    1. HashMap → Need speed? Go with this one. It’s quick and efficient when you just want to store
+                 and fetch data — no need to worry about the order.
+    2. LinkedHashMap → Want both speed and order? This one keeps your data in the exact order you added it.
+                       Great for things like logs, check-ins, or history.
+    3. TreeMap → Like things neat and sorted? TreeMap keeps your keys in order — whether
+                it’s names A to Z or roll numbers from smallest to largest.
+
+# Key Points to Remember:
+    1. Map stores data in key-value pairs where each key is unique, and each key points to one value.
+    2. Values can be duplicated, but keys cannot.
+    3. put() is used to add or update a key-value pair,
+    4. get() is used to retrieve a value, and
+    5. remove() deletes a key and its value.
+    6. HashMap is best for fast access when order doesn’t matter.
+    7. LinkedHashMap keeps data in the order you inserted it.
+    8. TreeMap keeps the keys sorted, which is useful when order matters.
+    9. Maps are ideal for situations where one value should be directly tied to another —
+       like roll number → student name or product ID → quantity.
+   10. Maps are used in real-world applications like attendance systems, shopping carts, contact lists, and flight bookings.
+
+# Common Interview Questions and Answers:
+    Q1: What is the Map interface in Java?
+    A: The Map interface is used to store and manage data in key-value pairs. Each key is unique and links to one value.
+
+    Q2: Can a Map have duplicate values?
+    A: Yes, values can be repeated. But keys must be unique — adding the same key again will update the value.
+
+    Q3: When should I use a Map instead of a List or Set?
+    A: Use a Map when you need to link one thing to another — like a student ID to their marks — and want to access data directly using the key.
+
+    Q4: What happens if I insert the same key twice into a Map?
+    A: The new value replaces the old one. The key remains the same, but the value gets updated.
+

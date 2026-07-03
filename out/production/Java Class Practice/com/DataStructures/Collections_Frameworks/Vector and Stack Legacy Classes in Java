@@ -1,0 +1,83 @@
+# Vector and Stack: Legacy Classes in Java
+    Imagine you're sitting in class and writing down notes in a notes app. As the lecture goes on,
+    you keep adding more points. Later, you want to:
+        1. See your notes in the same order you wrote them
+        2. Go back and read a specific point from earlier
+        3. Make sure your notes don’t get lost, even if you’re using the app from different devices
+
+    Now think about writing code during practice. You accidentally delete a line and want to quickly
+    undo the last thing you did. You don’t want to undo everything — just the most recent step.
+
+    Both situations need a way to store information safely and go back to recent actions if needed.
+    Java provides tools for this, and two of the earliest ones are Vector and Stack.
+
+Q1. What Are Vector and Stack?
+Standard Definitions
+    1. Vector is a dynamic array-like structure that grows as needed. It stores elements in the order
+       they are added and is synchronized, meaning it can safely be used by multiple threads.
+    2. Stack is a subclass of Vector that follows the Last-In-First-Out (LIFO) rule.
+       The last item added is the first one to be removed.
+
+Q2. Why Are They Important?
+    Even though newer classes like ArrayList, LinkedList, and Deque are preferred today, Vector and Stack were
+    among the earliest tools for managing data collections in Java. They’re still found in legacy applications
+    and are sometimes used when synchronization (thread-safety) is required.
+
+# Key Points to Remember:-
+    1. Vector grows automatically – you never set its size ahead of time.
+    2. Stack extends Vector and follows LIFO (Last-In-First-Out).
+    3. Both classes are thread-safe by default (they use an internal lock).
+    4. Built-in safety can slow things down when many threads aren’t actually competing.
+    5. In new code, developers usually pick ArrayList, LinkedList, or Deque instead.
+    6. If you really need thread safety, wrap a modern list with Collections.synchronizedList()
+       or use concurrent collections such as ConcurrentHashMap.
+    7. Vector and Stack still show up in legacy (old) Java projects, so it’s good to recognize them.
+
+# Common Interview Questions & Answers:
+    Q1. What is a Vector in Java?
+    Answer: A Vector is a type of list in Java that can grow or shrink as you add or remove items.
+            It also remembers the order you added things and is safe to use when many parts of a program are running together.
+
+    Q2. What is a Stack in Java?
+    Answer: A Stack is like a pile where the last thing you put in is the first thing you take out. It is based on Vector,
+            so it can also grow and handle more than one action at a time safely.
+
+    Q3. How is Stack different from Vector?
+    Answer: Stack is built on Vector, but it works in a special way — it always removes the last item that was added,
+            just like taking the top book off a pile.
+
+    Q4. Why are Vector and Stack not used much in new programs?
+    Answer: Because newer tools like ArrayList, LinkedList, and Deque are faster and more flexible. Vector and Stack were
+            used in older programs, but most developers now use these newer options.
+
+    Q5. When should you still learn about Vector and Stack?
+    Answer: It’s useful to know about them if:
+            1. You are working on an older Java project
+            2. You want to understand how Java handled lists and undo features in earlier versions
+            3. You need a quick and simple way to store and access items in a list format
+
+# Key Points to Remember:
+    1. ArrayList is best for reading items by their position quickly. It’s fast and uses less memory
+       but is not safe when many parts of a program use it at the same time.
+    2. LinkedList is best when you keep adding or removing items often. It handles changes easily
+       but is slower when you want to find a specific item.
+    3. Vector is like ArrayList but with safety locks. It is safe for multi-user access but slower
+       and used mostly in older programs.
+    4. ArrayList and Vector use continuous memory (like a big shelf), while LinkedList uses separate
+       pieces connected together (like a chain).
+    5. ArrayList and LinkedList are not thread-safe. Vector is thread-safe but adds delay because of locking.
+    6. Memory Use: LinkedList uses more memory; ArrayList and Vector are more efficient but might need resizing.
+    7. Performance: ArrayList and Vector are fast for getting items; LinkedList is better at adding/removing items in the middle.
+
+# Common Questions & Simple Answers:
+    Q1: Which one should I use if I want fast access to items by their number?
+    A: Use ArrayList. It lets you jump to any item quickly, like flipping to a page number.
+
+    Q2: What if I need to add or remove items a lot, especially in the middle?
+    A: Use LinkedList. It’s easy to change but slower if you’re just reading.
+
+    Q3: Can I use these in a program where many users access the list at the same time?
+    A: Use Vector, because it’s safe for multiple users. But if possible, use ArrayList with manual safety methods for better performance.
+
+    Q4: Is Vector still used in new Java code?
+    A: Not much. It’s mostly for old (legacy) projects. Newer tools work better and faster.            

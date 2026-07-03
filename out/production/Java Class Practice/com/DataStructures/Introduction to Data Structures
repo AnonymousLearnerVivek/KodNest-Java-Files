@@ -1,0 +1,52 @@
+Q what is Data Structure? - > A Structure which is used to analyse/handle the data
+definition:- A data structure is a method to store and organize data in a computer for efficient use.
+Q1. What Are Data Structures? 💡
+Standard Definition:
+    Data structures are specialized formats that allow us to store, organize, and manage data in a way that makes
+    it easy to access and modify. Think of them as the backbone of organizing data in a computer system.
+
+# Types of Data Structures:
+    Data structures are ways to organize and store data so that it can be used easily.
+    There are two main types of data structures: primitive and non-primitive.
+
+    1. Primitive Data Structures
+       Primitive data structures are the simplest types of data we use. They include:
+            1. Integers: These are whole numbers, like 1, 5, or 100.
+            2. Floats: These are numbers with decimals, like 3.14 or 9.99.
+            3. Characters: These are single letters or symbols, like 'A', 'B', or '@'.
+            4. Booleans: These are simple values that can only be either true or false.
+        These are the basic types we need to build more complex data structures.
+
+    2. Non-Primitive Data Structures
+       Non-primitive data structures are more complex and can store many pieces of data.
+       They are divided into two types: linear and non-linear.
+        1. Linear Data Structures:
+           Linear data structures store data in a sequence, one after the other.
+           Some examples are:
+           1. Arrays: A list of items, like a list of numbers or names, where each item has a position.
+           2. Linked Lists: A chain of items, where each item is connected to the next one.
+           3. Stacks: A collection where the last item added is the first to be removed, like a stack of books.
+           4. Queues: A collection where the first item added is the first to be removed, like people standing in line.
+
+        2. Non-Linear Data Structures
+           Non-linear data structures store data in a more complex way, with items connected in different ways.
+           Some examples are:
+           1. Trees: A structure with a main starting point (the root), and other points (branches) connected to it, like a family tree.
+           2. Graphs: A collection of points (nodes) that are connected by lines, like a map showing places connected by roads.
+
+# Key Points to remember: 📝
+
+    1. Data Structures are smart ways of organizing data in computers.
+    2. Primitive Types are basic (int, char, boolean).
+    3. Non-Primitive Types are advanced — like arrays, stacks, trees, graphs.
+    4. Picking the right type helps your app run faster and smoother.
+    5. They're used in everything — from WhatsApp to Zomato, Gmail to Instagram.
+
+# Summary: Types of Data Structures 📝
+Definition:
+    A data structure is a method to store and organize data in a computer for efficient use.
+    Main Categories:
+    1. Primitive: Basic types like int, float, char, boolean
+    2. Non-Primitive:
+        1. Linear: Array, Linked List, Stack, Queue
+        2. Non-Linear: Tree, Graph

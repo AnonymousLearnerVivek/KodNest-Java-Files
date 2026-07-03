@@ -45,8 +45,9 @@ public class TreeMapClass {
  # Key Methods of TreeMap:
     1. put() – Add or Update a Product
     2. get() – Find Out What an Item Is
-    3. remove() – Take an Item Off the Shelf EX: System.out.println(products.firstKey()); // Output: 101
-    4. firstKey() – Get the First Item EX: System.out.println(products.lastKey()); // Output: 103
+    3. remove() – Take an Item Off the Shelf
+    4. firstKey() – Get the First Item EX: System.out.println(products.firstKey()); // Output: 101
+    5. lastKey() - Get the Last Item EX: System.out.println(products.lastKey()); // Output: 103
     6. higherKey() – What’s Next? EX: System.out.println(products.higherKey(101)); // Output: 102
 
  */

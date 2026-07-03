@@ -1,0 +1,161 @@
+# Advanced Formatting and Internationalisation
+    The Problem: Handling Different Formats and Languages 🌍
+    Imagine you're making a program that will be used by people from different countries. When you display things like
+    dates, numbers, or money, they should be shown the way people in that country expect to see them. For example:
+        1. In the US, a date is written as 12/25/2025 (month/day/year).
+        2. In many European countries, a date is written as 25/12/2025 (day/month/year).
+        3. For money, US dollars might use the $ sign, while Euros use €.
+    If your program doesn’t know how to show these things the right way, it could confuse your users. So, how do we handle all these
+    different formats and languages in one program? This is where Advanced Formatting and Internationalization come in!
+
+Q1 What is Advanced Formatting?
+    In simple terms, Advanced Formatting helps you display things like dates, money, and numbers in the right way,
+    based on where your user is from. For example:
+        1. Dates should appear in a format that makes sense to the user.
+        2. Numbers should use the right symbols for commas or periods depending on the country.
+        3. Money should show the correct currency symbol (like $ for US dollars, ₹ for Indian rupees, etc.).
+
+Q2. What is Internationalization (i18n)?
+    Internationalization just means making your program ready to work in different languages and countries
+    without having to change the whole program. For example:
+        1. Your program could be in English, but you also want it to show in Spanish or French if needed.
+        2. It can automatically handle things like how dates and money are shown, based on where the user is.
+
+Q3. How Does Java Help with Formatting and Internationalization?
+    Java gives us tools to make sure our program shows everything in the right way. Let’s look at some simple ways
+    to format numbers, dates, and other things in Java.
+
+    1. Formatting Techniques Using String.format() 🛠️
+        In Java, you can use the String.format() method to create formatted strings that fit the way you want to
+        show numbers, currency, and other values.
+
+    # Basic Syntax with String.format()
+        The String.format() method helps you format text with placeholders. These placeholders are replaced by values in your program.
+            1. %s: Used for strings.
+            2. %.2f: Used for floating-point numbers (numbers with decimals). It rounds the number to 2 decimal places.
+
+        Let’s see how we can use String.format():
+            String formattedString = String.format("Hello %s, your total is $%.2f", "Ravi", 123.456);
+            System.out.println(formattedString);  // Output: Hello Ravi, your total is $123.46
+        Explanation:
+            1. "Hello %s, your total is $%.2f" is the pattern we want for our string.
+            2. %s will be replaced by the name (in this case, "Ravi").
+            3. %.2f will be replaced by the number, rounded to 2 decimal places (in this case, 123.456 becomes 123.46).
+
+    2. Using MessageFormat for Dynamic Messages 📨
+        When building applications that require inserting values into a string (like sending personalized messages),
+        MessageFormat is very helpful. It lets you replace placeholders in a string template with actual values.
+
+        For example, imagine you're sending personalized notifications to users in a banking app:
+
+            import java.text.MessageFormat;
+            String template = "Hello {0}, your account balance as of {1} is {2}.";
+            String formattedMessage = MessageFormat.format(template, "Anil", "12-Sep-2024", "₹10,000");
+            System.out.println(formattedMessage);  // Output: Hello Anil, your account balance as of 12-Sep-2024 is ₹10,000.
+
+        Explanation:
+            1. {0}, {1}, {2} are placeholders in the message template.
+            2. MessageFormat.format(template, "Anil", "12-Sep-2024", "₹10,000") replaces the placeholders with the provided values:
+            3. {0} becomes "Anil".
+            4. {1} becomes "12-Sep-2024".
+            5. {2} becomes "₹10,000".
+3. Internationalization (i18n) in Java 🌍
+    Internationalization allows you to create applications that can easily adapt to different languages and regions.
+    This is especially important for apps that will be used by people from different countries.
+
+# Understanding Locale 🗺️
+    A Locale represents a specific language and country. For example:
+        1. Locale("en", "IN"): English language, India.
+        2. Locale("fr", "FR"): French language, France.
+
+# Using ResourceBundle for Multilingual Support 🗣️
+    A ResourceBundle helps you manage different translations of text for multiple languages.
+    You store these translations in .properties files. For example:
+        1. Messages_en.properties (English):
+                greeting = Hello
+                total = Your total is
+        2. Messages_fr.properties (French):
+                greeting = Bonjour
+                total = Votre total est
+
+    In your code, you can load the correct translation based on the user’s language:
+                import java.util.ResourceBundle;
+                import java.util.Locale;
+
+                Locale currentLocale = new Locale("fr", "FR"); // French, France
+                ResourceBundle messages = ResourceBundle.getBundle("Messages", currentLocale);
+                System.out.println(messages.getString("greeting") + "! " + messages.getString("total") + ": €100");
+                // Output: Bonjour! Votre total est: €100
+
+    Explanation:
+        1. Locale("fr", "FR") tells Java to use French language for France.
+        2. ResourceBundle.getBundle("Messages", currentLocale) loads the translations from the appropriate file (like Messages_fr.properties).
+        3. messages.getString("greeting") fetches the translation for "greeting", which is "Bonjour" in French.
+        4. The program shows the message in French, including the currency (€100).
+
+4. Formatting Numbers, Dates, and Currency with NumberFormat and DateFormat
+   1. Number Formatting: Java makes it easy to format numbers and currency correctly.
+        For example, you can format a number as currency for a specific region:
+            import java.text.NumberFormat;
+            import java.util.Locale;
+            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+            System.out.println(currencyFormatter.format(1000000)); // Output: ₹1,000,000.00
+
+        Explanation:
+            1. NumberFormat.getCurrencyInstance(new Locale("en", "IN")) sets up the formatter for Indian Rupees (₹).
+            2. currencyFormatter.format(1000000) formats the number 1000000 as ₹1,000,000.00.
+
+  2. Date Formatting: Similarly, Java allows you to format dates for specific regions:
+            import java.text.DateFormat;
+            import java.util.Date;
+
+            Date today = new Date();
+            DateFormat dateFormatter = DateFormat.getDateInstance(DateFormat.FULL, new Locale("fr", "FR"));
+            System.out.println(dateFormatter.format(today)); // Output: jeudi 12 septembre 2024
+        Explanation:
+            1. DateFormat.getDateInstance(DateFormat.FULL, new Locale("fr", "FR")) formats the date for French users.
+            2. The output will be displayed as jeudi 12 septembre 2024 (Thursday, 12 September 2024).
+
+# Key Points to Remember:
+    1. Advanced Formatting: Helps you display dates, numbers, and currency in the right way based on the user's region and language.
+    2. String.format():
+            1. Used for formatting text and inserting dynamic values into strings.
+            2. Useful for simple formatting with placeholders like %s for strings and %.2f for floating-point numbers (rounded to 2 decimal places).
+
+    3. MessageFormat:
+            1. Helps you insert dynamic values into a message template.
+            2. Useful for creating personalized messages with placeholders like {0}, {1}, {2}.
+
+    4. Internationalization (i18n):
+            1. Makes your program adapt to different languages and regions without changing the code.
+            2. Uses Locale (language and country) and ResourceBundle (for storing translations).
+
+    5. NumberFormat and DateFormat:
+            1. NumberFormat: Formats numbers and currencies according to the user's region (e.g., currency symbols, thousands separators).
+            2. DateFormat: Formats dates according to regional settings (e.g., how dates are displayed in different countries).
+
+# Common Interview Questions and Answers 💬
+    Q1. What is the difference between String.format() and MessageFormat in Java?
+    Answer:
+        1. String.format() is used to create a formatted string where you can insert values into a pattern
+           (like %s for a string or %.2f for floating-point numbers).
+        2. MessageFormat is used when you need to format dynamic messages. It’s especially useful for messages
+           that change based on user input, such as notifications or alerts (using placeholders like {0}, {1}).
+
+    Q2. How does Java handle internationalization (i18n)?
+    Answer: Java handles internationalization using Locale and ResourceBundle. Locale represents a specific language
+            and country (e.g., Locale("en", "IN") for English in India). ResourceBundle stores translations for text
+            in different languages, allowing your app to automatically switch between them based on the user's region.
+
+    Q3. Why is String.format() useful in formatting numbers and currencies?
+    Answer: String.format() helps format numbers and currencies neatly. For example, you can display a price with commas
+            separating thousands or round the number to a specific number of decimal places. This ensures the price looks
+            correct for users in different regions (e.g., ₹49,999.99 in India).
+
+    Q4. How do you format a date for a specific region in Java?
+    Answer: Use DateFormat and pass in the Locale to format a date according to the region. For example, you can use
+    DateFormat.getDateInstance(DateFormat.FULL, new Locale("fr", "FR")) to display the date in French (France) format.
+
+    Q5. How would you display a price in Indian Rupees (₹) using Java?
+    Answer: You can use NumberFormat with a Locale for India to format the price correctly in Indian Rupees.
+    For example, NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(1000000) will display ₹1,000,000.00.

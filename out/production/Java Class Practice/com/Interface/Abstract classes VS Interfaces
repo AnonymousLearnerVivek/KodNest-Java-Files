@@ -1,0 +1,44 @@
+# Abstract classes v/s interfaces
+Key Differences at a Glance:
+
+    Feature           Abstract Class                                        Interface
+1.  Inheritance       A class can extend only one abstract class            A class can implement multiple interfaces
+2.  Code Inside       Can have abstract methods and concrete methods        Primarily abstract methods (can have default methods from Java 8)
+3.  Variables         Can have instance variables                           Variables are constants (public, static, final)
+4.  Purpose           Used when sharing common functionality                Used to define a set of rules or behaviors
+5.  When to Use       When a class shares common behavior and structure     When you need classes to follow the same rules but implement them differently
+
+
+# Common Interview Questions and Answers
+
+1. What is the difference between an abstract class and an interface?
+Answer:
+    1. Abstract Class: Can have both abstract methods (without code) and concrete methods (with code). A class can only extend one abstract class.
+    2. Interface: Primarily contains abstract methods (before Java 8) but can have default methods (with code from Java 8).
+               A class can implement multiple interfaces.
+    3. Key Difference: Abstract classes are used to share common functionality, while interfaces are used to define rules
+                    or behaviors that classes must follow.
+
+2. Can a class implement multiple interfaces?
+Answer: Yes, a class can implement multiple interfaces. This is a key advantage of interfaces over abstract classes.
+        A class can inherit behaviors from several interfaces at once, allowing multiple inheritance.
+
+3. Can an interface have concrete methods?
+Answer: Before Java 8, interfaces could only have abstract methods (methods without code). But from Java 8 onward,
+        interfaces can have default methods, which have predefined code that can be used by implementing classes.
+
+4. Can an abstract class have abstract methods and concrete methods?
+Answer: Yes, an abstract class can have both abstract methods (without implementation) and concrete methods (with implementation).
+        This allows the abstract class to provide shared functionality while leaving certain details for subclasses to implement.
+
+5. When should you use an abstract class, and when should you use an interface?
+Answer:
+    1. Use an abstract class when you want to provide common functionality and leave some behavior for subclasses to implement.
+       Abstract classes are ideal when you have shared structure and behavior that can be extended.
+    2. Use an interface when you want to define a set of rules or behaviors that multiple classes should follow.
+       Interfaces are perfect when you want different classes to implement the same methods in their own way.
+
+Conclusion:
+    1. Abstract classes are great when you have shared functionality that different classes can extend and build upon.
+    2. Interfaces are ideal when you need to define rules that different classes must follow but allow them to implement those rules in their own way.
+

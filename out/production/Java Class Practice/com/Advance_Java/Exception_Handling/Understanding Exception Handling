@@ -1,0 +1,873 @@
+The moment when exception occurs, One Exception Object get created
+# Introduction to Exception Handling:
+    Q1. The Problem: Why Do We Need Exception Handling? 🤔
+        Imagine a simple app where a customer orders a pizza. If they mistype the pizza code, if the payment service is down,
+        or if the code accidentally divides by zero, the program will crash and show a confusing error.
+        Exception handling is a way to “catch” these surprises—showing a clear message (like “Invalid pizza code” or “Payment failed”)
+        instead of letting the whole app break. By adding these safety nets, the program can handle mistakes gracefully and keep working for the user.
+
+    Q2. What Exactly Is Exception Handling? 💡
+    Standard Definition:
+        Exception handling is a programming mechanism that lets you detect, manage, and respond to errors (exceptions)
+        that occur during the execution of a program. Instead of letting the program crash when something unexpected happens,
+        you “catch” the error, handle it gracefully, and decide how to continue.
+
+    Q2. What is Exception?
+        An exception is a runtime event or condition—such as an error or unexpected situation—that occurs during the execution
+        of a program and disrupts its normal flow, allowing the program to divert control to a designated handler rather than terminating abruptly.
+
+    # Key Points to Remember:
+        1. Exception: A runtime event (like invalid input or a failed resource access) that disrupts normal execution.
+        2. Purpose: Prevents the app from crashing by “catching” errors and handling them gracefully.
+        3. Benefits:
+            1. Stability: Keeps other parts of the program running.
+            2. User Experience: Displays clear messages instead of a confusing crash.
+            3. Debugging: Logs detailed error context for easier fixes.
+            4. Resource Management: Ensures files or connections are closed even when errors occur.
+        4. Common Scenarios:
+            1. Payment service downtime (show “Payment service unavailable”).
+            2. File-write failures (notify user and undo partial changes).
+            3. Database operations (roll back on failure).
+            4. API calls (serve cached data if the network fails).
+            5. Input parsing (prompt for valid number instead of crashing).
+
+    # Common Interview Questions & Brief Answers:
+
+        Q1. What is exception handling?
+        Answer: A mechanism to detect and respond to runtime errors so the program can recover or shut down cleanly instead of crashing.
+
+        Q2. Why handle exceptions instead of letting the program crash?
+        Answer: To maintain application stability, show users clear feedback, and ensure resources are released properly.
+
+        Q3. What happens if an exception is not caught?
+        Answer: It propagates up the call stack; if no handler is found, the program terminates and usually prints an error trace.
+
+    # Notes:
+        1. Exception Handling allows a program to handle errors gracefully without abruptly terminating. It ensures that
+           the normal execution flow continues even when unexpected situations occur during runtime.
+
+        2. In Java, an exception is an event that occurs during the execution of a program, disrupting its normal flow.
+           Unlike compile-time errors, exceptions happen at runtime and must be handled to prevent abnormal termination of the program.
+
+        3. The FileNotFoundException is a specific type of IOException that occurs when an attempt to open a file denoted by a
+           specified pathname has failed. This can happen if the file does not exist, the file path is incorrect, or
+           the program does not have permission to access the file. Handling this exception allows developers to gracefully
+           inform users about the issue and potentially prompt them to check the file path or create the file if it doesn't exist.
+
+
+# Why and When Do Exceptions Occur:
+
+    Let’s know the Common Scenarios Leading to Exceptions
+
+    1. Null Pointer Exceptions
+        This is a very common one. A NullPointerException (NPE) occurs when you try to use an object that hasn't been initialized
+        yet—kind of like trying to use a car that doesn’t have an engine!
+        For example:
+            String name = null;
+            System.out.println(name.length()); // Throws NullPointerException
+
+    2. Array Index Out of Bounds
+        Arrays in Java have fixed lengths, just like the number of seats in a train. If you try to access an index outside that range,
+        Java will throw an ArrayIndexOutOfBoundsException. It’s like trying to sit in a seat that isn't there.
+        For example:
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[3]); // Throws ArrayIndexOutOfBoundsException
+
+    3. Arithmetic Exceptions
+        Math is great, but not every operation is allowed—even in Java. If you try to divide by zero, for example, you'll get an ArithmeticException.
+        For example:
+            int result = 10 / 0; // Throws ArithmeticException: / by zero
+
+    4. Number Format Exceptions
+        Have you ever tried converting a word into a number? Java will throw a NumberFormatException if you try to turn non-numeric text into a number.
+        For example:
+            String value = "abc";
+            int number = Integer.parseInt(value); // Throws NumberFormatException
+
+    # Key Points to Remember:
+        1. Null Pointer Issues: Occur when you use something that hasn’t been given a value yet. Always check if an object is set before
+                                calling its methods (for example, don’t call .length() on a text that might be empty).
+        2. Array Index Errors: Happen when you try to access a spot in an array that doesn’t exist (for example, asking for the fourth item
+                               in a 3-element array). Remember that array positions start at 0 and go up to length – 1.
+        3. Division by Zero: You can’t divide a number by zero. Before dividing, make sure the value you’re dividing by is not zero.
+        4. Invalid Number Conversions: If you try to turn text like “abc” into a number, it fails. Always check that a string contains
+                                       only digits before calling something like Integer.parseInt().
+
+# Common Interview Questions & Sample Answers:
+
+    Q1: What is a Null Pointer Exception and how can you avoid it?
+     A: This happens when you call a method or access data on an object that was never given a value. To avoid it,
+        always check if the object is not null before using it, or make sure it’s properly initialized first.
+
+    Q2: Why do Array Index Out of Bounds errors happen?
+     A: Because you tried to use an index that is below 0 or at/above the array’s size. In Java, arrays start at 0,
+        so an array of size 3 has valid indexes 0, 1, 2. Always check that your index is between 0 and array.length – 1 before accessing.
+
+    Q3: How can you prevent dividing by zero?
+     A: Before you do a / b, check that b is not zero. If it is zero, skip the division or show a message like “Cannot divide by zero.”
+
+    Q4: What causes a Number Format Exception and how do you handle it?
+     A: It happens when you try to convert text that isn’t all digits into a number (for example, turning “123abc” into an integer).
+        To handle it, check that the string contains only digits (or use a safe parse method inside a try-catch) and
+        show a friendly message if it’s invalid.
+
+# Exception Handling - Behind the Scene:
+
+    Q1. Step-by-Step: What Java Does When an Error Happens
+        Step 1: A Problem Happens
+            When something goes wrong in your program—like dividing by zero—Java notices the problem.
+
+            ➡️ It creates a small object in memory to describe the problem. This object includes
+                1. What the problem is (example: divide by zero)
+                2. Where it happened (which line in the code)
+
+        Step 2: Java Looks for Help
+            After the problem is found, Java tries to find a solution. It looks at your code to see
+            if you’ve written any special lines to handle the problem.
+
+            # These special lines look like this:
+                    try {
+                        int result = 10 / 0;
+                    } catch (ArithmeticException e) {
+                        System.out.println("You can't divide by zero!");
+                    }
+
+            ➡️ If Java finds a catch block that matches the error, it runs that block.
+               This helps your program continue running instead of crashing.
+
+        Step 3: No Help Found? Java Keeps Looking
+            If Java doesn’t find a matching catch block in the current method, it goes back to the method that called it.
+            It keeps looking upward, checking each method for help.
+
+            This is like asking your teacher for help. If the teacher doesn't know, you ask the principal.
+            You keep going until someone helps—or not.
+
+        Step 4: Still No Help? Java Stops the Program
+            If Java looks everywhere and still doesn’t find any catch block to handle the problem,
+            it prints an error message on the screen and stops the program.
+
+            # That message shows:
+                1. What went wrong
+                2. In which file
+                3. On which line
+
+            This message helps programmers fix the error.
+
+    # Key Points to Remember:
+        1. Exception means an error during program execution.
+        2. When an error happens, Java creates an exception object.
+        3. Java searches for a try-catch block to handle the error.
+        4. If found, the program continues running smoothly.
+        5. If not, Java shows an error message and stops the program.
+        6. You should always handle exceptions to make your code safe and user-friendly.
+
+    # Common Interview Questions & Answers:
+
+        Q1: What is an exception in Java?
+        👉 An exception is an error that happens while the program is running. It stops the normal flow of the program.
+
+        Q2: What happens when an exception is not handled?
+        👉 If no try-catch block is found, Java prints an error message and stops the program. This is called default exception handling.
+
+        Q3: What is the use of a try-catch block?
+        👉 A try-catch block is used to catch and handle exceptions. It stops the program from crashing and lets you show a useful message instead.
+
+        Q4: What is the purpose of exception handling?
+        👉 The main purpose is to handle unexpected errors in a way that does not crash the program and gives a better user experience.
+
+        Q5: Can you explain what happens behind the scenes when an exception is thrown?
+        👉 When an error happens, Java creates an exception object. Then, it checks the code to find a catch block to handle it.
+           If none is found, Java stops the program.
+
+    # Note:
+        1. Propagation: i. When an exception occurs, Java generates an exception object that contains information about the type of error
+                           and its location in the code. This process of searching for a matching catch block to handle the exception is known as Propagation.
+
+                       ii. Propagation refers to the process by which an exception moves up the call stack until it finds a matching catch block.
+                           This allows the program to handle the exception appropriately, rather than allowing it to crash without any management.
+
+        2. Stack trace: i. If no catch block is found to handle an exception during the propagation process, the exception reaches the JVM,
+                           and the default exception handler kicks in. At this point, the program's "stack trace" is printed, which shows
+                           the sequence of method calls that led to the exception.
+
+                       ii. The stack trace is a valuable tool for debugging because it provides a detailed record of the method calls that were
+                           in progress at the time the exception occurred. It helps developers identify where the error originated and the path
+                           taken through the code, making it easier to trace and resolve issues.
+
+        3. Finally Block: i. In Java, the "finally" block is used to execute code that should run regardless of whether an exception occurred,
+                             making it ideal for resource cleanup, such as closing file streams.
+
+                         ii. The finally block ensures that important cleanup actions are performed, whether an exception was thrown or not.
+                             It is executed after the try and catch blocks, providing a way to free resources or perform necessary finalization
+                             regardless of the outcome of the try block.
+
+
+# Java's Built-In Exception Handling Mechanism:
+
+    Q1. What Does Java’s Built-In Mechanism Do?
+        Here’s what Java does when no catch block is written:
+            1. Prints an error message (called a stack trace) on the screen
+            2. Shows what kind of error happened (e.g., ArithmeticException)
+            3. Tells you where it happened (file name and line number)
+            4. Then it stops the program
+
+    # Key Points to Remember:
+        1. Exceptions are errors that happen while your Java program is running.
+        2. Java has a built-in mechanism to handle exceptions even if you don’t write any code for it.
+        3. When an error occurs (like dividing by zero), Java:
+            1. Creates an exception object
+            2. Looks for a try-catch block to handle it
+            3. If none is found, Java uses its default handler:
+                1. Shows the type of error
+                2. Stops the program
+        4. If you want your program to keep running and show friendly messages, you should write your own try-catch blocks.
+        5. Handling exceptions properly makes your program more robust, user-friendly, and professional.
+
+    # Common Interview Questions & Answers:
+
+        Q1: What is Java’s built-in exception handling mechanism?
+        A: It is Java’s default way of handling errors. If no try-catch block is found, Java automatically creates an exception object,
+           prints an error message (stack trace), and stops the program.
+
+        Q2: What happens when you divide a number by zero in Java without a try-catch block?
+        A: Java throws an ArithmeticException, prints an error message, and stops the program.
+
+        Q4: Why should you write your own try-catch blocks?
+        A: So you can handle errors in a clean way, show friendly messages to users, and keep your program running smoothly instead of crashing.
+
+        Q5: Will Java always crash if there’s an exception?
+        A: Not if you handle it using a try-catch block. If you don’t handle it, then yes — Java will use the built-in handler and stop the program.
+
+
+# Using Multiple Catch Blocks
+
+    # Key Points to Remember:
+        1. Use multiple catch blocks when you want to handle different kinds of errors in different ways.
+        2. Always write the specific exceptions first (like ArithmeticException), and keep the general Exception last to avoid errors in your code.
+        3. Show clear and useful messages inside each catch block so the user knows exactly what went wrong.
+        4. Only one catch block runs per try — Java chooses the first one that matches the error.
+        5. If two or more exceptions need the same response, you can use a multi-catch block to keep your code clean and simple.
+
+    # Common Interview Questions & Answers:
+
+        Q1: Why do we use multiple catch blocks in Java?
+        👉 So that each type of error can be handled differently and more clearly, depending on what went wrong.
+
+        Q2: What happens if we write catch (Exception e) before the specific ones?
+        👉 The specific catch blocks become unreachable, and Java will show a compile-time error.
+
+        Q3: Can more than one catch block run for a single try block?
+        👉 No. Only the first matching catch block will run — and the rest are skipped.
+
+        Q4: When should you use a multi-catch block?
+        👉 When two or more exceptions should be handled in the same way, to avoid writing the same code twice.
+
+# Creating Custom Handlers for Exceptions:
+
+    # Key Points to Remember:
+        1. Specific First, Generic Last: Always list your specific exception handlers (PaymentFailedException, DriverIssueException, etc.) before the generic catch (Exception e).
+        2. One Match Only: Java stops at the first matching catch block—so order matters.
+        3. Clear Messages: Each catch block should print a helpful message so you know exactly what went wrong.
+        4. Safety Net: The generic catch is your final backup for any unexpected errors.
+        5. Avoid Unreachable Code: Placing the generic catch too early makes specific handlers unreachable—and causes a compile error.
+
+    # Common Interview Questions & Answers:
+        Q1: Why must a generic catch block come last?
+         A: Because catch (Exception e) matches all exceptions. If it appears first, it will catch every error, and the specific handlers below it will never run.
+
+        Q2: What error do you get if you place a generic catch before a specific one?
+         A: A compile-time error: Unreachable catch block for [SpecificException]. It is already handled by the catch block for Exception.
+
+        Q3: Can a generic catch block ever replace all specific catches?
+         A: Technically yes, but it’s not best practice. You lose the ability to give tailored handling and clear feedback for different error types.
+
+        Q4: When is it appropriate to use a multi-catch block?
+         A: When two or more exception types require exactly the same handling logic. You can combine them using catch (TypeA \| TypeB e) to avoid repeating code.
+
+# Throwable, Exception and RuntimeException:
+
+    | Feature              | Exception                                                                            | RuntimeException
+    | -------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------
+    | Type                 | Checked Exception                                                                    | Unchecked Exception
+    | Handling Requirement | Must be explicitly caught (`try-catch`) or declared using `throws`                   | Does not need to be explicitly caught or declared
+    | Purpose              | Used for recoverable conditions that an application may handle                       | Used for programming errors and logical mistakes
+    | Compiler Check       | Compiler enforces handling                                                           | Compiler does not enforce handling
+    | Occurrence           | Often caused by external factors (file not found, database issues, network problems) | Usually caused by bugs in the code
+
+    | Examples             | `IOException`, `SQLException`, `FileNotFoundException`, `ClassNotFoundException`     | `NullPointerException`, `ArithmeticException`,
+                                                                                                                    `ArrayIndexOutOfBoundsException`, `NumberFormatException`
+    Q1. When to Use Each Exception Type?
+        1. Checked Exceptions (Exception)
+            Use these for problems you expect and can recover from, such as:
+                1. Reading files (file might not exist)
+                2. Connecting to a network (service might be down)
+            Java forces you to handle them so you don’t forget.
+
+        2. Unchecked Exceptions (RuntimeException)
+            Use these for programming mistakes that you should fix in code, for example:
+                1. Accessing a null reference
+                2. Dividing by zero
+            You’re free to catch them, but they usually indicate bugs you want to correct rather than recover from at runtime.
+
+    # Best Practices 📝:
+        1. Catch Specific Exceptions First: Always catch specific exceptions before general ones.
+        2. Provide Helpful Messages: Make sure your error messages are clear and helpful.
+        3. Avoid Catching Throwable or Error: Do not catch Throwable or Error classes, as they represent serious problems that should not be handled by your program.
+        4. Use Finally Block for Cleanup: Use the finally block to release resources, like closing files or network connections.
+
+    # Key Points to Remember:
+        1. Checked vs. Unchecked: Checked exceptions must be handled; unchecked exceptions are optional.
+        2. Use Checked for things outside your program’s control (I/O, network).
+        3. Use Unchecked for logic errors you can fix (null access, bad math).
+        4. Clear Messages: Always print a useful message in your catch block.
+        5. Keep Code Flowing: Handle exceptions so your program can continue running smoothly.
+
+    # Common Interview Questions & Answers:
+
+        Q1: What’s the difference between checked and unchecked exceptions?
+        👉 Checked exceptions (subclasses of Exception except RuntimeException) must be caught or declared. Unchecked exceptions (RuntimeException and subclasses) do not.
+
+        Q2: When would you choose an unchecked exception over a checked one?
+        👉 For programming errors that should be fixed in code, like null references or invalid array indexes, where recovery at runtime isn’t the goal.
+
+        Q3: Why does Java force you to handle checked exceptions?
+        👉 To ensure you don’t forget to deal with recoverable conditions such as file access or network connectivity.
+
+        Q4: Can you convert a checked exception into an unchecked one?
+        👉 Yes. You can wrap a checked exception in a RuntimeException if you want to bypass the compiler’s check, but use this sparingly.
+
+        Q5: Should you catch Throwable directly?
+        👉 No. Catching Throwable also catches serious errors (Error) that you generally should not handle (e.g., OutOfMemoryError).
+
+        Q6: Which of the following is true about exceptions and runtime errors in Java?
+        👉  Exceptions are recoverable; runtime errors are not.
+                Exceptions can be caught and handled using try-catch blocks, whereas runtime errors (like OutOfMemoryError)
+                indicate serious problems that cannot be recovered from easily.
+
+        Q7: Which statement correctly distinguishes exceptions and runtime errors in Java?
+        👉  Checked exceptions are identified at compile-time, but runtime errors occur during execution.
+            Explanation: Checked exceptions are verified at compile-time, while runtime errors are only detected during program execution.
+
+
+    # Note:
+        1. Exception Hierarchy in Java
+            1. In Java, all exceptions are subclasses of the Exception class, which itself is a subclass of the Throwable class.
+            2. In Java, the Exception class represents all checked exceptions and is a subclass of the Throwable class. The Throwable class
+               is the root of the exception hierarchy, and it also includes the Error class, which represents serious issues that applications
+               should not attempt to handle
+
+        2. Runtime errors represent serious issues beyond application control, while exceptions are conditions the application can handle.
+
+        3. Runtime errors, represented by the Error class, indicate serious issues such as out-of-memory errors or system failures that are
+           usually beyond the application’s control. Exceptions, on the other hand, are events that can be anticipated and handled gracefully
+           within the application using exception handling mechanisms like try-catch blocks.
+
+
+    # Common Interview Questions & Answers:
+
+        Q1. What is local exception handling in Java?
+        Answer: Local exception handling means handling errors in the same place they happen, using try-catch blocks. This prevents the error from affecting the whole program.
+
+        Q2. Why should we catch specific exceptions instead of using Exception?
+        Answer: Catching specific exceptions makes it easier to understand and fix the exact problem. Catching Exception hides the real cause and can make debugging harder.
+
+        Q3. What happens if we leave the catch block empty?
+        Answer: The program hides the error, and no one knows what went wrong. It becomes harder to fix issues later because nothing is shown or recorded.
+
+        Q4. What’s the benefit of showing user-friendly error messages?
+        Answer: They help users understand what went wrong in simple language without confusing technical terms. It improves the user experience.
+
+        Q5. Which of the following is considered a best practice when handling exceptions locally within a method?
+        Answer: 1. Log the exception details and rethrow it if the method cannot handle it properly.
+                2. A best practice in local exception management is to log the exception details for debugging purposes
+                   and rethrow it if the method is not equipped to handle the exception effectively. This approach
+                   ensures that the exception is not ignored and can be managed at a higher level if needed.
+                   Swallowing exceptions silently or catching all exceptions using a generic block is discouraged,
+                   as it can make debugging difficult and mask underlying issues.
+
+
+# Rethrowing Exceptions: Using throw and throws:
+
+        Have you ever faced a tricky question in a group study session? You try to answer but realize it’s too hard. So, what do you do?
+        You pass the question to someone else who knows better — maybe a senior or the teacher. That’s exactly what rethrowing an exception
+        means in Java! Sometimes a method in your program runs into a problem, but instead of solving it right there, it says: “Hey, I can’t fix this.
+        I’m passing it to someone else who can.”
+        In Java, we do this using two special keywords: throw and throws.
+
+        Let’s learn what they are, how to use them, and why they matter — all in the simplest way possible.
+
+        Q1. What Does “Rethrowing” Mean?
+            Rethrowing means that a method knows something went wrong but chooses not to handle the problem itself.
+            Instead, it passes the error (exception) to the method that called it.
+
+        Q2. What Is throw?
+            1. In Java, the throw keyword is used when you want to create and send an error manually.
+            2. It’s like saying: “This is bad. I’ve detected a problem, and I’m stopping now. Let someone else deal with it!”
+
+            Code Example: Using throw
+                throw new ArithmeticException("Cannot divide by zero");
+
+            Let’s break it down:
+                1. throw — the keyword that starts the process of throwing an exception.
+                2. new ArithmeticException(...) — this creates a new exception object with a custom error message.
+                3. As soon as this line runs, the method stops, and the error is sent to be handled somewhere else.
+
+        Q3. What Is throws?
+            The throws keyword is used in the method declaration to let others know that the method might throw an exception.
+
+    # Key Points to Remember:
+
+        1. Rethrowing means a method chooses not to handle the error and instead passes it to another method that can.
+        2. Use throw to manually create and send an exception when a serious problem is found.
+        3. Use throws in the method declaration to warn others that an exception might be thrown.
+        4. If you use throw inside a method, you must either:
+            1. Catch the exception using a try-catch block, or
+            2. Use throws to pass the responsibility to the caller.
+        5. A method can only throw one exception at a time, and it must be an object of a class that extends Throwable.
+        6. When you use throws, the caller must be ready to handle the exception using try-catch.
+        7. Rethrowing helps organize your code, making sure problems are handled in the right place.
+
+    # Common Interview Questions & Answers:
+
+        Q1. What is the difference between throw and throws in Java?
+        Answer: 1. throw is used inside a method to actually throw an exception.
+                2. throws is used in the method declaration to indicate that a method might throw an exception.
+
+        Q2. Can a method use both throw and throws?
+        Answer: Yes! A method can declare that it might throw an exception using throws and actually throw one using throw inside the method body.
+
+        Q3. Why should we use throws?
+        Answer: When you don’t want to handle the exception inside the method but want the caller to take responsibility, you use throws to warn them.
+
+        Q4. What happens if you throw an exception and don’t handle or declare it?
+        Answer: The program will not compile (for checked exceptions) or crash at runtime (for unchecked exceptions) if no one catches it.
+
+        Q5. Can we throw multiple exceptions using one throw statement?
+        Answer: No. You can only throw one exception at a time. But you can declare multiple exceptions using throws in the method declaration.
+
+        Q6. Which of the following correctly explains the purpose of throw and throws in Java?
+        Answer: 1. throw creates and propagates an exception; throws declares potential exceptions.
+                2. throw generates an exception, while throws warns the caller that a method might throw an exception.
+
+# Ducking Exceptions:
+
+    Q1. What actually is Ducking Exceptions?
+    Standard Definition:
+        Ducking an exception means allowing an exception to pass up the call stack instead of handling it in the current method.
+        In Java, this is done by using the throws keyword in the method declaration to indicate that the method might throw an
+        exception, and the caller should be responsible for handling it.
+
+        Java Code Example:
+                public class MainApp {
+                    public static void main(String[] args) {
+                        try {
+                            DataHandler handler = new DataHandler();
+                            handler.accessArrayElement();
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            System.out.println("Caught in main: " + e.getMessage());
+                        }
+                    }
+                }
+
+                class DataHandler {
+                    public void accessArrayElement() throws ArrayIndexOutOfBoundsException {
+                        int[] numbers = {1, 2, 3};
+                        int index = 5; // Invalid index
+                        System.out.println(numbers[index]);
+                    }
+                }
+
+    # Key Points to Remember:
+        1. Ducking means not handling the exception inside a method but letting it pass to the caller.
+        2. We do this in Java using the throws keyword in the method declaration.
+        3. Ducking keeps methods simple and clean, especially when the method doesn't know how to fix the error.
+        4. The caller method (like main()) is responsible for catching and handling the exception using try-catch.
+        5. Don’t duck critical issues — serious problems should be handled immediately.
+        6. Ducking helps maintain separation of responsibilities between parts of a program (e.g., logic vs. UI).
+
+    # Common Interview Questions & Answers:
+        Q1. What is ducking an exception in Java?
+        Answer: Ducking means a method does not handle an error itself but uses the throws keyword to pass the exception to the method that called it.
+
+        Q2. How is ducking different from catching an exception?
+        Answer: 1. Catching means handling the error using try-catch inside the method.
+                2. Ducking means not handling it locally but declaring it using throws so that the caller handles it.
+
+        Q3. Why is ducking useful?
+        Answer: It keeps the code clean and allows higher-level methods that understand the full context to handle the problem better.
+
+        Q4. What happens if no one handles the ducked exception?
+        Answer: If the exception is never caught, the program will crash and show an error message at runtime.
+
+
+# Throw vs Throws in Java: What's the Difference?
+
+    1. Different Purpose
+        i. throw is used to send an exception when something goes wrong during program execution.
+       ii. throws is used to declare that a method might throw an exception — and whoever calls this method must be ready to catch it.
+
+    2. Different Locations in Code
+        i. throw is written inside a method, usually right where something risky is happening — like dividing by zero.
+       ii. throws is written at the start of the method, in the method signature — before the method body begins.
+
+    3. Who Handles the Problem?
+        i. With throw, the method says, “Here’s the error — I’m sending it out right now.”
+       ii. With throws, the method says, “I won’t handle the error here. Whoever calls me must be ready to deal with it.”
+
+    4. What Comes After Them?
+        i. throw is followed by an actual object — like new ArithmeticException("Something went wrong").
+       ii. throws is followed by the name of one or more exception classes — like throws IOException, SQLException.
+
+    5. How Many Exceptions?
+        i. With throw, you can only throw one exception at a time.
+       ii. With throws, you can declare multiple possible exceptions separated by commas.
+
+    6. When Does It Happen?
+        i. throw comes into action while the program is running — during the actual execution.
+        ii. throws works at compile time — it’s like setting up a warning before the code even runs.
+
+# Valid and Invalid Use of try-catch-finally:
+
+    Q1. What Is try-catch-finally?
+        Java allows you to wrap risky code inside a try block, catch any problems using a catch, and clean things up using finally.
+
+         # Each part has a job:
+            1. try → “Let’s try this risky code.”
+            2. catch → “Oops! Something went wrong. I’ll handle it.”
+            3. finally → “Whether it worked or not, I’ll finish things properly.”
+
+         # Correct Usage of try-catch-finally:
+            Let’s take a simple example to see how try, catch, and finally work together in Java.
+
+                try {
+                    int result = 10 / 0;
+                } catch (ArithmeticException e) {
+                    System.out.println("Oops! You can't divide by zero.");
+                } finally {
+                    System.out.println("Cleanup done. Code completed.");
+                }
+
+    # Key Points to Remember:
+        1. Use try for risky code — This is where errors might happen.
+        2. Use catch to handle specific exceptions — Always catch the most accurate exception, not the general Exception.
+        3. Use finally to clean up — It always runs, whether or not there’s an error.
+        4. Avoid return in finally — It can override returns from try or catch and cause confusion.
+        5. Don’t leave catch blocks empty — Always give a message or fix the problem.
+        6. Use finally for important tasks like closing files, stopping connections, or cleaning up.
+
+    # Common Interview Questions and Answers:
+
+        Q1. What is the purpose of try-catch-finally in Java?
+        Answer: It is used to handle exceptions in Java. try contains the code that might throw an exception. catch handles the exception if it occurs.
+                finally runs after both, no matter what, and is used for cleanup like closing files or releasing resources.
+
+        Q2. Can a try block exist without a catch block?
+        Answer: Yes, a try block can exist without catch if it is followed by a finally block. But it must have either catch or finally, or both.
+
+        Q3. What happens if there is a return statement in both try and finally?
+        Answer: The return from finally will override the return from try. This can be confusing and lead to bugs, so it’s best to avoid using return in the finally block.
+
+        Q4. Why should you avoid catching general exceptions like Exception or Throwable?
+        Answer: Because it hides specific problems. It becomes hard to debug since you don’t know what actually went wrong. It's better to
+                catch specific exceptions like ArithmeticException or IOException.
+
+        Q5. Is the finally block always executed?
+        Answer: Yes, the finally block is always executed — even if an exception occurs or if there’s a return in the try or catch block.
+                The only time it won’t run is if the program crashes or exits the JVM using System.exit().
+
+    # Note:
+    1. In Java, forgetting to close resources like file streams, database connections, or network sockets can result in memory leaks and resource exhaustion.
+       The finally block is the ideal place to close these resources, as it ensures that the cleanup code runs regardless of whether an exception occurs or not.
+       Not releasing resources properly is a common pitfall in exception handling.
+
+# Managing Exceptions in Inherited Classes:
+
+    # The Rules – One by One
+
+    Rule 1: Child Class Can’t Throw Bigger Problems
+            If the parent method throws a specific checked exception (like IOException),
+            then the child class:
+                1. Can throw the same exception
+                2. Can throw a smaller (more specific) one, like FileNotFoundException
+                3. But cannot throw a bigger or more general exception like Exception
+
+            # Okay:
+                class Parent {
+                    void loadData() throws IOException { }
+                }
+
+                class Child extends Parent {
+                    void loadData() throws FileNotFoundException { } // allowed
+                }
+            # Not Okay:
+
+                class Child extends Parent {
+                    void loadData() throws Exception { } // too broad – not allowed
+                }
+
+    Rule 2: Runtime Exceptions Can Be Added or Removed
+            If the exception is a runtime one (like NullPointerException), then you can add or remove it freely. No compiler complaint.
+
+                class Parent {
+                    void process() { }
+                }
+                class Child extends Parent {
+                    void process() throws NullPointerException { } // allowed
+                }
+
+    Rule 3: You Can Also Throw Nothing
+        If the parent method throws an exception, the child method doesn’t have to.
+
+            class Parent {
+                void connect() throws IOException { }
+            }
+
+            class Child extends Parent {
+                void connect() { } // totally fine
+            }
+
+        This means the child class is saying: “No worries here — I’m handling it safely.”
+
+    # Key Points to Remember:
+        1. Checked exceptions have rules: If the parent method throws a checked exception, the child method must follow the same or stricter rules.
+                                          It can throw the same or more specific, but not broader exceptions.
+        2. Runtime exceptions are flexible: Runtime exceptions (like NullPointerException) can be added or removed freely in the child class.
+        3. You can remove exceptions safely: If your child class can handle things internally, you don’t have to throw the exception again.
+                                             But only do this if it’s safe and makes sense.
+        4. Be specific, not general: Prefer using specific exception types. Avoid catching or throwing general Exception unless truly necessary.
+
+    # Common Interview Questions & Answers:
+
+        Q1: Can a child class throw a broader exception than its parent method?
+        Answer: No. A child class cannot throw a broader (more general) checked exception. It must throw the same or a more specific one.
+
+        Q2: What happens if the parent class throws a checked exception, but the child class does not?
+        Answer: That’s totally fine. The child method can choose not to throw any exception — it just means it’s handling the issue safely on its own.
+
+        Q3: Can runtime exceptions be added or removed in the overridden method?
+        Answer: Yes. Runtime exceptions are unchecked and don’t need to be declared. You can add or remove them in the child class without any compiler errors.
+
+        Q4: Why should we avoid throwing general exceptions like Exception?
+        Answer: General exceptions can hide what went wrong. It’s better to throw specific ones so that the code is easier to understand, debug, and maintain.
+
+# Debugging with Stack Traces:
+
+    Q1. What Is a Stack Trace?
+    Standard Definition:
+        In Java, a stack trace is a report that shows the sequence of method calls the program made up to the point of an error.
+        It is automatically generated when an exception occurs and helps in identifying where and why the error happened.
+
+    # Code Example: A Bug in Action:
+            public class StreamFeature {
+                void skipIntro() {
+                    try {
+                        int[] episodes = new int[5];
+                        System.out.println(episodes[10]); // Trying to access index 10 – not allowed!
+                    } catch (Exception e) {
+                        e.printStackTrace(); // Print the stack trace to understand the error
+                    }
+                }
+
+                public static void main(String[] args) {
+                    StreamFeature feature = new StreamFeature();
+                    feature.skipIntro();
+                }
+            }
+
+        What Happens Here?
+        The program tries to access an index that doesn’t exist in the array. Java throws an ArrayIndexOutOfBoundsException, and
+        since it’s inside a try-catch block, the printStackTrace() method prints the error path.
+
+        You’ll see something like:
+
+            java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 5
+                at StreamFeature.skipIntro(StreamFeature.java:6)
+                at StreamFeature.main(StreamFeature.java:12)
+
+        Let’s break it down:
+            1. Error Type: ArrayIndexOutOfBoundsException tells us what went wrong.
+            2. Location: StreamFeature.java:6 shows exactly which line caused the problem.
+            3. Call Path: It shows how the program got to that line — starting from main().
+
+
+    # Common Interview Questions and Answers:
+
+        Q1. What is a stack trace in Java?
+        A stack trace is a list of method calls that shows the path of the program took before an exception occurred.
+
+        Q2. What does printStackTrace() do?
+        It prints the exception details and the call path (stack trace) to help developers identify what went wrong and where.
+
+        Q3. Should we use printStackTrace() in production code?
+        No. It’s better to use logging frameworks in real apps to handle and record errors securely.
+
+        Q4. How do you read a stack trace?
+        Start from the bottom — see which method was called first. Go upwards to find where the error occurred.
+
+# Custom Exceptions:
+
+    Imagine you’re building an app like StreamNow, where users watch shows and unlock cool rewards. One day, your team decides to add a feature:
+    unlock a surprise bonus only after the user watches at least 5 episodes. You think, “Okay, I’ll just throw an exception if they haven’t watched enough.”
+    But when you check Java’s built-in exceptions — like NullPointerException, IOException, ArrayIndexOutOfBoundsException — none of them really fit.
+    That’s when custom exceptions come in. They let you create your own meaningful errors, like NotEnoughEpisodesWatchedException, to handle specific cases
+    in your app logic that Java’s built-in exceptions don’t cover.
+
+    Q1. What Is a Custom Exception?
+    Standard Definition:
+        A custom exception in Java is a user-defined class that extends the Exception class (or RuntimeException) to represent specific error
+        situations that are not covered by Java’s built-in exceptions.
+
+    # Let’s Make One – Step-by-Step:
+
+        Step 1: Create Your Own Exception Class
+                  To start, we create a new class that represents our custom exception. This class should extend Exception if we want Java to treat it as a checked exception.
+
+                    class NotEnoughEpisodesWatchedException extends Exception {
+                        public NotEnoughEpisodesWatchedException(String message) {
+                            super(message);
+                        }
+                    }
+            Q1. What’s happening here?
+                1. NotEnoughEpisodesWatchedException is the name of our custom exception.
+                2. It extends Exception, so Java treats it like any other error — but one that we control.
+                3. Inside the class, we pass a custom message to the parent class using super(message).
+
+        Step 2: Throw Your Exception When Needed
+                  Now that we’ve created our custom exception, let’s use it in the actual app logic.
+                  For example, in a class called StreamNow, we’ll check how many episodes the user has watched.
+
+                    public class StreamNow {
+
+                        void unlockFeature(int watchedEpisodes) throws NotEnoughEpisodesWatchedException {
+                            if (watchedEpisodes < 5) {
+                                throw new NotEnoughEpisodesWatchedException(
+                                    "You need to watch at least 5 episodes to unlock this feature."
+                                );
+                            }
+
+                            System.out.println("🎉 Bonus feature unlocked!");
+                        }
+                    }
+            Q1. What’s happening here?
+                1. The method unlockFeature checks if the user has watched fewer than 5 episodes.
+                2. If yes, we throw our custom exception with a clear message.
+                3. The throws keyword tells Java that this method might throw a NotEnoughEpisodesWatchedException, so the caller must handle it.
+
+        Step 3: Handle It in Your Code
+                  Now that we’ve written the rule and thrown the exception, let’s handle it properly in the main program.
+                        Here’s how we do it:
+
+                        public class App {
+                            public static void main(String[] args) {
+                                StreamNow sn = new StreamNow();
+
+                                try {
+                                    sn.unlockFeature(3);  // user has watched only 3 episodes
+                                } catch (NotEnoughEpisodesWatchedException e) {
+                                    System.out.println("Error: " + e.getMessage());
+                                }
+                            }
+                        }
+                Q1. What’s happening here?
+                    1. We create an object of StreamNow and call the unlockFeature method.
+                    2. Since the user watched only 3 episodes (less than 5), the method throws our custom exception.
+                    3. The catch block catches it and prints a friendly error message.
+
+                Output:
+                    Error: You need to watch at least 5 episodes to unlock this feature.
+
+    # Key Points to Remember:
+        1. Custom exceptions are created when Java’s built-in exceptions don’t represent the exact problem in your application.
+        2. You create a custom exception by extending the Exception class (for checked exceptions) or RuntimeException (for unchecked exceptions).
+        3. Custom exceptions are helpful for:
+            1. Representing business rules (e.g., "user must watch 5 episodes").
+            2. Providing clear and specific error messages.
+            3. Making the code easier to debug and maintain.
+        4. A checked exception must be handled using try-catch or declared with throws.
+        5. Custom exceptions improve code readability and make error handling more meaningful.
+
+    # Common Interview Questions and Answers:
+
+        Q1. What is a custom exception in Java?
+        Answer: A custom exception is a user-defined error class that extends Exception or RuntimeException. It is used when Java’s built-in exceptions
+                are not suitable for describing a specific error in your application logic.
+
+        Q2. When should you create a custom exception?
+        Answer: Custom exceptions should be created when you need to handle a condition that is unique to your application —
+                for example, enforcing a business rule like a user needing to complete 5 tasks before unlocking a feature.
+
+        Q3. What is the difference between checked and unchecked exceptions?
+        Answer: 1. Checked exceptions (extend Exception) must be either caught or declared using throws.
+                2. Unchecked exceptions (extend RuntimeException) don’t need to be explicitly handled.
+                Custom exceptions can be either, depending on the situation.
+
+        Q4. How do you create a custom exception in Java?
+        Answer: You define a new class that extends Exception or RuntimeException, and usually provide a constructor that takes a message string.
+
+# Checked vs. Unchecked Exceptions:
+
+    Imagine you're using a streaming app like CineStream. When you try to play a restricted movie, the app displays a message like
+    “This content is not available in your region.” It's an expected issue, and the app handles it gracefully. Now, suppose you open
+    a playlist and the app crashes without any warning — that’s unexpected. In Java, such situations are handled using two types of exceptions:
+    checked exceptions for predictable, manageable errors, and unchecked exceptions for unexpected issues that occur at runtime.
+
+    Q1. What Are Checked and Unchecked Exceptions?
+        1. Checked exceptions are like the friendly warnings you get when something predictable happens, such as trying to play a restricted YouTube video.
+           Java forces you to handle these exceptions by performing compiler checks to ensure your program knows what to do when things don’t go as planned.
+        2. Unchecked exceptions are like those times when YouTube suddenly freezes or crashes, often due to a bug. These types of errors are usually the
+           result of programming mistakes, like dividing by zero or trying to access an item in a list that doesn’t exist. Java doesn’t force you to handle
+           these errors, but you should whenever possible.
+
+    # Let’s Understand the Core Differences:
+        Even though both checked and unchecked exceptions represent problems in a program,
+        they work very differently. Here’s how they compare:
+
+        1. Different Timing:
+            1. Checked exceptions are checked at compile time. Java won’t let the code run unless you handle them.
+            2. Unchecked exceptions are checked at runtime. The program compiles fine, but errors may appear when it runs.
+
+        2. Different Purpose
+            1. Checked exceptions are used for predictable issues, like file handling or database connections.
+            2. Unchecked exceptions usually signal programming mistakes, like using null or dividing by zero.
+
+        3. Location in Java Hierarchy
+            1. Checked exceptions extend Exception, but not RuntimeException.
+            2. Unchecked exceptions extend RuntimeException.
+
+        4. Handling Requirement
+            1. With checked exceptions, Java forces you to use try-catch or declare them using throws.
+            2. With unchecked exceptions, handling is optional — though still a good practice in many cases.
+
+        5. Common Examples
+            1. Checked: IOException, FileNotFoundException
+            2. Unchecked: NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException
+
+        6. Who’s Responsible?
+            1. For checked exceptions, the developer is expected to handle the issue.
+            2. For unchecked exceptions, it’s usually a sign the developer made a coding mistake.
+
+    # Key Points to Remember:
+        1. Java has two main types of exceptions: checked and unchecked.
+        2. Checked exceptions are problems Java expects — like file or network issues — and must be handled using try-catch or throws.
+        3. Unchecked exceptions are mostly programming errors — like dividing by zero or using null — and are checked only at runtime.
+        4. Checked exceptions extend Exception (excluding RuntimeException), while unchecked exceptions extend RuntimeException.
+        5. Handling checked exceptions is mandatory, while handling unchecked exceptions is optional, though still considered good practice.
+
+        # Common Interview Questions and Answers:
+
+            Q1: What is the difference between checked and unchecked exceptions in Java?
+            A: Checked exceptions are checked at compile time and must be handled by the programmer. Unchecked exceptions occur at runtime and do not need to be explicitly handled.
+
+            Q2: Can you give two examples of each type?
+            A: 1. Checked exceptions: IOException, FileNotFoundException
+               2. Unchecked exceptions: NullPointerException, ArithmeticException
+
+            Q3: What happens if a checked exception is not handled?
+            A: The program will not compile. Java enforces that checked exceptions must be handled using a try-catch block or declared using throws.
+
+            Q4: Is it okay to leave unchecked exceptions unhandled?
+            A: Java allows it, but it's not recommended. Unchecked exceptions can still crash your program, so it's better to prevent or handle them where appropriate.
+
+            Q5: Do checked and unchecked exceptions belong to different class hierarchies?
+            A: Yes. Checked exceptions extend Exception (excluding RuntimeException), and unchecked exceptions extend RuntimeException.
+

@@ -1,0 +1,160 @@
+# An class can extends another class and implements another interface at the same time
+    Example:
+            interface Calculator2 {}
+            class Calculator1 {}
+            class MyCalc extends Calculator1 implements Calculator2{}
+
+# You can create an variable inside the interface and you have to do initialization of that variable is compulsory
+    and By-Default variable inside the interface will be public, static, and final
+    Example:
+            interface Demo {
+                int a = 30;
+                public static final int b = 10; // variable 'a' will also look the same as variable 'b' By-Default
+             }
+
+# You can also able to implement Concrete Method inside the INTERFACE and for that you have use the keyword Default
+    and it will be inherited to implementing class and you are allowed to override default method in the implementing class
+    Example:
+            interface Demo {
+                default void display{                // default keywords are allowed only inside Interface
+                    System.out.println("Hello");
+                }
+            }
+
+# You can also able to implement Static Methods and Private Methods inside the INTERFACE and you cannot access the static method of interface from the
+    class implementing the interface
+    Example:
+            interface Demo {
+                static void display1 {
+                    System.out.println("Hey");
+                }
+                private void display2 {
+                    System.out.println("Welcome");
+                }
+            }
+
+            and inside main method you can access the static method of interface using interface name
+            like Demo.display1()
+
+# Advanced Concepts of Interfaces
+
+    1. Interfaces Cannot Be Instantiated, but Their References Can Be Created
+    Explanation:
+    Interfaces in Java define a contract (a set of methods) that implementing classes must follow,
+    but they do not hold the state or implementation details themselves. This means you cannot create
+    an instance of an interface. However, you can create a reference variable of an interface type,
+    which can be used to refer to objects of any class that implements the interface. This feature
+    is pivotal for achieving polymorphism, where the implementation details are hidden behind
+    interface references, allowing for flexible code that can work with any new implementation of the interface.
+
+    2. A Class Implements an Interface, but a Interface can extends other Interface
+    Explanation:
+    In Java, a class uses the keyword implements to adhere to the specifications of an interface.
+    This means the class agrees to perform the specific actions the interface defines.
+    On the other hand, an interface can extend another interface using the extends keyword,
+    inheriting its method declarations. This allows for a hierarchy of interfaces,
+    each building on or specializing the behavior defined by its parent.
+
+            Example:
+
+            interface Movable {
+                void move();
+            }
+
+            interface Flyable extends Movable {
+                void fly();
+            }
+
+            class Airplane implements Flyable {
+                public void move() {
+                    System.out.println("Airplane moves forward.");
+                }
+
+                public void fly() {
+                    System.out.println("Airplane flies.");
+                }
+        }
+            Here, Flyable extends Movable, adding a new capability. Airplane implements Flyable, and thus must define both move and fly.
+
+            Q) Can interfaces extend other interfaces?
+            Ans: Yes, they can extend multiple interfaces.
+            Explanation: In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance
+                         where interfaces inherit methods from multiple sources.
+
+    # Yes, they can extend multiple interfaces.
+      In Java, interfaces can extend one or more other interfaces. This allows a form of multiple inheritance where
+      interfaces inherit methods from multiple sources.
+            Example:
+                // First interface
+                interface Animal {
+                    void eat();
+                }
+
+                // Second interface
+                interface Pet {
+                    void play();
+                }
+
+                // Third interface extending multiple interfaces
+                interface Dog extends Animal, Pet {
+                    void bark();
+                }
+
+                // Class implementing the Dog interface
+                class Labrador implements Dog {
+                    public void eat() {
+                        System.out.println("Dog is eating");
+                    }
+                    public void play() {
+                        System.out.println("Dog is playing");
+                    }
+                    public void bark() {
+                        System.out.println("Dog is barking");
+                    }
+                }
+                // Main class
+                public class Main {
+                    public static void main(String[] args) {
+                        Labrador d = new Labrador();
+                        d.eat();
+                        d.play();
+                        d.bark();
+                    }
+                }
+
+
+    3. An Interface Can Be Empty and Is Known as a Marker or Tagged Interface
+    Explanation:
+    An interface with no method declarations is known as a marker or tagged interface. These interfaces do not define
+    any behaviors but serve to mark or identify a class as eligible for special processing. This can influence
+    how objects of these classes are handled by other parts of your application or by Java itself.
+
+        Example:
+
+        interface Serializable {
+        }
+
+        class Employee implements Serializable {
+            // Class details
+        }
+    Serializable is a marker interface that indicates objects of Employee can be serialized. It does not contain any methods
+    but serves a critical role in identifying serializable classes.
+
+    4. Interfaces Can Be Used to Achieve Multiple Inheritance in Java
+    Explanation:
+    Java does not support multiple inheritance through classes to avoid the "diamond problem,"
+    where a class inherits from two classes that have conflicting implementations of the same method.
+    However, Java allows a class to implement multiple interfaces, thereby enabling a form of multiple inheritance.
+    Since interfaces only declare methods without defining them, this approach avoids ambiguity and conflict.
+
+    Key Points:
+    1. Interfaces cannot be instantiated, but their reference variables can point to objects of classes that implement the interface.
+    2. A class implements an interface, and an interface can extend another interface.
+    3. A marker interface has no methods and is used to mark classes for special processing.
+    4. A class can implement multiple interfaces, enabling multiple inheritance.
+
+    Conclusion:
+    Interfaces are really helpful for making Java programs more flexible and easy to expand.
+    They allow different classes to follow the same basic rules, but each class can choose how
+    to do things its own way. This keeps the code organized and easy to change. Interfaces also
+    make it possible for classes to get features from more than one source and allow them to work in different ways at the same time

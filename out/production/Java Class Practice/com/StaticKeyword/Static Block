@@ -1,0 +1,52 @@
+# Static Blocks
+    So you’ve already learned about static variables (those shared kids in the class) and static methods (those overachievers who don’t wait for objects).
+    Now, meet the most underrated, low-key heroes of Java — static blocks.
+
+    Let’s say you’re building a Java program for your school’s student app. You want to show a welcome message as soon as the app starts,
+    or maybe you want to set a value for a static variable after doing a little logic. You could write this in the main() method…
+    but that’s like putting your intro inside the main drama — it just feels messy.
+
+    So how can you run setup code even before the main() method starts running?
+    That’s where the static block steps in quietly and does the job. 🛠️✨
+
+Q1. What Exactly Is a Static Block?
+    It’s a block of code that Java runs automatically when your class is loaded into memory. And guess what?
+    You don’t have to call it. You don’t even need an object. It’s like that one student who shows up early,
+    sets up all the chairs, wipes the board, sharpens everyone’s pencils… and disappears before anyone notices.
+
+Standard Definition:
+    A static block in Java is a block of code written inside static { }. It runs one time when the class is loaded by the Java Virtual Machine (JVM).
+    You don’t call it. It runs on its own.
+
+    Here’s what a static block looks like:
+        static {
+            // setup code here
+        }
+
+    Java sees this block and says,
+        “Need to run some setup before anything else? Java uses the static block to do that — no extra steps needed.”
+
+Key Takeaways:
+    1. A static block runs once, when the class is loaded
+    2. It runs before the main() method
+    3. You don’t need to call it
+    4. It’s used to initialize static variables or do one-time setup
+    5. It cannot access non-static (instance) members
+    6. You can have more than one static block — and they run in the order they appear
+
+Common Interview Questions:
+
+    Q1. When is a static block executed?
+        When the class is loaded, before the main() method or object creation.
+
+    Q2. Can a class have more than one static block?
+        Yes. If there are multiple static blocks, they run in the order they appear in the code.
+
+    Q3. Can you use instance variables inside a static block?
+        No. Static blocks can only access static members because no object exists when it runs.
+
+    Q4. Why do we use static blocks?
+        To initialize static variables using logic, show startup messages, or do one-time setup when the class starts.
+
+    Q5. Is it necessary to have a static block in a class?
+        No. It's optional. Use it only if you need to run setup code before anything else.

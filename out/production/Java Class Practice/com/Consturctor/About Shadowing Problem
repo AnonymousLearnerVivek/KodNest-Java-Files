@@ -1,0 +1,72 @@
+# The shadowing problem
+    When you’re learning object-oriented programming in Java, one thing that often causes confusion is the shadowing problem.
+    This happens when a local variable (like a parameter in a method or constructor) has the same name as an instance variable of the class.
+
+    It may not cause any errors, but it can break your program in a sneaky way — making it hard to spot the issue. Let’s understand this with a simple example.
+
+Q1. What Is Variable Shadowing? 🤔
+
+    Variable shadowing happens when a variable declared inside a method or constructor has the same name as a variable defined in the class.
+
+    In such a case, Java gives priority to the local variable, which means the class-level (instance) variable is hidden or “shadowed.”
+
+    So if you try to set a value inside the constructor using the same name, it won’t actually change the class variable — it just updates the local one.
+
+# Key Takeaways:
+    1. Variable shadowing happens when a local variable (like a method or constructor parameter) has the same name as an instance variable in the class.
+    2. In such cases, Java uses the local variable instead of the instance variable — so the actual class variable is ignored or “shadowed.”
+    3. Shadowing does not give an error, but your object might not behave as expected because the real variable doesn’t get the right value.
+    4. This is a common mistake when writing constructors that assign values to instance variables.
+    5. Always check for shadowing if your object values are showing null or not updating as expected.
+    6. Shadowing is a logic-level problem, not a syntax-level problem — so it may go unnoticed until you see the wrong output.
+
+# Common Interview Questions & Answers 💬
+
+    Q1. What is variable shadowing in Java?
+        Variable shadowing happens when a local variable (like a parameter in a method or constructor) has the same name as an instance variable.
+        The local variable hides or “shadows” the instance variable within that scope.
+
+    Q2. What is the result of variable shadowing in constructors?
+        If you try to assign a value using variable = variable;, Java uses the local variable (parameter),
+        so the assignment doesn't update the instance variable. The class variable remains unchanged (like null or 0), which causes incorrect behavior in the program.
+
+    Q3. Does variable shadowing give a compile-time error?
+        No, and that’s what makes it tricky. Java doesn’t show any error, but the code silently fails to do what you intended.
+        The object is created with missing or wrong data.
+
+    Q4. How do you fix variable shadowing?
+        Use the this keyword to refer to the class-level (instance) variable. For example: this.color = color;
+        clearly tells Java to assign the parameter to the instance variable.
+
+    Q5. Can shadowing happen outside constructors?
+        Yes. Shadowing can happen in any method or block where a local variable or parameter has the same name as a class or global variable.
+
+# Solution for Shadowing Problem
+
+# Summary 📝:
+
+    1. The this keyword is used to refer to the current object in Java
+    2. It helps solve the shadowing problem, where a parameter name hides the instance variable
+    3. this.variable = parameter; is the correct way to assign values when names are the same
+    4. Without this, your object’s data might not get set properly
+    5. It makes your code easier to read, write, and understand
+    6. this is your way of telling Java: “Use the variable that belongs to this object”
+
+# Common Interview Questions and Answers 💬
+
+    Q1. What does the this keyword do in Java?
+        It refers to the current object. It’s used to access instance variables and methods from within the class.
+
+    Q2. Why do we use this in constructors?
+        We use it when the constructor parameters have the same names as instance variables. It helps avoid confusion and assign the correct values.
+
+    Q3. What happens if we don’t use this when names are the same?
+        Java uses the local variable (parameter), and the instance variable stays unchanged. This leads to bugs like uninitialized variables (null values).
+
+    Q4. Can we use this outside methods or constructors?
+        No. this can only be used inside instance methods or constructors — not in static methods or outside the class.
+
+    Q5. Is using this a must in all cases?
+        No. It’s only needed when there’s a naming conflict. But using this is a good habit for clarity.
+
+

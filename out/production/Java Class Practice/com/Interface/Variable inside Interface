@@ -1,0 +1,71 @@
+# Variables in an Interface
+    Let's take a closer look at how variables work in an interface and what makes them different from variables in regular classes.
+
+# Variables in Interfaces Are Constant:
+    In an interface, any variable you declare is automatically a constant. This means you cannot change
+    the value of a variable once it’s set. In Java, this is done by default, as every variable
+    in an interface is implicitly public, static, and final.
+
+        1. Public: The variable is accessible from anywhere in the program.
+        2. Static: It belongs to the interface itself, not any particular instance of a class.
+        3. Final: The variable’s value cannot be changed after it’s set.
+
+Q1. Why Are Variables in an Interface Constant?
+    The reason variables in an interface are always constant is that interfaces are meant to define rules
+    and contracts, not behavior or data. By making the variables constant, we ensure that the rules set
+    by the interface are consistent across all classes that implement the interface.
+
+Q2. How to Use Variables in an Interface
+    Since the variables in an interface are constants, we don’t need to create an object of the interface
+    to use them. You can directly access the variable using the interface name (although in practice,
+    you often see it used directly in the implementing class).
+
+        Example:
+        interface Vehicle {
+            int MAX_SPEED = 120; // Constant variable
+        }
+
+        class Car implements Vehicle {
+            public void displaySpeed() {
+                // Accessing the constant variable directly
+                System.out.println("The maximum speed for this car is: " + MAX_SPEED + " km/h");
+            }
+        }
+    In this example, the Car class does not need to create an instance of the Vehicle interface
+    to access MAX_SPEED. It can directly use the variable from the interface.
+
+Q3. Can We Change the Value of Variables in an Interface?
+    No, variables in interfaces are final and cannot be changed once they are defined.
+    If you try to change a variable’s value in your class, you will get a compilation error.
+
+# Key points to remember:
+    1. Variables in an interface are constants (implicitly public, static, and final).
+    2. They define rules and provide shared values that can be used across all implementing classes.
+    3. You cannot change the value of a variable once it’s set in the interface.
+    4. The variable is accessible directly without creating an object of the interface.
+
+# Common Interview Questions and Answers
+
+    1. What is the role of variables in an interface?
+    Answer: In an interface, variables are constants. They are implicitly public, static, and final, meaning their
+            values cannot be changed once assigned. They provide shared values across all classes that implement
+            the interface, ensuring consistency.
+
+    2. Can we change the value of a variable in an interface?
+    Answer: No, variables in an interface are final, which means their value cannot be changed. If you try to change
+            the value of a variable from an interface in a class, you will get a compilation error.
+
+    3. What happens if we try to instantiate an interface directly?
+    Answer: You cannot create an instance of an interface directly. Interfaces are abstract types that define a
+            contract of methods but don’t contain any data or behavior. Instead, you create a reference variable
+            of the interface type and assign it to an object of a class that implements the interface.
+
+    4. How can we use interface variables in our code?
+    Answer: Interface variables are constants and can be accessed directly by any class that implements the interface,
+            without creating an instance of the interface. Since the variables are static and final, they are shared
+            across all classes implementing the interface and can be used wherever needed.
+
+    5. What is the benefit of using interface variables?
+    Answer: Using variables in an interface allows you to define global constants that remain consistent across all
+            classes implementing the interface. This is useful for maintaining uniform values (like a speed limit or tax rate)
+            throughout the application, making the code easier to manage and maintain.

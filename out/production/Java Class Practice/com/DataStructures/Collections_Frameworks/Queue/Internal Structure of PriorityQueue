@@ -1,0 +1,70 @@
+# Internal Structure of PriorityQueue
+Q1. What Is Inside a PriorityQueue?
+    Java’s PriorityQueue is built using a special kind of structure called a min-heap.
+    Don’t worry — you don’t need to understand complex math to get it. Just think of
+    it as a smart list that always keeps the smallest (or most important) item at the top.
+
+Q2. What Exactly Is a Min-Heap?
+    Let’s say you’re running a help desk. Students walk in with different problems:
+        1. One forgot their password
+        2. One has a question about a course
+        3. One can’t log in at all
+    Clearly, the login issue is more urgent than a simple question. But what if the student with the question arrived first?
+
+    That’s where the min-heap comes in. It helps Java serve the most important item first, even if it didn’t arrive first.
+    In simple terms, it’s a way for Java to keep the "most urgent" item at the top — ready to be handled immediately.
+
+Q3. How the PriorityQueue Works Behind the Scenes
+    When you use a PriorityQueue, you’re not just working with a regular list.
+    Java is doing a lot in the background — let’s break it down step-by-step.
+
+    1. Adding a Task:
+        When you add a new task to the queue:
+            1. Java puts it in the next available spot in a hidden list
+            2. It checks if the new task is more important than others above it
+            3. If it is, it moves it up — this is often called bubbling up, but you don’t need to remember the term
+
+    2. Removing a Task
+        When you remove the most important task:
+            1. Java takes out the item at the top
+            2. Then it moves the last item to the top spot temporarily
+            3. It rechecks the order and moves that item down if needed, until everything is in the right place
+        You don’t see any of this happening, but it ensures that the next "most important" item is always ready to go.
+
+Q4. Why Java Uses a Min-Heap for PriorityQueue
+    A min-heap is designed to keep the smallest (or most important) item on top.
+    That makes it perfect for a PriorityQueue.
+
+    When you say:
+            pq.add(3); pq.add(1); pq.add(2);
+    Java doesn’t care which was added first. It automatically keeps the smallest number (1) at the top
+    because it assumes that lower numbers = higher priority.
+
+    If your idea of “important” is different (like higher numbers being more important),
+    Java lets you define your own rules — but by default, it uses the smallest number as the top priority.
+
+# Key points to remember:
+    1. PriorityQueue uses a min-heap, a smart structure that keeps the most important item on top.
+    2. You don’t need to sort anything — Java does the work for you.
+    3. Adding and removing tasks is quick, even when the list is large.
+    4. By default, smaller values = higher priority — but you can change that if needed.
+
+# Common Interview Questions and Answers:
+    Q1. How does a PriorityQueue decide what’s “important”?
+    Answer: By default, Java assumes smaller numbers have higher priority. So if you add 3, 1, and 2,
+            Java will treat 1 as the most important and handle it first. If you want different behavior
+            (like higher numbers = more important), you can create your own rules.
+
+    Q2. What is a min-heap and how is it used in PriorityQueue?
+    Answer: A min-heap is a hidden system Java uses to keep the smallest item on top. Every time you
+            add or remove something, Java automatically moves the items around to make sure the most
+            important one is always ready to be served first.
+
+    Q3. Is the PriorityQueue sorted like a list?
+    Answer: No. Java does not sort the entire list. It only makes sure the most important item is at
+            the top. So if you print the whole queue, it might not look sorted — but the first item
+            is always the one with the highest priority.
+
+    Q4. Can I change what “priority” means in a PriorityQueue?
+    Answer: Yes! By default, smaller numbers are treated as more important. But if you want the opposite
+            (like higher numbers first), you can give Java your own rule using something called a comparator.
