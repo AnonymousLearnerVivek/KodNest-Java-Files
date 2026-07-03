@@ -12,6 +12,7 @@
         <module name="EMS" />
         <module name="Project1" />
         <module name="ReadOperationUsingHibernate" />
+        <module name="OneToMany" />
         <module name="DeleteOperationUsingHibernate" />
         <module name="UpdateOperationUsingHibernate" />
       </profile>
