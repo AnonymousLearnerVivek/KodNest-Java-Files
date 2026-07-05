@@ -1,1 +1,94 @@
 # Entity Mapping in Hibernate:
+
+    When developing Java applications that use databases, one of the most common challenges developers face is how to connect
+    Java classes with database tables. This is where Hibernate comes in. Hibernate is a powerful tool that simplifies this connection.
+
+    One of the core features of Hibernate is Entity Mapping. This process allows you to map Java objects directly to database tables
+    so that you can store and retrieve data in a seamless way, without writing complex SQL queries.
+
+    This topic explains Entity Mapping in Hibernate step by step for absolute beginners.
+
+Q1. What is Entity Mapping in Hibernate?
+    Entity Mapping in Hibernate refers to the process of creating a link between Java classes and database tables.
+    In simple terms, it tells Hibernate:
+        1. Which Java class represents which table in the database.
+        2. Which fields in the Java class map to which columns in the table.
+    For example, if you have a Java class called Student, Entity Mapping will connect it to a database table called STUDENTS.
+
+    This mapping allows you to work with Java objects in your program, and Hibernate will automatically manage storing and retrieving
+    these objects from the database.
+
+Q2. Why Do We Need Entity Mapping?
+    Entity Mapping solves many common problems in database-driven applications:
+        1. Avoiding Repeated SQL: Without Hibernate, you would need to write SQL queries every time you want to save or fetch data.
+                                  With Entity Mapping, Hibernate generates these queries for you.
+        2. Working with Objects: Instead of dealing with rows and columns directly, you can work with Java objects.
+        3. Easier Maintenance: Since mappings are handled in one place, making changes becomes simpler and safer.
+        4. Consistency: It ensures that your Java code and database remain in sync.
+
+# Types of Mapping in Hibernate:
+    When working with Hibernate, you often deal with relationships between Java classes and tables. These relationships
+    are similar to real-world connections and can be grouped into four main types.
+
+    1. One-to-One Mapping
+        In a One-to-One relationship, one Java object is associated with exactly one record in another table.
+        Example: Each student in a school has one unique ID card, and each ID card belongs to one student.
+        Representation:
+            1. Student → IDCard
+        Hibernate uses the @OneToOne annotation to define this relationship.
+
+    2. One-to-Many Mapping
+        In a One-to-Many relationship, one Java object can be associated with multiple records in another table.
+        Example: A teacher teaches many students.
+        Representation:
+            1. Teacher → Student1, Student2, Student3
+        Hibernate uses the @OneToMany annotation for this relationship.
+
+    3. Many-to-One Mapping
+        This is the reverse of One-to-Many. In this case, multiple Java objects are associated with a single record in another table.
+        Example: Many houses belong to one village.
+        Representation:
+            1. House1, House2, House3 → Village
+        Hibernate uses the @ManyToOne annotation here.
+
+    4. Many-to-Many Mapping
+        In a Many-to-Many relationship, multiple records in one table are associated with multiple records in another table.
+        Example: Students can join multiple clubs, and each club can have multiple students.
+        Representation:
+            1. Student1 ↔ Club1
+            2. Student1 ↔ Club2
+            3. Student2 ↔ Club1
+        Hibernate uses the @ManyToMany annotation to define this relationship.
+
+# Common Annotations Used for Entity Mapping:
+
+    Hibernate uses annotations to define how Java classes and fields should map to tables and columns in the database.
+    Some of the most commonly used annotations are:
+        1. @Entity: Marks a class as a Hibernate Entity (a class that should map to a table).
+        2. @Id: Marks the primary key field in the class.
+        3. @Table: Specifies the name of the table (optional if the table name matches the class name).
+        4. @Column: Defines the details of a column mapping.
+        5. @OneToOne: Defines a One-to-One relationship.
+        6. @OneToMany: Defines a One-to-Many relationship.
+        7. @ManyToOne: Defines a Many-to-One relationship.
+        8. @ManyToMany: Defines a Many-to-Many relationship.
+    These annotations help Hibernate understand how to connect your Java classes and their fields with database tables and columns.
+
+# Key Points to Remember:
+    1. Entity Mapping is a core concept in Hibernate for connecting Java classes to database tables.
+    2. Annotations like @Entity, @Id, and @OneToMany are essential for mapping.
+    3. There are four main types of relationships: One-to-One, One-to-Many, Many-to-One, and Many-to-Many.
+    4. Proper Entity Mapping is critical for building efficient and maintainable applications.
+
+# Common Interview Questions and Answers:
+    Q1: What is an Entity in Hibernate?
+     A: An Entity is a Java class that maps to a table in the database using the @Entity annotation.
+
+    Q2: Why is Entity Mapping important?
+    A: It allows developers to work with Java objects directly instead of writing SQL queries, simplifying database operations.
+
+    Q3: What annotation is used for a One-to-Many relationship?
+    A: The @OneToMany annotation is used to define a One-to-Many relationship between entities.
+
+    Q4: Can we use Hibernate without Entity Mapping?
+    A: No, Entity Mapping is essential in Hibernate for connecting Java classes and database tables.

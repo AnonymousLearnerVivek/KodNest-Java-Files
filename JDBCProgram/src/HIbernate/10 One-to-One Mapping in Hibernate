@@ -1,0 +1,116 @@
+# One-to-One Mapping in Hibernate:
+    Imagine you are running a small school in your village. You want to keep track of every student’s details.
+    But there’s one more thing you need to manage: each student’s unique home address.
+
+    Think about it like this:
+        1. Each student has one address.
+        2. And each address belongs to one student.
+
+    Wouldn’t it be great if your computer could store this information in a neat and connected way,
+    just like you would write it in your notebook?
+
+    This is where Hibernate helps. Hibernate makes it easy to connect Java classes and database tables. And the process
+    of linking one Java class to another so that one object connects to one other object is called One-to-One Mapping.
+
+    Q1. What is One-to-One Mapping?
+    Standard Definition:
+        One-to-One Mapping in Hibernate is a relationship between two entities where each record in one table is associated
+        with exactly one record in another table.
+        In simple terms:
+            1. It means linking two tables in such a way that:
+            2. One row in the first table matches one row in the second table.
+            3. Both rows are connected directly.
+        Example:
+            1. One student → One home address.
+            2. One home address → One student.
+        This setup allows Hibernate to save and fetch data for both entities together,
+        without requiring you to write complex SQL queries manually.
+
+# Key Points to Remember:
+    1. One-to-One Mapping links two entities so that one record in the first table is connected to exactly one record in the second table.
+    2. The @OneToOne annotation is used to define this relationship in the Java class.
+    3. The @JoinColumn annotation specifies which column acts as the foreign key to link the tables.
+        EXAMPLE: @OneToOne(cascade = CascadeType.ALL)
+                 @JoinColumn(name = "address_id", referencedColumnName = "id")
+                 private Address address;
+    4. Hibernate simplifies data operations by allowing you to work with Java objects rather than writing SQL queries manually.
+    5. Setting cascade = CascadeType.ALL ensures that when you save a KodnestStudent, the linked Address is also saved automatically.
+
+# Common Interview Questions and Answers:
+    Q1: What is One-to-One Mapping in Hibernate?
+    Answer: One-to-One Mapping is a relationship between two entities where each record in one table is connected to exactly
+            one record in another table. In Hibernate, we use the @OneToOne annotation to define this relationship.
+
+    Q2: Which annotation is used to specify the foreign key column in One-to-One Mapping?
+    Answer: The @JoinColumn annotation is used to specify the foreign key column that connects the two tables.
+
+    Q3: Why do we use cascade = CascadeType.ALL in One-to-One Mapping?
+    Answer: We use cascade = CascadeType.ALL to ensure that when we save, update, or delete the parent entity (like KodnestStudent),
+            the changes are automatically applied to the related entity (like Address).
+
+    Q4: Can One-to-One Mapping be bidirectional in Hibernate?
+    Answer: Yes, One-to-One Mapping can be bidirectional, where both entities are aware of their relationship.
+            This is achieved by using the mappedBy attribute in the @OneToOne annotation.
+
+    Q5: What happens if we don’t use @JoinColumn in One-to-One Mapping?
+    Answer: If we don’t use @JoinColumn, Hibernate will create an additional table to maintain the relationship between
+            the two entities, which may not be desirable in most cases.
+
+    Q6: In Hibernate, which annotation is used to represent a bidirectional relationship where a parent entity has
+        multiple child entities, and each child entity references the parent?
+    Answer: 1. @OneToMany with @ManyToOne
+            2. A bidirectional One-to-Many relationship is represented using @OneToMany on the parent entity and
+               @ManyToOne on the child entity. This ensures the mapping is properly connected in both directions,
+               allowing navigation from parent to child and vice versa.
+
+    Q7: Why can poorly designed Many-to-Many mappings in Hibernate lead to performance issues?
+    Answer: 1. Hibernate may generate excessive join queries, fetching unnecessary data.
+            2. Many-to-Many relationships involve join tables, and Hibernate might generate large and complex join queries
+               if mappings are not optimized (e.g., using lazy loading and careful fetch strategies). This can lead to
+               fetching more data than necessary, impacting performance.
+
+    Q8: In Hibernate, a Many-to-Many relationship is represented in the database using an ___________ table.
+    Answer: 1. intermediate table
+            2. A Many-to-Many relationship in Hibernate is represented in the database using an intermediate table
+               that stores foreign keys referencing both entities involved in the relationship.
+
+    Q9: In a One-to-One mapping in Hibernate, what happens if the @JoinColumn annotation is missing on the owning side?
+    Answer: 1. The relationship will not be established, and data insertion will fail.
+            2. The @JoinColumn annotation is critical in a One-to-One relationship to specify the foreign key in the owning table.
+               Without it, Hibernate cannot establish the link between the entities, leading to failed insertions.
+
+   Q10: Which cascade type should be used in a One-to-One mapping to ensure that deleting a parent entity also deletes the associated child entity?
+   Answer: 1. CascadeType.REMOVE
+           2. The CascadeType.REMOVE cascade type ensures that when the parent entity is deleted, the associated
+              child entity is also deleted from the database.
+
+   Q11: In a One-to-One relationship with Hibernate, how can you optimize performance for large datasets while
+        avoiding unnecessary loading of related entities?
+   Answer: 1. Use @OneToOne(fetch = FetchType.LAZY) and access related data only when required.
+           2. By default, Hibernate loads One-to-One relationships eagerly. Using FetchType.LAZY ensures that
+              related data is fetched only when explicitly accessed, optimizing performance for large datasets.
+
+   Q12: In a One-to-One mapping using Hibernate, what is the significance of specifying referencedColumnName in the @JoinColumn annotation?
+   Answer: 1. It maps the foreign key column in the owning table to a specific column in the referenced table.
+           2. The referencedColumnName in @JoinColumn is used to specify the exact column in the referenced table
+              (typically the primary key) to which the foreign key column in the owning table should be mapped.
+              This is essential for establishing the correct relationship between entities.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

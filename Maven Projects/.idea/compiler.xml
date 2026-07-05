@@ -15,6 +15,7 @@
         <module name="OneToMany" />
         <module name="DeleteOperationUsingHibernate" />
         <module name="UpdateOperationUsingHibernate" />
+        <module name="ManyToOne" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
