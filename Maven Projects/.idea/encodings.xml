@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/EMS/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/InsertOperationUsingHIbernateProgram/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/InsertOperationUsingHIbernateProgram/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ManyToMany/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ManyToMany/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ManyToOne/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ManyToOne/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OneToMany/src/main/java" charset="UTF-8" />
