@@ -14,8 +14,8 @@
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
 
-        <mapping class="com.kodnest.ManyToOne.House"/>
-        <mapping class="com.kodnest.ManyToOne.Village"/>
+        <mapping class="com.kodnest.PracticeProject.Products"/>
+        <mapping class="com.kodnest.PracticeProject.Customers"/>
 
     </session-factory>
 </hibernate-configuration>

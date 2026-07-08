@@ -1,0 +1,92 @@
+# HQL - Hibernate Query Language:
+
+    HQL allows you to write queries in a way that feels natural in Java. It doesn’t work with tables and columns like SQL does.
+    Instead, it works with Java objects and their fields, making your code cleaner, more readable, and database-independent.
+
+Q1. What is HQL?
+Standard Definition
+    Hibernate Query Language (HQL) is an object-oriented query language that works with Hibernate. It allows developers
+    to write query and manipulate data using Java entity classes and fields instead of database tables and columns.
+
+Simple Explanation:
+    Think of HQL as a language that lets you ask your database questions like: “Show me all Student objects where marks is greater than 75.”
+
+    Behind the scenes, Hibernate converts this HQL query into SQL, executes it on the database, and returns the results as Java objects.
+
+# Example Code:
+        public class HQLExample {
+            public static void main(String[] args) {
+                // Load Hibernate configuration
+                SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
+                // Open session
+                Session session = sessionFactory.openSession();
+
+                // Begin transaction
+                Transaction transaction = session.beginTransaction();
+
+                // Write HQL query
+                String hql = "FROM Student WHERE marks > 75";
+                Query<Student> query = session.createQuery(hql, Student.class);
+
+                // Execute query and fetch results
+                List<Student> students = query.getResultList();
+
+                // Display results
+                for (Student student : students) {
+                    System.out.println("Student Name: " + student.getName());
+                    System.out.println("Marks: " + student.getMarks());
+                    System.out.println("-----------------------------");
+                }
+
+                // Commit transaction
+                transaction.commit();
+
+                // Close session
+                session.close();
+                sessionFactory.close();
+            }
+        }
+
+# Key Points to Remember:
+    1. HQL vs SQL: HQL uses Java classes and fields; SQL uses tables and columns.
+    2. Case Sensitivity: Entity names and field names in HQL are case-sensitive.
+    3. Database Independence: HQL works across different databases without changing the query.
+    4. Object-Oriented Approach: You work with Java objects, not raw data rows.
+
+# Common Interview Questions:
+
+    Q1. What is HQL in Hibernate?
+        HQL (Hibernate Query Language) is an object-oriented query language that allows you to interact
+        with data using Java entity classes and fields.
+
+    Q2. How is HQL different from SQL?
+        HQL works with Java objects and is database-independent. SQL works directly with tables and columns
+        and is tied to the database structure.
+
+    Q3. Can we use joins in HQL?
+        Yes! HQL supports inner joins, left joins, and more.
+
+    Q4. Is HQL case-sensitive?
+        Yes, entity and field names in HQL are case-sensitive.
+
+    Q5. Which of the following is a valid HQL query to fetch all students scoring above 75 marks?
+        1. FROM Student WHERE marks > 75
+        2. In HQL, queries are written using class names (e.g., Student) and field names (e.g., marks).
+           There’s no need for SELECT *, as HQL assumes you want objects.
+
+    Q6. When executing the HQL query FROM Student WHERE marks > 75, what type of object does the result contain?
+        1. A list of Student objects.
+        2. HQL queries return a list of objects corresponding to the entity class (e.g., Student),
+           making it easier to work with the data in Java.
+
+    Q7. What is a key advantage of using HQL over traditional SQL in Hibernate?
+        1. HQL abstracts table and column names in favor of Java class and field names.
+        2. HQL simplifies database interaction by allowing developers to write queries using Java class and field names,
+           eliminating the need to directly reference table and column names.
+
+
+
+
+
+

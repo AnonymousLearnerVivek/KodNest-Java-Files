@@ -16,8 +16,10 @@ public class Student {
     String name;
 
     @ManyToMany
-    @JoinTable(name = "student_course_details", joinColumns = @JoinColumn(name = "sid"),
-                inverseJoinColumns = @JoinColumn(name = "cid"))
+    @JoinTable(name = "student_course_details", // Bridge table name
+               joinColumns = @JoinColumn(name = "sid"), // Foreign key for Student
+               inverseJoinColumns = @JoinColumn(name = "cid") // Foreign key for Course
+              )
     List<Course> courses;
 
     public Student() {

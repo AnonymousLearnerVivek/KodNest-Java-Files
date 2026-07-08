@@ -15,7 +15,7 @@ public class Course {
     @Column
     String name;
 
-    @ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL) // This tells Hibernate that Student owns the relationship
     List<Student> students;
     public Course() {
 
