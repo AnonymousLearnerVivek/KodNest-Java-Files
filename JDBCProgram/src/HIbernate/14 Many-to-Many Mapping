@@ -1,0 +1,65 @@
+# Many-to-Many Mapping:
+
+    In the real world, we often come across relationships where many things are connected to many others. Let’s take an example:
+    Imagine a school where students can join multiple clubs—like a sports club, science club, and music club. At the same time,
+    each club can have multiple students as its members.
+        1. One student → Can join many clubs
+        2. One club → Can have many students
+    This type of relationship is called Many-to-Many.
+
+    In Hibernate, Many-to-Many Mapping helps us represent these connections between Java classes and database tables in a simple
+    and organized way. Instead of manually creating intermediate tables and writing complex SQL join queries,
+    Hibernate makes it easy with annotations.
+
+Q1. What is Many-to-Many Mapping?
+Standard Definition
+    Many-to-Many Mapping in Hibernate is a relationship where multiple records in one table are associated
+    with multiple records in another table.
+
+Simple Explanation
+    Think of it like:
+        1. Many students → Join many clubs
+        2. Many clubs → Have many students
+    Hibernate handles this by creating a bridge table in the database that connects both entities.
+    This bridge table holds the links between students and clubs.
+
+    But with Hibernate:
+        1. You just define the relationship using annotations like @ManyToMany.
+        2. Hibernate automatically manages the bridge table and relationships for you.
+        3. You work directly with Java objects instead of worrying about SQL queries.
+
+Q2. What’s Happening Here?
+    1. @ManyToMany: Defines the Many-to-Many relationship.
+    2. @JoinTable (in Student): Specifies the bridge table student_club and maps the foreign keys.
+    3. mappedBy = "clubs" (in Club): Points back to the clubs property in the Student class,
+       so Hibernate understands the relationship is bidirectional.
+
+# Key Points to Remember:
+    1. Many-to-Many Mapping: Links many records in one table to many records in another table through a bridge table.
+    2. Annotations Used:
+        1. @ManyToMany: Defines the relationship between the two entities.
+        2. @JoinTable: Specifies the name of the bridge table and maps foreign keys.
+    3. Bridge Table: In our project, student_club stores student_id and club_id to maintain connections.
+
+# Common Interview Questions and Answers:
+
+    Q1. What is Many-to-Many Mapping in Hibernate?
+    Answer: Many-to-Many Mapping is a relationship where multiple records in one table are associated with multiple records in another table.
+            Hibernate manages this using a bridge table and the @ManyToMany annotation.
+
+    Q2. How does Hibernate handle Many-to-Many relationships in the database?
+    Answer: Hibernate creates an intermediate (bridge) table that contains foreign keys from both tables to manage the association.
+            For example, in our case, the student_club table holds student_id and club_id.
+
+    Q3. What is the role of @JoinTable in Hibernate?
+    Answer: The @JoinTable annotation specifies:
+                1. The name of the bridge table.
+                2. Which columns are foreign keys in that table for each entity.
+
+    Q4. What happens if we don’t specify mappedBy in the inverse entity?
+    Answer: If mappedBy is not used, Hibernate will consider both entities as owners of the relationship,
+            which may result in duplicate entries in the bridge table.
+
+    Q5. Can a Many-to-Many relationship be unidirectional?
+    Answer: Yes. In a unidirectional mapping, only one entity knows about the relationship. However,
+            bidirectional mapping is more common because it allows navigation from both sides.

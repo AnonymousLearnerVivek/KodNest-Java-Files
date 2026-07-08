@@ -1,1 +1,266 @@
 # One-to-Many Mapping in Hibernate:
+
+    In any real-world application, we often see relationships where one entity is connected to many others.
+
+    Think about a student in a school:
+        1. A student can enroll in multiple courses.
+        2. Each course, in turn, belongs to a single student.
+
+    This type of relationship is known as One-to-Many.
+
+    In Hibernate, One-to-Many Mapping allows us to link one Java object to multiple related objects and store them neatly in the
+    database. Instead of writing complicated SQL queries, Hibernate helps manage these relationships through simple annotations.
+
+    In this guide, we will build a small project step by step to understand how One-to-Many Mapping works in Hibernate.
+
+Q1. What is One-to-Many Mapping?
+Standard Definition
+    One-to-Many Mapping in Hibernate is a relationship where a single record in one table is associated with multiple records in another table.
+
+Q2. Why Use One-to-Many Mapping?
+    If we were doing this manually in a database:
+    We would have to handle foreign keys, join queries, and maintain consistency.
+
+    Hibernate simplifies this:
+        1. You work with Java objects directly.
+        2. Hibernate takes care of database operations.
+        3. Relationships are defined once and managed automatically.
+
+Example Code :
+    Step 1: Set Up the Database
+            To store information about students and the courses they take, we need to set up some tables in the MySQL database.
+            Use this simple command to create the database:
+
+                CREATE DATABASE KodnestDb;
+                USE KodnestDb;
+
+                CREATE TABLE kodneststudent (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(50),
+                    email VARCHAR(50),
+                    phone VARCHAR(15)
+                );
+                CREATE TABLE course (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    course_name VARCHAR(50),
+                    student_id INT,
+                    FOREIGN KEY (student_id) REFERENCES kodneststudent(id)
+                );
+
+Step 5: Define Entity Classes
+        5.1. Course Entity
+              The Course class is like the notebook where we keep details about each course that a student is taking:
+
+                        package com.kodnest.entity;
+                        import jakarta.persistence.*;
+
+                        @Entity
+                        @Table(name = "course")
+                        public class Course {
+                            @Id
+                            @GeneratedValue(strategy = GenerationType.IDENTITY)
+                            private int id;
+
+                            @Column(name = "course_name", length = 50, nullable = false)
+                            private String courseName;
+
+                            // Many courses can belong to one student
+                            @ManyToOne
+                            @JoinColumn(name = "student_id")
+                            private KodnestStudent student;
+
+                            // Getters and Setters
+                            public int getId()
+                            {
+                            return id;
+                            }
+                            public void setId(int id)
+                             {
+                             this.id = id;
+                              }
+                            public String getCourseName()
+                            {
+                            return courseName;
+                             }
+                            public void setCourseName(String courseName)
+                            {
+                            this.courseName = courseName;
+                            }
+                            public KodnestStudent getStudent()
+                            {
+                            return student;
+                            }
+                            public void setStudent(KodnestStudent student)
+                            {
+                            this.student = student;
+                             }
+                        }
+        5.2. KodnestStudent Entity
+             The KodnestStudent class is where we keep all the information about a student:
+                        package com.kodnest.entity;
+                        import jakarta.persistence.*;
+                        import java.util.List;
+
+                        @Entity
+                        @Table(name = "kodneststudent")
+                        public class KodnestStudent {
+                            @Id
+                            @GeneratedValue(strategy = GenerationType.IDENTITY)
+                            private int id;
+
+                            @Column(length = 50)
+                            private String name;
+
+                            @Column(length = 50)
+                            private String email;
+
+                            @Column(length = 15)
+                            private String phone;
+
+                            // One student can have many courses
+                            @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+                            private List<Course> courses;
+
+                            // Getters and Setters
+                            public int getId()
+                            {
+                            return id;
+                            }
+                            public void setId(int id)
+                            {
+                            this.id = id;
+                            }
+                            public String getName()
+                            {
+                            return name;
+                             }
+                            public void setName(String name)
+                            {
+                            this.name = name;
+                            }
+                            public String getEmail()
+                            {
+                            return email;
+                            }
+                            public void setEmail(String email)
+                           {
+                           this.email = email;
+                           }
+                            public String getPhone()
+                            {
+                            return phone;
+                             }
+                            public void setPhone(String phone)
+                            {
+                            this.phone = phone;
+                            }
+                            public List<Course> getCourses()
+                             {
+                             return courses;
+                             }
+                            public void setCourses(List<Course> courses)
+                             {
+                             this.courses = courses;
+                              }
+                        }
+
+Step 6: Write the Main Class (OneToManyExample.java)
+        This is the heart of our program. This class helps us create a student and enroll them in multiple courses:
+
+            package com.kodnest.main;
+
+            import com.kodnest.entity.Course;
+            import com.kodnest.entity.KodnestStudent;
+            import org.hibernate.Session;
+            import org.hibernate.SessionFactory;
+            import org.hibernate.Transaction;
+            import org.hibernate.cfg.Configuration;
+
+            import java.util.ArrayList;
+            import java.util.List;
+
+            public class OneToManyExample {
+                public static void main(String[] args) {
+                    // Create a SessionFactory to connect to the database
+                    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
+                    // Create a new student
+                    KodnestStudent student = new KodnestStudent();
+                    student.setName("Ravi Kumar");
+                    student.setEmail("ravi.kumar@gmail.com");
+                    student.setPhone("9876543210");
+
+                    // Create courses that the student will take
+                    Course course1 = new Course();
+                    course1.setCourseName("Java");
+
+                    Course course2 = new Course();
+                    course2.setCourseName("Spring Boot");
+
+                    // Associate the courses with the student
+                    course1.setStudent(student);
+                    course2.setStudent(student);
+
+                    List<Course> courses = new ArrayList<>();
+                    courses.add(course1);
+                    courses.add(course2);
+                    student.setCourses(courses);
+
+                    // Open a session, begin a transaction, save the student and courses
+                    Session session = sessionFactory.openSession();
+                    Transaction transaction = session.beginTransaction();
+                    session.persist(student);
+                    transaction.commit();
+
+                    System.out.println("Student and associated courses saved successfully!");
+
+                    // Fetch and display the student and courses from the database
+                    KodnestStudent fetchedStudent = session.get(KodnestStudent.class, student.getId());
+                    System.out.println("Fetched Student Details:");
+                    System.out.println("Name: " + fetchedStudent.getName());
+                    System.out.println("Email: " + fetchedStudent.getEmail());
+                    System.out.println("Phone: " + fetchedStudent.getPhone());
+
+                    System.out.println("Courses Enrolled:");
+                    for (Course course : fetchedStudent.getCourses()) {
+                        System.out.println("- " + course.getCourseName());
+                    }
+
+                    session.close();
+                    sessionFactory.close();
+                }
+            }
+
+# Key Points to Remember:
+    1. One-to-Many Mapping connects a single record in one table to multiple records in another table.
+    2. Use @OneToMany in the parent entity (KodnestStudent) and @ManyToOne in the child entity (Course).
+    3. The mappedBy attribute in @OneToMany indicates that the child entity manages the relationship.
+    4. Adding cascade = CascadeType.ALL ensures that changes in the parent entity are automatically applied to the child entities.
+    5. Always configure the database connection correctly in hibernate.cfg.xml to avoid runtime errors.
+
+# Common Interview Questions and Answers:
+
+    Q1: What is One-to-Many Mapping in Hibernate?
+    Answer: One-to-Many Mapping is a relationship where one record in a table is connected to multiple records in another table.
+            In Hibernate, this is achieved using @OneToMany and @ManyToOne annotations.
+
+    Q2: Which annotations are used for One-to-Many Mapping?
+    Answer: 1. @OneToMany: Used in the parent entity to indicate that it has multiple child entities.
+            2. @ManyToOne: Used in the child entity to indicate that it belongs to a single parent entity.
+            3. @JoinColumn: Defines the foreign key column in the child table.
+
+    Q3: What is the use of cascade = CascadeType.ALL?
+    Answer: It ensures that any operation performed on the parent entity (like save or delete) is automatically
+            applied to all related child entities.
+
+    Q4: How does Hibernate know which entity manages the relationship?
+    Answer: By using the mappedBy attribute in @OneToMany, we tell Hibernate that the child entity is responsible for managing the relationship.
+
+    Q5: Can One-to-Many Mapping exist without a foreign key?
+    Answer: No. In the database, the child table must have a foreign key that refers to the parent table to maintain the relationship.
+
+    Q6: What happens if you don’t use mappedBy?
+    Answer: Hibernate will create a join table to manage the relationship, even if it is not required.
+
+    Q7: Can a parent entity have zero child entities in One-to-Many Mapping?
+    Answer: Yes. A parent entity can exist without any related child entities.

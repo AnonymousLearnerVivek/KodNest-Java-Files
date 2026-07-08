@@ -1,0 +1,69 @@
+# Many-to-One Mapping:
+    In real life, we often see situations where many things are connected to one common thing. For example, imagine a village
+    that contains many houses. Each house is part of that village, and while there may be many houses, each one belongs to
+    only one village. This kind of relationship is known as Many-to-One. In Hibernate, Many-to-One Mapping allows us to represent
+    such relationships between Java classes and database tables in a simple and organized way. Instead of manually writing
+    foreign key logic in SQL and managing complex relationships, Hibernate provides annotations that make it easy to handle
+    these connections directly in your Java code.
+
+Q1. What is Many-to-One Mapping?
+Standard Definition
+    Many-to-One Mapping in Hibernate is a relationship where multiple records in one table are associated
+    with a single record in another table.
+
+Simple Explanation:
+    Think of this relationship like:
+        1. Many houses → Belong to one village.
+        2. Many employees → Belong to one department.
+
+    In Hibernate, this means that: Many Java objects (like houses) can point to one Java object (village).
+
+    This mapping is commonly used in real-world applications where a group of child entities belongs to a single parent entity.
+
+# Key Points to Remember:
+    1. What is Many-to-One?: It is a relationship where many child entities (e.g., houses) are associated with one parent entity (e.g., village).
+    2. Hibernate Annotation Used:
+        1. @ManyToOne: Defines the relationship in the child entity.
+        2. @JoinColumn: Specifies the foreign key column in the child table.
+    3. Why Hibernate Handles It Better:
+        1. Automatically manages foreign keys and joins behind the scenes.
+        2. You work with Java objects without worrying about SQL queries.
+    4. Order of Saving Data: Save the parent entity (village) first, then save the child entities (houses).
+    5. Real-World Example:
+        1. Many employees → One department
+        2. Many books → One library
+        3. Many students → One school
+
+# Common Interview Questions & Answers:
+
+    Q1: What is Many-to-One Mapping in Hibernate?
+     A: It is a relationship where multiple child entities are linked to a single parent entity. For example, many houses can
+        belong to one village. Hibernate allows us to map this relationship using @ManyToOne annotation in the child class.
+
+    Q2: How is @ManyToOne different from @OneToMany?
+     A: @ManyToOne is used in the child entity to indicate it belongs to a parent entity.
+        @OneToMany is used in the parent entity to represent a collection of child entities.
+
+    Q3: What happens if you don’t save the parent entity first?
+     A: If the parent entity is not saved before the child, Hibernate may throw an error or fail to set up
+        the foreign key relationship properly.
+
+    Q4: Can you explain a real-world example of Many-to-One Mapping?
+     A: Yes. In a company, many employees belong to one department. Each employee has a foreign key
+        pointing to the department they belong to.
+
+    Q5: How does Hibernate handle foreign keys in Many-to-One Mapping?
+     A: Hibernate automatically generates and manages the foreign key in the child table using the @JoinColumn annotation.
+
+    Q6: In a Many-to-Many relationship using Hibernate, what is the purpose of the @JoinTable annotation?
+     A: 1. To define a mapping table between two entities.
+        2. The @JoinTable annotation specifies the intermediate table (e.g., student_course) that maps the relationships
+           between two entities, such as students and courses.
+
+    Q7: What does it mean when a Many-to-Many relationship in Hibernate is bidirectional?
+     A: 1. Both entities can access each other’s relationship data.
+        2. A bidirectional Many-to-Many relationship allows both entities (e.g., Student and Course) to access the relationship
+           details from each other using getter methods.
+        
+
+
