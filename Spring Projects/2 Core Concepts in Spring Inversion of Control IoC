@@ -1,0 +1,109 @@
+# Core Concepts in Spring: Inversion of Control (IoC):
+    Today we are going to learn one of the most important building blocks of the Spring Framework — something called Inversion of Control,
+    or simply IoC. This concept is what makes Spring smart and helpful in managing your application.
+
+# Let’s Understand with Tea Shop Example:
+    Let us say you are running a small tea shop. Every time a customer comes, you do everything on your own —
+    you boil the water, add tea leaves, pour milk, and serve the tea.
+
+    As the number of customers grows, this becomes difficult. You get tired. You cannot focus on customer service
+    because you are stuck in the kitchen.
+
+    Now imagine you hire a helper. You give the helper instructions once, and from then on, they make the tea whenever needed.
+    You simply focus on attending to your customers, taking feedback, and growing the business.
+
+    That helper is like Spring Framework, and the way it takes over the tea-making responsibility — that is Inversion of Control(IoC).
+
+Q1. What is Inversion of Control?
+    Standard Definition:
+        Inversion of Control (IoC) is a design principle in software development where the control of object creation
+        and dependency management is transferred from the application code to a framework or container.
+
+    In simple words,
+        Inversion of Control means that instead of you creating and managing everything in your Java program,
+        Spring does it for you.
+        In normal Java code, you write something like this:
+            Student s = new Student();
+
+        This means you are in control — you are deciding when and how to create the Student object.
+
+        But with Spring and IoC, you don’t create the object directly. You tell Spring what you need, and
+        it creates and supplies the object when required. This is why it’s called Inversion of Control —
+        the control is now in the hands of the Spring Framework, not you.
+
+# A Real-Life Analogy: School Classroom:
+    Think of a school classroom. Normally, a student who needs a book would go to the library and get it themselves.
+    But in a well-managed classroom, the teacher arranges everything in advance. If a student needs a math book,
+    the teacher hands it to them directly. The student does not need to go fetch it. That’s exactly what IoC does.
+    The student is your class, the book is your required object, and the teacher is Spring. Instead of your class
+    searching and creating objects, Spring gives them to you.
+
+Q2. How Does Spring Achieve IoC?
+    Spring uses something called the IoC Container.
+    Let us imagine another real-life example.
+        You are organizing your college fest. You create a checklist of what you need: stage setup, sound system, food stalls, volunteers.
+        You hand over this checklist to the event coordinator. The coordinator brings in decorators, sound technicians, and stall vendors.
+        You just show up on the day and everything is ready.
+
+    This is how Spring works.
+        1. You give Spring a list of what you need (called configuration).
+        2. Spring reads it and arranges everything (creates objects, connects them).
+        3. You use the services, without worrying about setup.
+
+# The Technique Behind IoC: Dependency Injection
+    Spring uses a technique called Dependency Injection to implement IoC. Let us break this down simply.
+    Dependency means something your class needs. Injection means Spring gives it to you.
+
+    Let us go back to our tea shop. If you need sugar for tea, you don’t go to the market every time.
+    Your helper brings it to your shelf and refills it regularly.
+
+    In programming, if your class needs a DatabaseConnector, you don’t create it with new.
+    Instead, Spring injects it for you. This is Dependency Injection — Spring giving your class what it needs.
+
+# Types of Dependency Injection in Spring
+    1. Constructor Injection: Spring passes the required object through the class constructor.
+        1. Real-life analogy: You give all the ingredients to your tea helper during training.
+                              They learn how to make tea from day one.
+
+    2. Setter Injection: Spring passes the object using a method (a setter method).
+        1. Real-life analogy: You first hire your helper and later give them the recipe in writing.
+                              They start preparing tea based on that.
+
+    3. Field Injection: Spring directly injects the object into your class variable.
+        1. Real-life analogy: You keep the ingredients ready on the shelf.
+                              The helper simply picks them up and starts working.
+
+Q3. How IoC and DI Work Together
+    Here’s how Spring’s IoC container works:
+        1. You define the objects (called beans) and their dependencies in a configuration file or using annotations.
+        2. The IoC container reads this configuration.
+        3. The container creates the objects and injects the required dependencies automatically.
+    This ensures that your objects are ready to use without you having to manage their creation or connections.
+
+# Key Points to Remember:
+    1. Inversion of Control (IoC) is a principle where the control of creating and managing objects is handed over to the Spring Framework.
+    2. In a traditional Java program, you create and connect objects manually using the new keyword. With IoC, Spring does this automatically.
+    3. IoC helps make your application loosely coupled, easier to test, and easier to maintain.
+    4. Dependency Injection (DI) is the method used by Spring to implement IoC. It allows Spring to inject the required objects into your classes.
+
+# Common Interview Questions and Answers:
+
+    Q1: What is Inversion of Control (IoC) in Spring?
+     A: Inversion of Control is a design principle where the control of object creation and dependency management is transferred
+        from the application code to the Spring Framework. Instead of creating objects manually, Spring creates and injects them automatically.
+
+    Q2: How does Spring implement IoC?
+     A: Spring implements IoC using a technique called Dependency Injection. It reads the configuration (annotations or XML),
+        creates the required objects (beans), and injects them wherever needed.
+
+    Q3: What is Dependency Injection (DI)?
+     A: Dependency Injection is a method of providing an object’s required dependencies from the outside,
+        rather than creating them within the class. In Spring, this is done by the IoC container.
+
+    Q4: What are the types of Dependency Injection in Spring?
+     A: The three types are:
+            1. Constructor Injection
+            2. Setter Injection
+            3. Field Injection
+        Each provides dependencies in a different way.
+
