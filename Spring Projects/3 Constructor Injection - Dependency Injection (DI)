@@ -24,6 +24,10 @@ Q1. Why Constructor Injection Matters?
     Spring creates all required objects for you and gives them to your class at the time of creation. You don’t manually call
     new everywhere. This makes your code cleaner, more modular, and easier to manage.
 
+  # Real-Life Analogy:
+    Think of a laptop. When you buy a laptop, it already has an operating system (Windows, Linux, etc.) installed.
+    You don’t install it every time. This is similar to Constructor Injection.
+    Here, the laptop is your service class, and the operating system is the dependency it needs to function.
 
 # Key Points to Remember:
     1. Spring creates objects and injects dependencies using your constructor.

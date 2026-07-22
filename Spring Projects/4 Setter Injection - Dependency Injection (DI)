@@ -1,0 +1,49 @@
+# Dependency Injection (DI): Setter Injection:
+
+    Setter Injection is helpful when you don’t want to provide everything upfront. You want the freedom to set or change
+    something later — just like assigning tasks to a worker after hiring them. Let’s understand this with a real-world example.
+
+Q1. What is Setter Injection?
+    Setter Injection is a technique used in Spring Framework to provide an object’s dependency after the object is created.
+
+    Instead of sending everything through the constructor (which you may have seen in Constructor Injection), here we use a
+    setter method — a public method that sets the value of a dependency.
+
+    This type of injection is best suited when:
+    1. The dependency is optional
+    2. You want to change the dependency at a later stage
+    3. You want more control and flexibility during configuration
+
+    # Simple Real-Life Analogy:
+
+        Let’s think of a laptop. When you buy it, it may or may not come with pre-installed software.
+        If it doesn’t, you install software later using an installer — you plug it in. This is similar
+        to Setter Injection. The software (dependency) is installed on the laptop (main object) after the laptop is ready.
+
+# Key Points to Remember:
+    1. Setter Injection is used to provide a dependency after the object is created.
+    2. It uses a public setter method to inject the required dependency.
+    3. It is best suited when the dependency is optional or might change later.
+    4. The Spring IoC container uses the <property> tag in XML to inject dependencies using setters.
+    5. The object is created first (like the Laptop), and the dependency (like the OS) is “plugged in” later using the setter.
+    6. Setter Injection offers more flexibility than constructor injection — especially for configurations or optional modules.
+
+# Common Interview Questions and Answers:
+
+    Q1. What is Setter Injection in Spring?
+    Answer: Setter Injection is a way of providing an object’s dependency using a public setter method. The object is first created,
+            and then the dependency is set through the setter. It is handled by Spring using the <property> tag in XML configuration.
+
+    Q2. How is Setter Injection different from Constructor Injection?
+    Answer: 1. Constructor Injection provides dependencies when the object is created — during construction.
+            2. Setter Injection provides dependencies after the object is created — using setter methods.
+            3. Setter Injection is useful for optional or changeable dependencies.
+
+    Q3. When should you prefer Setter Injection?
+    Answer: 1. When the dependency is not mandatory
+            2. When you want flexibility to change or update the dependency later
+            3. When using large objects with many optional dependencies
+
+    Q4. Can we use both Constructor and Setter Injection in the same class?
+    Answer: Yes, you can use both in the same class. For example, mandatory dependencies can be injected using the constructor,
+            and optional ones through setters.

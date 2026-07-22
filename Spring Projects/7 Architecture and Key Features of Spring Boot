@@ -1,0 +1,74 @@
+# Architecture and Key Features of Spring Boot:
+
+    In the previous section, we understood what Spring Boot is, why it was introduced, and how it makes Java development faster and simpler.
+    We saw how Spring Boot removes the need for long configuration and helps developers focus on writing meaningful code.
+
+    Now, let us move one step ahead and understand how Spring Boot actually works in the background. In this section, we will explore
+    the architecture of Spring Boot and its key features that make it so efficient and widely used.
+
+# Making Sense of the Architecture: A Real-Life Perspective:
+
+    Imagine you are managing a cloud kitchen that accepts online orders. For this kitchen to work smoothly,
+    several things are required:
+        1. The kitchen setup must be ready in advance
+        2. The cooking process must follow a fixed method
+        3. The delivery should be automatic and consistent
+    This system allows the kitchen to work efficiently without needing your involvement every time.
+
+    The architecture of Spring Boot works in a similar way. It prepares everything needed to run a Java application,
+    sets up the environment for you, and manages most background tasks. As a developer, you only focus on writing your
+    application logic, and Spring Boot takes care of the rest.
+
+# Overview of Spring Boot Architecture:
+    Spring Boot is built on top of the Spring Framework, but it adds several enhancements to make application
+    development much faster and easier.
+
+    Let us break down the architecture into simple components.
+
+    1. Spring Boot Starters: Spring Boot provides ready-made starter packages. These starters include all the libraries needed
+                             to build a particular type of application.
+
+    2. Auto Configuration: One of the strongest features of Spring Boot is auto configuration. It automatically sets up components
+                           based on the libraries you have added in your project.
+
+    3. Core Spring Framework: At the core of Spring Boot lies the Spring Framework. This provides powerful features like:
+                              1. Dependency Injection
+                              2. Bean management
+                              3. Component scanning
+                             Spring Boot makes full use of these features but hides the complex setup from the developer.
+
+    4. Embedded Server: Spring Boot includes a built-in server such as Tomcat, Jetty, or Undertow. This means your application
+                        can run independently without needing to install any server separately.
+
+# Key Points to Remember:
+    1. Spring Boot is built on top of the Spring Framework with added simplicity
+    2. It prepares everything in advance using auto configuration
+    3. Developers focus on business logic while Spring Boot handles setup
+    4. Starter packages bundle all necessary libraries for a specific task
+    5. Auto configuration detects dependencies and sets up components
+    6. Embedded servers (like Tomcat) allow running apps without installing a server
+    7. Spring Boot Initializr helps generate new projects quickly
+    8. Spring Boot CLI allows running apps from the command line
+
+# Common Interview Questions and Answers:
+
+    1. What is the role of Spring Boot in Java development?
+    Answer: Spring Boot simplifies Java development by removing the need for manual configuration. It allows developers to create
+            production-ready applications quickly with minimal setup.
+
+    2. What is auto configuration in Spring Boot?
+    Answer: Auto configuration is a feature where Spring Boot automatically configures the application based on the libraries
+            present in the project. This helps avoid manual configuration for things like database connections or web servers.
+
+    3. What are Spring Boot Starter POMs?
+    Answer: Starter POMs are pre-defined dependency bundles provided by Spring Boot. Each starter contains all the required
+            libraries for a specific functionality, like web development, database access, or security.
+
+    4. What does the spring-boot-starter-web include?
+    Answer: It includes Spring MVC, an embedded Tomcat server, and Jackson for JSON processing. It is used to build web applications and REST APIs.
+
+    5. How is the embedded server helpful in Spring Boot?
+    Answer: The embedded server allows the application to run as a standalone program without needing to install or configure an
+            external server like Tomcat. This makes deployment and testing much easier.
+
+

@@ -107,3 +107,10 @@ Q3. How IoC and DI Work Together
             3. Field Injection
         Each provides dependencies in a different way.
 
+    Q5: Which statement best explains the core purpose of Inversion of Control (IoC) in the Spring Framework?
+     A: 1. IoC allows developers to focus on coding by delegating object creation and dependency management to the framework.
+        2. The primary purpose of IoC is to delegate the responsibility of creating and managing objects and their dependencies
+           to the Spring framework, freeing developers to focus on application logic rather than infrastructure code.
+
+
+

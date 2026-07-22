@@ -1,0 +1,63 @@
+# Dependency Injection (DI): Field Injection:
+
+    Hey So far, you’ve seen two ways Spring can provide dependencies:
+    1. Constructor Injection – like giving all necessary tools while building an object.
+    2. Setter Injection – like giving tools after the object is created.
+
+    Now comes the most direct and shortest way — Field Injection, where Spring injects the required dependency directly into the
+    field without needing a constructor or a setter method.
+
+    # Real-Life Analogy: Ready-to-Go Work Desk
+
+        Let’s say you join a new office as a designer. You walk in on the first day, and your desk is already set up.
+        Your computer, chair, stationery — everything is placed exactly where you need it. You didn’t bring it, you didn’t
+        request it later — it's just there. This is Field Injection. The objects (like your laptop or tools) are already
+        assigned to the fields (your desk) even before you do anything.
+
+Q1. What is Field Injection in Spring?
+Standard Definition:
+    Field Injection in Spring is a form of dependency injection where the Spring container injects the required
+    dependencies directly into the member variables (fields) of a class using annotations like @Autowired.
+
+Simple Explanation:
+    Field Injection means giving an object what it needs by placing the required item directly into its variable.
+    Instead of writing extra code like constructors or setter methods, Spring puts the needed object into the class
+    automatically using an annotation. This keeps the code short and clean.
+
+    For example, if a laptop needs an operating system, Spring directly gives the OS to the laptop's variable
+    without asking us to do it manually.
+
+Q2. When Should You Use Field Injection?
+    1. When the dependency is required and you don’t need to change it later.
+    2. When you want the code to be very short and simple.
+    3. For small to medium projects or for quick development.
+
+    However, it is not recommended for large applications or testable components because it's harder to write unit tests.
+
+# Key Points to Remember:
+    1. Field Injection uses @Autowired directly on fields (variables).
+    2. It removes the need for constructors and setters.
+    3. Requires component scanning and annotation support in XML.
+    4. Simple to use for basic cases.
+    5. Not the best approach for unit testing.
+
+# Common Interview Questions and Answers:
+
+    Q1. What is Field Injection in Spring?
+     A: Field Injection is a way to inject dependencies directly into a class’s variables using @Autowired,
+        without using setter methods or constructors.
+
+    Q2. Is Field Injection better than Constructor Injection?
+     A: Field Injection is quicker and cleaner but Constructor Injection is better for mandatory dependencies and testability.
+
+    Q3. Why is Field Injection not ideal for large applications?
+     A: Because it hides dependencies, making it hard to test or change parts of the system. It also breaks the object-oriented
+        principle of encapsulation.
+
+    Q4. Can we inject primitive or String values using Field Injection?
+     A: Yes. As shown in the example, you can inject String values by defining them as beans in XML.
+
+    Q5. Does Field Injection work without <context:component-scan>?
+     A: No. You need to enable component scanning to detect @Component classes and apply @Autowired.
+
+
