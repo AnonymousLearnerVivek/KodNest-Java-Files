@@ -1,0 +1,56 @@
+# Dependency Injection (DI): Constructor Injection:
+
+    # A Real-Life Starting Point: Running a Mobile Repair Shop:
+
+            Imagine you’re the owner of a small mobile repair shop. Every time a customer walks in with a problem — say a broken screen
+            or a software issue — you start looking for your tools: screwdriver, tester, tweezers, etc.
+
+            This routine becomes tiring, right? So, what do you do? You decide to prepare a toolkit. Now,
+            whenever someone brings in a damaged phone, everything you need is already packed and ready.
+            You just open your kit and begin. This toolkit is like Constructor Injection.
+
+            Instead of hunting for tools every time (creating objects manually), you prepare everything at the beginning and
+            give it to the technician when they start working. This is exactly what Constructor Injection does in programming —
+            all necessary items (dependencies) are provided when the object is created.
+
+
+Q1. Why Constructor Injection Matters?
+    In Java, you often write code like this:
+        Student student = new Student();
+
+    You manually create the object. If you have multiple dependencies, you may end up writing a lot of repetitive and tightly
+    connected code. This becomes difficult to maintain, especially in larger applications. Constructor Injection changes this.
+
+    Spring creates all required objects for you and gives them to your class at the time of creation. You don’t manually call
+    new everywhere. This makes your code cleaner, more modular, and easier to manage.
+
+
+# Key Points to Remember:
+    1. Spring creates objects and injects dependencies using your constructor.
+    2. You define everything in the XML using <constructor-arg>.
+    3. This method is clean, safe, and highly recommended for required dependencies.
+    4. It follows the IoC principle — Spring controls everything.
+
+# Some Common Interview Questions and Answers:
+
+    Q1: What is Constructor Injection in Spring?
+     A: Constructor Injection is a type of dependency injection where dependencies are provided to a class through its constructor.
+        In Spring, the IoC container creates the object and injects its dependencies by calling the constructor with required arguments,
+        which are defined in the XML using <constructor-arg>.
+
+    Q2: Why should we use Constructor Injection instead of Setter Injection?
+     A: 1. Constructor Injection is used when all dependencies are mandatory. It ensures that the object is created with all required resources.
+           If any dependency is missing, the object will not be created — which helps avoid errors.
+        2. Setter Injection, on the other hand, is better for optional dependencies.
+
+    Q3: Can we have both Constructor and Setter Injection in the same class?
+     A: Yes, Spring allows a mix of both. However, it’s recommended to use Constructor Injection for required dependencies
+        and Setter Injection for optional ones to keep the design clean and maintainable.
+
+    Q4: What happens if multiple constructors are present in a class? How does Spring decide which one to use?
+     A: If multiple constructors are present, Spring will try to match the constructor based on the number and type of
+        <constructor-arg> elements provided in the XML. If it cannot find a proper match, it will throw a BeanCreationException.
+
+    Q5: Is Constructor Injection supported in annotations-based configuration?
+     A: Yes. In annotations-based configuration, you can use @Autowired on a constructor, and Spring will automatically inject
+        the dependencies. However, this example used XML configuration as it’s still widely used in Spring 3.x projects.
